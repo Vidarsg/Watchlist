@@ -2,18 +2,16 @@ package watchlist;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SaveLoadHandler {
 
-    public Watchlist load(String filename) throws FileNotFoundException, InputMismatchException {
+    public Watchlist load() throws FileNotFoundException {
         Watchlist watchlist = new Watchlist();
-        try (Scanner scanner = new Scanner(getFile(filename))) {
+        try (Scanner scanner = new Scanner(getFile())) {
             while (scanner.hasNextLine()) {
                 String title = scanner.nextLine();
-                int year = scanner.nextInt();
+                int year = Integer.parseInt(scanner.nextLine());
                 Movie movie = new Movie(title, year);
                 watchlist.addMovie(movie);
             }
@@ -21,7 +19,7 @@ public class SaveLoadHandler {
         return watchlist;
     }
     
-    public static File getFile(String filename) {
-		return new File(SaveLoadHandler.class.getResource("resources/").getFile() + filename + ".txt");
+    public static File getFile() {
+		return new File(SaveLoadHandler.class.getResource("savefiles/").getFile() + "watchlist.txt");
 	}
 }

@@ -15,4 +15,8 @@ public class Movie {
     public int getYear() {
         return year;
     }
+
+    public String toString() {
+        return title + " (" + year + ")";
+    }
 }

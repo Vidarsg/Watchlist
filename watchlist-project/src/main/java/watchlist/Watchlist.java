@@ -3,17 +3,17 @@ package watchlist;
 import java.util.ArrayList;
 
 public class Watchlist {
-    private ArrayList<Movie> watchlist;
+    private ArrayList<Movie> list;
 
     public Watchlist() {
-        this.watchlist = new ArrayList<>();
+        this.list = new ArrayList<>();
     }
 
-    public ArrayList<Movie> getWatchList() {
-        return watchlist;
+    public ArrayList<Movie> getList() {
+        return list;
     }
 
     public void addMovie(Movie movie) {
-        watchlist.add(movie);
+        list.add(movie);
     }
 }
