@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
-public class CalcApp extends Application {
+public class WatchlistApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
