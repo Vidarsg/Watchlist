@@ -2,17 +2,17 @@ package watchlist;
 
 public class Movie {
     private String title;
-    private int published;
+    private int year;
 
-    public Movie(String title, int published) {
+    public Movie(String title, int year) {
         this.title = title;
-        this.published = published;
+        this.year = year;
     }
 
     public String getTitle() {
         return title;
     }
-    public int getPublished() {
-        return published;
+    public int getYear() {
+        return year;
     }
 }
