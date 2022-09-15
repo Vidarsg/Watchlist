@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<GridPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="watchlist.WatchlistController"
-         alignment="CENTER" hgap="10.0" vgap="10.0" >
-</GridPane>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane prefHeight="400.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <tabs>
+        <Tab text="Browse">
+            <content>
+                <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                <columnConstraints>
+                    <ColumnConstraints />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Browse" wrappingWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                            <Font size="42.0" />
+                        </font>
+                    </Text>
+                    <ListView prefHeight="258.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <children>
+                            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new movie" />
+                            <TextField layoutX="14.0" layoutY="35.0" prefHeight="27.0" prefWidth="160.0" promptText="Title" />
+                            <TextField layoutX="186.0" layoutY="35.0" prefHeight="27.0" prefWidth="100.0" promptText="Published" />
+                            <Button layoutX="14.0" layoutY="69.0" mnemonicParsing="false" text="Add movie" />
+                        </children>
+                    </AnchorPane>
+                </children>
+                </GridPane>
+            </content>
+        </Tab>
+        <Tab text="Profile">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
