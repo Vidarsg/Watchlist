@@ -34,9 +34,10 @@
                     <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                         <children>
                             <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new movie" />
-                            <TextField layoutX="14.0" layoutY="35.0" prefHeight="27.0" prefWidth="134.0" promptText="Title" />
-                            <TextField layoutX="163.0" layoutY="35.0" prefHeight="27.0" prefWidth="80.0" promptText="Published" />
-                            <Button layoutX="14.0" layoutY="69.0" mnemonicParsing="false" text="Add movie" />
+                            <TextField fx:id="addMovieTitle" layoutX="14.0" layoutY="35.0" prefHeight="27.0" prefWidth="134.0" promptText="Title" />
+                            <TextField fx:id="addMovieYear" layoutX="163.0" layoutY="35.0" prefHeight="27.0" prefWidth="80.0" promptText="Published" />
+                            <Button layoutX="14.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleAddMovie" text="Add movie" />
+                            <Text fx:id="feedbackBox" fill="RED" layoutX="14.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
                         </children>
                     </AnchorPane>
                 </children>

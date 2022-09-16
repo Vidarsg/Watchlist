@@ -5,7 +5,10 @@ public class Movie {
     private int year;
 
     public Movie(String title, int year) {
+        if (title.isEmpty()) {throw new IllegalArgumentException("The title cannot be empty");}
         this.title = title;
+        
+        if (year < 1888) {throw new IllegalArgumentException("No motion picture was recorded before year 1888");}
         this.year = year;
     }
 
