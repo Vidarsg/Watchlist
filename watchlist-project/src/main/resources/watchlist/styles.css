@@ -1,0 +1,14 @@
+Button {
+    background-color: #ff9900;
+    -fx-background-color: #ff9900;
+    cursor: hand;
+    -fx-cursor: hand;
+}
+Button:hover {
+    -fx-effect: dropshadow(one-pass-box, black, 0,1.0,0,2);
+    -fx-translate-y: -2px;
+}
+Button:pressed {
+    -fx-effect: dropshadow(one-pass-box, black, 0,1.0,0,0);
+    -fx-translate-y: 0;
+}
