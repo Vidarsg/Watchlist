@@ -33,16 +33,16 @@ public class WatchlistController {
     private Text feedbackBoxProfile;
 
    
-    void initialize() {
+    public void initialize() {
         user = new User("Username", 21);
         list = new Watchlist();
+        handleLoad();
         updateMovies();
     }
 
     // Methods for file handling
 
     private void updateMovies() {
-        handleLoad();
         moviebrowser.setItems(FXCollections.observableArrayList(list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
     }
 
