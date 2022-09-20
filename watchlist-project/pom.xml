@@ -94,7 +94,7 @@
                 <!-- Default configuration for running -->
                 <!-- Usage: mvn javafx:run -->
                 <configuration>
-                    <mainClass>watchlist.WatchlistApp</mainClass>
+                    <mainClass>watchlist/watchlist.WatchlistApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>
