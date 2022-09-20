@@ -2,9 +2,7 @@
 
 # Group gr2263 repository 
  
-Welcome to IT1901 Fall 2022 course 
- 
-Good luck! 
+I mappestrukturen vår finner du selve kodingsprosjektet i "watchlist-project"-mappen. Under denne mappen finner du java-filene som utgjør den funksjonelle appen vår samt tilsvarende testfiler som tester appens funksjonalitet. I tillegg har vi opprettet ressurser som fxml-filer, style-filer og lagringsfiler under "resources/watchlist".
 
-Thanks!
-
+Vi har opprettet en mappe på rotnivå som inneholder dokumentasjon for hver øving ("release").
+I dokumentasjonen har vi forklart hvordan vi har gått fram med å løse øvingsoppgavene, og hvorfor vi har tatt de valgene vi har tatt med hensyn til arbeidskravene for hver enkelt øving.

@@ -1,0 +1,1 @@
+"Forklar hva appen handler om og hva den er ment til å gjøre" (når den er mer eller mindre ferdig)
