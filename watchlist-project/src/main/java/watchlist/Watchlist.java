@@ -16,4 +16,8 @@ public class Watchlist {
     public void addMovie(Movie movie) {
         list.add(movie);
     }
+
+    public void removeMovie(Movie movie) {
+        list.remove(movie);
+    }
 }
