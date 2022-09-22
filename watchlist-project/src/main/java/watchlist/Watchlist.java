@@ -14,6 +14,7 @@ public class Watchlist {
     }
 
     /**
+     * Adds the given movie to the Watchlist object
      * @param movie The movie to add to the watchlist
      */
     public void addMovie(Movie movie) {
@@ -21,6 +22,7 @@ public class Watchlist {
     }
 
     /**
+     * Removes the given movie from the Watchlist object
      * @param movie The movie to remove from the watchlist
      */
     public void removeMovie(Movie movie) {
