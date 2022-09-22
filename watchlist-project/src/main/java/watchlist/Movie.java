@@ -4,6 +4,11 @@ public class Movie {
     private String title;
     private int year;
 
+    /**
+     * Creates a new Movie object witht the given title and year
+     * @param title the title of the movie
+     * @param year the release year of the movie
+     */
     public Movie(String title, int year) {
         if (title.isEmpty()) {throw new IllegalArgumentException("The title cannot be empty");}
         this.title = title;
