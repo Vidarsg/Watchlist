@@ -1,1 +1,3 @@
+# Dokumentasjon Release 3
+
 Hvordan har vi valgt å løse øving 3? Hvorfor har vi tatt de valgene vi har tatt med hensyn til øvingskravene?
