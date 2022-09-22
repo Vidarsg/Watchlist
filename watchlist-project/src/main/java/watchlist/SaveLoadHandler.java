@@ -2,85 +2,36 @@ package watchlist;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class SaveLoadHandler implements ISaveLoadHandler {
+public class SaveLoadHandler {
 
-    //Denne metoden skriver spillbrettet til fil gitt av filename
-    public void save(String filename, Game game) throws FileNotFoundException {
-        try (PrintWriter writer = new PrintWriter(getFile(filename))) {
-            writer.println(game.getWidth());
-            writer.println(game.getHeight());
-            writer.println(game.getMines());
-            writer.println(game.getTotalTiles());
-            writer.println(game.getOpenedTiles());
-            writer.println(game.getFlags());
-            writer.println(game.isGameLost());
-            writer.println(game.isGameWon());
-            for (int y = 0; y < game.getHeight(); y++) {
-                for (int x = 0; x < game.getWidth(); x++) {
-                    String tileString = "";
-                    if (game.getTile(x, y).isMine()) {
-                        tileString += "m";
-                    }
-                    if (game.getTile(x, y).isFlag()) {
-                        tileString += "f";
-                    }
-                    if (game.getTile(x, y).isOpen()) {
-                        tileString += "o";
-                    }
-                    tileString += game.getTile(x, y).getNeighborMines();
-                    writer.println(tileString);
-                }
+    /**
+     * Loads a file with the given file name and creates a Watchlist object from said file
+     * @param filename the String with the name of the file to load
+     * @return a Watchlist object generated from the given file
+     * @throws FileNotFoundException if the file does not exist
+     * @throws NumberFormatException if the file is invalid
+     */
+    public Watchlist load(String filename) throws FileNotFoundException, NumberFormatException {
+        Watchlist watchlist = new Watchlist();
+        try (Scanner scanner = new Scanner(getFile(filename))) {
+            while (scanner.hasNextLine()) {
+                String title = scanner.nextLine();
+                int year = Integer.parseInt(scanner.nextLine());
+                Movie movie = new Movie(title, year);
+                watchlist.addMovie(movie);
             }
         }
-	}
-
-    //Denne metoden leser fra fil gitt av filename og oppretter et nytt spillbrett basert på informasjonen
-	public Game load(String filename) throws FileNotFoundException, InputMismatchException {
-		try (Scanner scanner = new Scanner(getFile(filename))) {
-			int width = scanner.nextInt();
-			int height = scanner.nextInt();
-            int mines = scanner.nextInt();
-			Game game = new Game(width, height, mines);
-            int totalTiles = scanner.nextInt();
-            game.setTotalTiles(totalTiles);
-            int openedTiles = scanner.nextInt();
-            game.setOpenedTiles(openedTiles);
-            int flags = scanner.nextInt();
-            game.setFlags(flags);
-			if (scanner.nextBoolean()) {
-				game.setGameLost();
-			}
-			if (scanner.nextBoolean()) {
-				game.setGameWon();
-			}
-			for (int y = 0; y < height; y++) {
-				for (int x = 0; x < width; x++) {
-                    String tileString = scanner.next();
-                    for (int i = 0; i < tileString.length(); i++) {
-                        if (tileString.charAt(i) == 'm') {
-                            game.getTile(x, y).setMine();
-                        }
-                        if (tileString.charAt(i) == 'f') {
-                            game.getTile(x, y).setFlagTrue();
-                        }
-                        if (tileString.charAt(i) == 'o') {
-                            game.getTile(x, y).setOpen();
-                        }
-                        if (i+1 == tileString.length()) {
-                            game.getTile(x, y).setNeighborMines(Character.getNumericValue(tileString.charAt(i)));
-                        }
-                    }
-				}
-			}
-			return game;
-		}
-	}
-
+        return watchlist;
+    }
+    
+    /**
+     * Gets the file with the given filename
+     * @param filename the String with the name of the file to get
+     * @return The file with the given filename
+     */
     public static File getFile(String filename) {
-		return new File(SaveLoadHandler.class.getResource("saves/").getFile() + filename + ".txt");
+		return new File(SaveLoadHandler.class.getResource("savefiles/").getFile() + filename + ".txt");
 	}
 }
