@@ -9,6 +9,10 @@ public class User {
     private int age;
     private ArrayList<Movie> movies = new ArrayList<Movie>();
 
+    /**
+     * @param name The users name
+     * @param age The users age (must be greater than 0)
+     */
     public User(String name, int age) {
         this.name = name;
         if (age<0) {throw new IllegalArgumentException("Age must be a positive integer.");}
@@ -31,11 +35,18 @@ public class User {
         return new ArrayList<String>(movies.stream().map(x -> x.getTitle()).collect(Collectors.toList()));
     }
 
+    /**
+     * @param movie The movie to add to the users watched movies
+     */
     public void watchMovie(Movie movie) {
         if (! movies.contains(movie)) {
             movies.add(movie);
         }
     }
+    /**
+     * @param title The title of the movie to remove from the users watched movies
+     * @return True if the users watched movies contains the movie title and it gets removed
+     */
     public boolean unwatchMovie(String title) {
         for (Movie m : movies) {
             if (m.getTitle().equals(title)) {

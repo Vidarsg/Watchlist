@@ -10,13 +10,19 @@ public class Watchlist {
     }
 
     public ArrayList<Movie> getList() {
-        return list;
+        return new ArrayList<Movie>(list);
     }
 
+    /**
+     * @param movie The movie to add to the watchlist
+     */
     public void addMovie(Movie movie) {
         list.add(movie);
     }
 
+    /**
+     * @param movie The movie to remove from the watchlist
+     */
     public void removeMovie(Movie movie) {
         list.remove(movie);
     }
