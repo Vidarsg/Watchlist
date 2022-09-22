@@ -96,7 +96,7 @@ public class WatchlistController {
         else {
             for (Movie m : list.getList()) {
                 if (m.toString().equals(title)) {
-                    user.addMovie(m);
+                    user.watchMovie(m);
                     return;
                 }
             }
@@ -113,7 +113,7 @@ public class WatchlistController {
         String title = unwatchMovieTitle.getText();
         if (title.isEmpty()) {feedbackBoxProfile.setText("Please choose a movie from the list");}
         else {
-            if (! user.removeMovie(title)) {
+            if (! user.unwatchMovie(title)) {
                 feedbackBoxProfile.setText("You have not watched this movie...");
             }
         }

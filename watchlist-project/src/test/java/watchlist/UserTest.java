@@ -1,6 +1,8 @@
 package watchlist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
@@ -24,17 +26,33 @@ public class UserTest {
 
     @Test
     @DisplayName("Testing adding a movie to the users watched list")
-    public void testAddMovie() {
-        user.addMovie(movies.get(0));
+    public void testWatchMovie() {
+        user.watchMovie(movies.get(0));
         assertEquals(movies.get(0), user.getMovies().get(0));
 
         // Should be the same 
-        user.addMovie(movies.get(1));
-        user.addMovie(movies.get(2));
+        user.watchMovie(movies.get(1));
+        user.watchMovie(movies.get(2));
         assertEquals(movies, user.getMovies());
 
         // Should not add the same movie
-        user.addMovie(movies.get(0));
+        user.watchMovie(movies.get(0));
         assertEquals(movies, user.getMovies());
+    }
+
+    @Test
+    @DisplayName("Testing adding a movie to the users watched list")
+    public void testUnwatchMovie() {
+        // Setup and test the setup is right
+        user.watchMovie(movies.get(0));
+        assertEquals(movies.get(0), user.getMovies().get(0));
+
+        // Should be empty
+        assertTrue(user.unwatchMovie(movies.get(0).getTitle()));
+        assertEquals(new ArrayList<Movie>(), user.getMovies());
+
+        // Should not add the same movie
+        assertFalse(user.unwatchMovie(movies.get(0).getTitle()));
+        assertEquals(new ArrayList<Movie>(), user.getMovies());
     }
 }

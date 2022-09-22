@@ -31,12 +31,12 @@ public class User {
         return new ArrayList<String>(movies.stream().map(x -> x.getTitle()).collect(Collectors.toList()));
     }
 
-    public void addMovie(Movie movie) {
+    public void watchMovie(Movie movie) {
         if (! movies.contains(movie)) {
             movies.add(movie);
         }
     }
-    public boolean removeMovie(String title) {
+    public boolean unwatchMovie(String title) {
         for (Movie m : movies) {
             if (m.getTitle().equals(title)) {
                 movies.remove(m);
