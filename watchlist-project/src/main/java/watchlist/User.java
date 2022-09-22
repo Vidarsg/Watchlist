@@ -10,6 +10,7 @@ public class User {
     private ArrayList<Movie> movies = new ArrayList<Movie>();
 
     /**
+     * Creates a new User object with the given name and age
      * @param name The users name
      * @param age The users age (must be greater than 0)
      */
@@ -36,6 +37,7 @@ public class User {
     }
 
     /**
+     * Registers when the user have watched a movie
      * @param movie The movie to add to the users watched movies
      */
     public void watchMovie(Movie movie) {
@@ -44,6 +46,7 @@ public class User {
         }
     }
     /**
+     * Unregisters a movie which the user already has marked as watched
      * @param title The title of the movie to remove from the users watched movies
      * @return True if the users watched movies contains the movie title and it gets removed
      */

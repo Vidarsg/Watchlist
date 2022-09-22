@@ -5,7 +5,7 @@ public class Movie {
     private int year;
 
     /**
-     * Creates a new Movie object witht the given title and year
+     * Creates a new Movie object with the given title and year
      * @param title the title of the movie
      * @param year the release year of the movie
      */
