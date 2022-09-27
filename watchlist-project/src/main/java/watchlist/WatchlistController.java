@@ -129,6 +129,42 @@ public class WatchlistController {
         else {for (TextField t : tf) {t.setStyle("-fx-border-color:initial");}}
     }
 
+    private void setListeners(ListView lv) {
+        // Partially collected from https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
+        // I have customized it to my own project and added comments to show my understanding
+        // Add a new listener to the listItems of Utvalg
+        utvalgList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                
+                // Iterate through all Utvalg to find out which Utvalg was clicked
+                for (Utvalg u : sf.getUtvalg()) {
+                    if (u.getName().equals(newValue)) {
+                        activeUtvalg=u;
+                        
+                        // Set the value of removeUtvalgName to the clicked Utvalg
+                        removeUtvalgName.setText(activeUtvalg.getName());
+                        
+                        // Enable utvalgContent (add/remove medlem and medlemlist)
+                        utvalgContent.setDisable(false);
+
+                        updateUtvalgGUI();
+                        
+                        // Add a new listener to the listItems of Medlemmer
+                        medlemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                            @Override
+                            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                                for (Student s : u.getMedlemmer()) {
+                                    if (s.toString().equals(newValue)) {removeMedlemName.setText(s.toString());}
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    }
+
     // ! Help methods for GUI
 
 }
