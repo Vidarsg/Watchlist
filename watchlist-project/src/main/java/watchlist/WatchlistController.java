@@ -1,6 +1,7 @@
 package watchlist;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -36,7 +37,7 @@ public class WatchlistController {
     public void initialize() {
         user = new User("Username", 21);
         list = new Watchlist();
-        handleLoad("watchlist");
+        handleLoad("movies");
         updateMovies();
     }
 
@@ -52,6 +53,8 @@ public class WatchlistController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

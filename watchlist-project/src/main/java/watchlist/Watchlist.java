@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Watchlist {
     private ArrayList<Movie> list;
 
+    public Watchlist(ArrayList<Movie> list) {
+        this.list = list;
+    }
+
     public Watchlist() {
         this.list = new ArrayList<>();
     }

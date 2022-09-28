@@ -2,9 +2,14 @@ package watchlist;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class SaveLoadHandler {
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * Loads a file with the given file name and creates a Watchlist object from said file
@@ -12,17 +17,12 @@ public class SaveLoadHandler {
      * @return a Watchlist object generated from the given file
      * @throws FileNotFoundException if the file does not exist
      * @throws NumberFormatException if the file is invalid
+     * @throws IOException if the file is invalid
      */
-    public Watchlist load(String filename) throws FileNotFoundException, NumberFormatException {
-        Watchlist watchlist = new Watchlist();
-        try (Scanner scanner = new Scanner(getFile(filename))) {
-            while (scanner.hasNextLine()) {
-                String title = scanner.nextLine();
-                int year = Integer.parseInt(scanner.nextLine());
-                Movie movie = new Movie(title, year);
-                watchlist.addMovie(movie);
-            }
-        }
+    public Watchlist load(String filename) throws FileNotFoundException, NumberFormatException, IOException {
+        File file = getFile(filename);
+        ArrayList<Movie> movieList = objectMapper.readValue(file, new TypeReference<>(){});
+        Watchlist watchlist = new Watchlist(movieList);
         return watchlist;
     }
     
@@ -32,6 +32,6 @@ public class SaveLoadHandler {
      * @return The file with the given filename
      */
     public static File getFile(String filename) {
-		return new File(SaveLoadHandler.class.getResource("savefiles/").getFile() + filename + ".txt");
+		return new File(SaveLoadHandler.class.getResource("savefiles/").getFile() + filename + ".json");
 	}
 }

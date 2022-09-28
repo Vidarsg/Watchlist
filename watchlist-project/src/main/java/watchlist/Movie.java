@@ -3,6 +3,9 @@ package watchlist;
 import java.net.URL;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Movie {
     private String name;
     private int year;
@@ -21,9 +24,10 @@ public class Movie {
      * @param title the title of the movie
      * @param year the release year of the movie
      */
-    public Movie(String title, int year, String desc, double rating, ArrayList<String> actors, ArrayList<String> directors, ArrayList<String> genre, URL image_url, URL thumb_url) {
-        if (title.isEmpty()) {throw new IllegalArgumentException("The title cannot be empty");}
-        this.name = title;
+    @JsonCreator
+    public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year, @JsonProperty("desc") String desc, @JsonProperty("rating") double rating, @JsonProperty("actors") ArrayList<String> actors, @JsonProperty("directors") ArrayList<String> directors, @JsonProperty("genre") ArrayList<String> genre, @JsonProperty("image_url") URL image_url, @JsonProperty("thumb_url") URL thumb_url) {
+        if (name.isEmpty()) {throw new IllegalArgumentException("The title cannot be empty");}
+        this.name = name;
         
         if (year < 1888) {throw new IllegalArgumentException("No motion picture was recorded before year 1888");}
         this.year = year;
@@ -41,12 +45,14 @@ public class Movie {
         this.image_url = image_url;
         this.image_url = image_url;
     }
-    public Movie(String title, int year, String desc, double rating) {
-        new Movie(title, year, desc, rating, null, null, null, null, null);
+    public Movie(String name, int year, String desc, double rating) {
+        new Movie(name, year, desc, rating, null, null, null, null, null);
     }
     // Temporary to prevent errors
-    public Movie(String title, int year) {
-        new Movie(title, year, "desc", 1.0, null, null, null, null, null);
+    public Movie(String name, int year) {
+        //new Movie(name, year, "desc", 1.0, null, null, null, null, null);
+        this.name = name;
+        this.year = year;
     }
 
     // Getters
