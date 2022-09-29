@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -25,12 +26,16 @@ public class WatchlistController {
     private TextField addMovieYear;
     @FXML
     private Text feedbackBoxBrowsing;
+    @FXML
+    private Label BrowseUsername;
 
 
     @FXML
     private TextField unwatchMovieTitle;
     @FXML
     private Text feedbackBoxProfile;
+    @FXML
+    private Label ProfileUsername;
 
    
     public void initialize() {
@@ -38,6 +43,13 @@ public class WatchlistController {
         list = new Watchlist();
         handleLoad("watchlist");
         updateMovies();
+    }
+
+    // Fetches username from Login.fxml and displays it in Watchlist.fxml
+
+    public void setUsername(String name) {    
+        BrowseUsername.setText(name);
+        ProfileUsername.setText(name);
     }
 
     private void updateMovies() {
