@@ -16,8 +16,8 @@ public class Movie {
     private ArrayList<String> directors = new ArrayList<String>();
     private ArrayList<String> genre = new ArrayList<String>();
 
-    private URL image_url;
-    private URL thumb_url;
+    private String image_url;
+    private String thumb_url;
 
     /**
      * Creates a new Movie object with the given title and year
@@ -25,7 +25,7 @@ public class Movie {
      * @param year the release year of the movie
      */
     @JsonCreator
-    public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year, @JsonProperty("desc") String desc, @JsonProperty("rating") double rating, @JsonProperty("actors") ArrayList<String> actors, @JsonProperty("directors") ArrayList<String> directors, @JsonProperty("genre") ArrayList<String> genre, @JsonProperty("image_url") URL image_url, @JsonProperty("thumb_url") URL thumb_url) {
+    public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year, @JsonProperty("desc") String desc, @JsonProperty("rating") double rating, @JsonProperty("actors") ArrayList<String> actors, @JsonProperty("directors") ArrayList<String> directors, @JsonProperty("genre") ArrayList<String> genre, @JsonProperty("image_url") String image_url, @JsonProperty("thumb_url") String thumb_url) {
         if (name.isEmpty()) {throw new IllegalArgumentException("The title cannot be empty");}
         this.name = name;
         
@@ -65,8 +65,8 @@ public class Movie {
     public ArrayList<String> getDirectors() {return new ArrayList<String>(directors);}
     public ArrayList<String> getGenre() {return new ArrayList<String>(genre);}
 
-    public URL getImage_url() {return image_url;}
-    public URL getThumb_url() {return thumb_url;}
+    public String getImage_url() {return image_url;}
+    public String getThumb_url() {return thumb_url;}
     // ! Getters
 
     // Methods
