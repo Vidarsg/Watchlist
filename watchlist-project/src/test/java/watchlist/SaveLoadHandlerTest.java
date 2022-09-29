@@ -27,11 +27,9 @@ public class SaveLoadHandlerTest {
     public void testLoadValid() {
         //Loading watchlist from valid file
         try {
-            watchlist = saveLoadHandler.load("movies");
+            watchlist.setList(saveLoadHandler.load("movies"));
         } catch (FileNotFoundException e) {
             fail("The file could not be loaded. It does not exist");
-        } catch (NumberFormatException e) {
-            fail("The file could not be loaded. It is invalid.");
         } catch (IOException e) {
             fail("The file could not be loaded. It is invalid.");
         }
@@ -62,7 +60,7 @@ public class SaveLoadHandlerTest {
     public void testLoadNonexistent() {
         //Checks that FileNotFoundException is thrown when trying to load nonexistent file
         assertThrows(FileNotFoundException.class, () -> {
-            watchlist = saveLoadHandler.load("nonexistent_save");
+            watchlist.setList(saveLoadHandler.load("nonexistent_save"));
         }, "FileNotFoundException should be thrown when loading a nonexistent file");
     }
 }

@@ -1,6 +1,5 @@
 package watchlist;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,7 +20,7 @@ public class Movie {
 
     /**
      * Creates a new Movie object with the given title and year
-     * @param title the title of the movie
+     * @param name the title of the movie
      * @param year the release year of the movie
      */
     @JsonCreator
@@ -43,7 +42,7 @@ public class Movie {
         this.genre = genre;
 
         this.image_url = image_url;
-        this.image_url = image_url;
+        this.thumb_url = thumb_url;
     }
     public Movie(String name, int year, String desc, double rating) {
         new Movie(name, year, desc, rating, null, null, null, null, null);
@@ -56,7 +55,7 @@ public class Movie {
     }
 
     // Getters
-    public String getTitle() {return name;}
+    public String getName() {return name;}
     public int getYear() {return year;}
     public String getDesc() {return desc;}
     public double getRating() {return rating;}

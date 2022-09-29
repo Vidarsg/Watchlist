@@ -48,11 +48,11 @@ public class UserTest {
         assertEquals(movies.get(0), user.getMovies().get(0));
 
         // Should be empty
-        assertTrue(user.unwatchMovie(movies.get(0).getTitle()));
+        assertTrue(user.unwatchMovie(movies.get(0).getName()));
         assertEquals(new ArrayList<Movie>(), user.getMovies());
 
         // Should not add the same movie
-        assertFalse(user.unwatchMovie(movies.get(0).getTitle()));
+        assertFalse(user.unwatchMovie(movies.get(0).getName()));
         assertEquals(new ArrayList<Movie>(), user.getMovies());
     }
 }

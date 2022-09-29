@@ -49,10 +49,8 @@ public class WatchlistController {
 
     private void handleLoad(String filename) {
         try {
-            list = saveLoadHandler.load(filename);
+            list.setList(saveLoadHandler.load(filename));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (NumberFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
