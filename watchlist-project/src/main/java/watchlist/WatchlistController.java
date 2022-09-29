@@ -1,8 +1,10 @@
 package watchlist;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -28,6 +30,8 @@ public class WatchlistController {
 
 
     @FXML
+    private ListView<String> watchedMovies;
+    @FXML
     private TextField unwatchMovieTitle;
     @FXML
     private Text feedbackBoxProfile;
@@ -37,12 +41,19 @@ public class WatchlistController {
         user = new User("Username", 21);
         list = new Watchlist();
         handleLoad("watchlist");
-        updateMovies();
+        updateMoviebrowser();
     }
 
-    private void updateMovies() {
+    private void updateMoviebrowser() {
         moviebrowser.setItems(FXCollections.observableArrayList(list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
+        setListeners(moviebrowser, list.getList());
     }
+
+    private void updateWatchedMovies() {
+        watchedMovies.setItems(FXCollections.observableArrayList(user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
+        setListeners(watchedMovies, user.getMovies());
+    }
+
 
     // Methods for file handling
 
@@ -86,18 +97,18 @@ public class WatchlistController {
             feedbackBoxBrowsing.setText(e.getMessage());
         }
 
-        updateMovies();
+        updateMoviebrowser();
     }
 
     @FXML
     void handleWatchMovie() {
         String title = watchMovieTitle.getText();
-        if (title.isEmpty()) {feedbackBoxProfile.setText("Please choose a movie from the list");}
+        if (title.isEmpty()) {feedbackBoxBrowsing.setText("Please choose a movie from the list");}
         else {
             for (Movie m : list.getList()) {
                 if (m.toString().equals(title)) {
                     user.watchMovie(m);
-                    return;
+                    updateWatchedMovies();
                 }
             }
         }
@@ -116,6 +127,14 @@ public class WatchlistController {
             if (! user.unwatchMovie(title)) {
                 feedbackBoxProfile.setText("You have not watched this movie...");
             }
+            else {
+                for (Movie m : user.getMovies()) {
+                    if (m.toString().equals(title)) {
+                        user.unwatchMovie(m.getTitle());
+                        updateWatchedMovies();
+                    }
+                }
+            }
         }
     }
 
@@ -129,24 +148,24 @@ public class WatchlistController {
         else {for (TextField t : tf) {t.setStyle("-fx-border-color:initial");}}
     }
 
-    private void setListeners(ListView lv) {
+    private void setListeners(ListView<String> lv, ArrayList<Movie> al) {
         // Partially collected from https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
         // I have customized it to my own project and added comments to show my understanding
         // Add a new listener to the listItems of Utvalg
-        utvalgList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        lv.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 
                 // Iterate through all Utvalg to find out which Utvalg was clicked
-                for (Utvalg u : sf.getUtvalg()) {
-                    if (u.getName().equals(newValue)) {
-                        activeUtvalg=u;
+                for (Movie m : al) {
+                    if (m.getTitle().equals(newValue)) {
+                        newValue = m.getTitle();
                         
                         // Set the value of removeUtvalgName to the clicked Utvalg
-                        removeUtvalgName.setText(activeUtvalg.getName());
+                        watchMovieTitle.setText(m.getTitle());
                         
                         // Enable utvalgContent (add/remove medlem and medlemlist)
-                        utvalgContent.setDisable(false);
+                        // utvalgContent.setDisable(false);
 
                         updateUtvalgGUI();
                         
