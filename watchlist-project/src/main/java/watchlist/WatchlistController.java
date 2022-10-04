@@ -53,13 +53,17 @@ public class WatchlistController {
     }
 
     private void updateMoviebrowser() {
-        moviebrowser.setItems(FXCollections.observableArrayList(list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
-        setListeners(moviebrowser, watchMovieTitle, watchMovieButton);
+        if (list.getList().size() > 0) {
+            moviebrowser.setItems(FXCollections.observableArrayList(list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
+            setListeners(moviebrowser, watchMovieTitle, watchMovieButton);
+        }
     }
 
     private void updateWatchedMovies() {
-        watchedMovies.setItems(FXCollections.observableArrayList(user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
-        setListeners(watchedMovies, unwatchMovieTitle, unwatchMovieButton);
+        if (user.getMovies().size() > 0) {
+            watchedMovies.setItems(FXCollections.observableArrayList(user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
+            setListeners(watchedMovies, unwatchMovieTitle, unwatchMovieButton);
+        }
     }
 
 
