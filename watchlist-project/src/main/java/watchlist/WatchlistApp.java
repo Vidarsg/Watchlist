@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class WatchlistApp extends Application {
         primaryStage.setScene(new Scene(FXMLLoader.load(WatchlistApp.class.getResource("Login.fxml"))));
         primaryStage.setTitle("Watchlist");
         primaryStage.setResizable(false);
-        //primaryStage.getIcons().add(new Image("file:src/main/resources/prosjekt/images/uno_logo.png")); 
+        primaryStage.getIcons().add(new Image("file:images/watchlist-favicon.png")); 
         primaryStage.show();
         
     }
