@@ -35,7 +35,7 @@
                   <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <children>
                         <TextField fx:id="watchMovieTitle" disable="true" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="121.0" promptText="Click on a movie..." />
-                        <Button layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleWatchMovie" prefHeight="27.0" prefWidth="103.0" text="Watch movie" textAlignment="CENTER" />
+                        <Button fx:id="watchMovieButton" disable="true" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleWatchMovie" prefHeight="27.0" prefWidth="103.0" text="Watch movie" textAlignment="CENTER" />
                         <Text fx:id="feedbackBoxProfile1" fill="RED" layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
                      </children>
                   </AnchorPane>
@@ -78,7 +78,7 @@
                   <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <children>
                         <TextField fx:id="unwatchMovieTitle" disable="true" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="121.0" promptText="Click on a movie..." />
-                        <Button layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleUnwatchMovie" text="Unwatch movie" />
+                        <Button fx:id="unwatchMovieButton" disable="true" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleUnwatchMovie" text="Unwatch movie" />
                         <Text fx:id="feedbackBoxProfile" fill="RED" layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
                      </children>
                   </AnchorPane>

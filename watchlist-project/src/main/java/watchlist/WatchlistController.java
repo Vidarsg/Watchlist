@@ -3,8 +3,11 @@ package watchlist;
 import java.io.FileNotFoundException;
 import java.util.stream.Collectors;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -13,12 +16,16 @@ public class WatchlistController {
     private User user;
     private Watchlist list;
     private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
-
+    private Movie activeBrowserMovie;
+    private Movie activeProfileMovie;
     
+
+    @FXML
+    private ListView<String> moviebrowser;
     @FXML
     private TextField watchMovieTitle;
     @FXML
-    private ListView<String> moviebrowser;
+    private Button watchMovieButton;
     @FXML
     private TextField addMovieTitle;
     @FXML
@@ -28,7 +35,11 @@ public class WatchlistController {
 
 
     @FXML
+    private ListView<String> myMovies;
+    @FXML
     private TextField unwatchMovieTitle;
+    @FXML
+    private Button unwatchMovieButton;
     @FXML
     private Text feedbackBoxProfile;
 
@@ -37,11 +48,19 @@ public class WatchlistController {
         user = new User("Username", 21);
         list = new Watchlist();
         handleLoad("watchlist");
-        updateMovies();
+
+        // Temporary for testing
+        user.watchMovie(list.getList().get(0));
+        
+        updateGUI();
     }
 
     private void updateMovies() {
         moviebrowser.setItems(FXCollections.observableArrayList(list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
+        setListeners(moviebrowser, watchMovieTitle, watchMovieButton);
+
+        myMovies.setItems(FXCollections.observableArrayList(user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
+        setListeners(myMovies, unwatchMovieTitle, unwatchMovieButton);
     }
 
     // Methods for file handling
@@ -91,16 +110,19 @@ public class WatchlistController {
 
     @FXML
     void handleWatchMovie() {
+        feedbackBoxBrowsing.setText("");
         String title = watchMovieTitle.getText();
-        if (title.isEmpty()) {feedbackBoxProfile.setText("Please choose a movie from the list");}
+        if (title.isEmpty()) {feedbackBoxBrowsing.setText("Please choose a movie from the list");}
         else {
             for (Movie m : list.getList()) {
                 if (m.toString().equals(title)) {
+                    feedbackBoxBrowsing.setText("Watched movie "+m.toString());
                     user.watchMovie(m);
-                    return;
+                    break;
                 }
             }
         }
+        updateGUI();
     }
 
     // ! Handle methods for browsing
@@ -110,6 +132,7 @@ public class WatchlistController {
 
     @FXML
     void handleUnwatchMovie() {
+        feedbackBoxProfile.setText("");
         String title = unwatchMovieTitle.getText();
         if (title.isEmpty()) {feedbackBoxProfile.setText("Please choose a movie from the list");}
         else {
@@ -117,6 +140,7 @@ public class WatchlistController {
                 feedbackBoxProfile.setText("You have not watched this movie...");
             }
         }
+        updateGUI();
     }
 
     // ! Handle methods for profile
@@ -124,43 +148,42 @@ public class WatchlistController {
 
     // Help methods for GUI
 
+    private void updateGUI() {
+        updateMovies();
+    }
+
     private void redBorder(boolean set, TextField... tf) {
         if (set) {for (TextField t : tf) {t.setStyle("-fx-border-color:red");}}
         else {for (TextField t : tf) {t.setStyle("-fx-border-color:initial");}}
     }
 
-    private void setListeners(ListView lv) {
+    private void setListeners(ListView<String> lv, TextField tf, Button btn) {
         // Partially collected from https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
-        // I have customized it to my own project and added comments to show my understanding
-        // Add a new listener to the listItems of Utvalg
-        utvalgList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        // We have customized it to our own project and added comments to show our understanding
+        // Add a new listener to the listItems of WatchList
+        lv.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                
-                // Iterate through all Utvalg to find out which Utvalg was clicked
-                for (Utvalg u : sf.getUtvalg()) {
-                    if (u.getName().equals(newValue)) {
-                        activeUtvalg=u;
-                        
-                        // Set the value of removeUtvalgName to the clicked Utvalg
-                        removeUtvalgName.setText(activeUtvalg.getName());
-                        
-                        // Enable utvalgContent (add/remove medlem and medlemlist)
-                        utvalgContent.setDisable(false);
 
-                        updateUtvalgGUI();
+                // Iterate through all movies to find out which movie was clicked
+                for (Movie m : list.getList()) {
+                    if (m.toString().equals(newValue)) {
+                        Movie activeMovie = m;
                         
-                        // Add a new listener to the listItems of Medlemmer
-                        medlemList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-                            @Override
-                            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                                for (Student s : u.getMedlemmer()) {
-                                    if (s.toString().equals(newValue)) {removeMedlemName.setText(s.toString());}
-                                }
-                            }
-                        });
+                        // Set the value of the textField to the chosen Movie
+                        tf.setText(activeMovie.toString());
+                        
+                        // Enable the Watch-/Unwatch-button
+                        btn.setDisable(false);
+
+                        if (lv.equals(myMovies)) {activeProfileMovie = activeMovie;}
+                        else {activeBrowserMovie = activeMovie;}
+
+                        return;
                     }
                 }
+
             }
         });
     }
