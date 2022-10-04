@@ -1,6 +1,7 @@
 package watchlist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,9 +12,9 @@ public class Movie {
     private String desc;
     private double rating;
     
-    private ArrayList<String> actors = new ArrayList<String>();
-    private ArrayList<String> directors = new ArrayList<String>();
-    private ArrayList<String> genre = new ArrayList<String>();
+    private List<String> actors = new ArrayList<String>();
+    private List<String> directors = new ArrayList<String>();
+    private List<String> genre = new ArrayList<String>();
 
     private String image_url;
     private String thumb_url;
@@ -24,7 +25,7 @@ public class Movie {
      * @param year the release year of the movie
      */
     @JsonCreator
-    public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year, @JsonProperty("desc") String desc, @JsonProperty("rating") double rating, @JsonProperty("actors") ArrayList<String> actors, @JsonProperty("directors") ArrayList<String> directors, @JsonProperty("genre") ArrayList<String> genre, @JsonProperty("image_url") String image_url, @JsonProperty("thumb_url") String thumb_url) {
+    public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year, @JsonProperty("desc") String desc, @JsonProperty("rating") double rating, @JsonProperty("actors") List<String> actors, @JsonProperty("directors") List<String> directors, @JsonProperty("genre") List<String> genre, @JsonProperty("image_url") String image_url, @JsonProperty("thumb_url") String thumb_url) {
         if (name.isEmpty()) {throw new IllegalArgumentException("The title cannot be empty");}
         this.name = name;
         
@@ -60,16 +61,35 @@ public class Movie {
     public String getDesc() {return desc;}
     public double getRating() {return rating;}
 
-    public ArrayList<String> getActors() {return new ArrayList<String>(actors);}
-    public ArrayList<String> getDirectors() {return new ArrayList<String>(directors);}
-    public ArrayList<String> getGenre() {return new ArrayList<String>(genre);}
+    public List<String> getActors() {return new ArrayList<String>(actors);}
+    public List<String> getDirectors() {return new ArrayList<String>(directors);}
+    public List<String> getGenre() {return new ArrayList<String>(genre);}
 
     public String getImage_url() {return image_url;}
     public String getThumb_url() {return thumb_url;}
     // ! Getters
 
     // Methods
+    public boolean equals(Movie other) {
+        if (other == null) {
+            return false;
+        }
 
+        if (other.getClass() != this.getClass()) {
+            return false;
+        }
+
+        if (this.getTitle() != other.getTitle()) {
+            return false;
+        }
+
+        if (this.getYear() != other.getYear()) {
+            return false;
+        }
+
+        return true;
+
+    }
     // ! Methods
 
     public String toString() {
