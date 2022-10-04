@@ -79,7 +79,7 @@ public class Movie {
             return false;
         }
 
-        if (this.getTitle() != other.getTitle()) {
+        if (this.getName() != other.getName()) {
             return false;
         }
 
