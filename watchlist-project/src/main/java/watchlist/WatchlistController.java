@@ -35,7 +35,7 @@ public class WatchlistController {
 
 
     @FXML
-    private ListView<String> myMovies;
+    private ListView<String> watchedMovies;
     @FXML
     private TextField unwatchMovieTitle;
     @FXML
@@ -48,20 +48,20 @@ public class WatchlistController {
         user = new User("Username", 21);
         list = new Watchlist();
         handleLoad("watchlist");
-
-        // Temporary for testing
-        user.watchMovie(list.getList().get(0));
-        
+        updateMoviebrowser();
         updateGUI();
     }
 
-    private void updateMovies() {
+    private void updateMoviebrowser() {
         moviebrowser.setItems(FXCollections.observableArrayList(list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
         setListeners(moviebrowser, watchMovieTitle, watchMovieButton);
-
-        myMovies.setItems(FXCollections.observableArrayList(user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
-        setListeners(myMovies, unwatchMovieTitle, unwatchMovieButton);
     }
+
+    private void updateWatchedMovies() {
+        watchedMovies.setItems(FXCollections.observableArrayList(user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
+        setListeners(watchedMovies, unwatchMovieTitle, unwatchMovieButton);
+    }
+
 
     // Methods for file handling
 
@@ -105,7 +105,7 @@ public class WatchlistController {
             feedbackBoxBrowsing.setText(e.getMessage());
         }
 
-        updateMovies();
+        updateMoviebrowser();
     }
 
     @FXML
@@ -118,7 +118,7 @@ public class WatchlistController {
                 if (m.toString().equals(title)) {
                     feedbackBoxBrowsing.setText("Watched movie "+m.toString());
                     user.watchMovie(m);
-                    break;
+                    updateWatchedMovies();
                 }
             }
         }
@@ -139,6 +139,14 @@ public class WatchlistController {
             if (! user.unwatchMovie(title)) {
                 feedbackBoxProfile.setText("You have not watched this movie...");
             }
+            else {
+                for (Movie m : user.getMovies()) {
+                    if (m.toString().equals(title)) {
+                        user.unwatchMovie(m.getTitle());
+                        updateWatchedMovies();
+                    }
+                }
+            }
         }
         updateGUI();
     }
@@ -149,7 +157,8 @@ public class WatchlistController {
     // Help methods for GUI
 
     private void updateGUI() {
-        updateMovies();
+        updateMoviebrowser();
+        updateWatchedMovies();
     }
 
     private void redBorder(boolean set, TextField... tf) {
@@ -177,7 +186,7 @@ public class WatchlistController {
                         // Enable the Watch-/Unwatch-button
                         btn.setDisable(false);
 
-                        if (lv.equals(myMovies)) {activeProfileMovie = activeMovie;}
+                        if (lv.equals(watchedMovies)) {activeProfileMovie = activeMovie;}
                         else {activeBrowserMovie = activeMovie;}
 
                         return;
