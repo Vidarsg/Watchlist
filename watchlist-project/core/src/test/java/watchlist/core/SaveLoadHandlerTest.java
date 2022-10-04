@@ -1,4 +1,4 @@
-package watchlist;
+package watchlist.core;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -27,11 +27,12 @@ public class SaveLoadHandlerTest {
     public void testLoadValid() {
         //Loading watchlist from valid file
         try {
+            //fail(SaveLoadHandler.class.getResource("savefiles/").getPath() + "movies.json");
             watchlist.setList(saveLoadHandler.load("movies"));
         } catch (FileNotFoundException e) {
-            fail("The file could not be loaded. It does not exist");
+            fail(e.getMessage());
         } catch (IOException e) {
-            fail("The file could not be loaded. It is invalid.");
+            fail(e.getMessage());
         }
 
         //A few tests to make sure the loaded watchlist works as expected

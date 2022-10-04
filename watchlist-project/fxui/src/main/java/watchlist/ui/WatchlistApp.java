@@ -1,4 +1,4 @@
-package watchlist;
+package watchlist.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

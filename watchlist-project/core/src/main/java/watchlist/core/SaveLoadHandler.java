@@ -1,9 +1,13 @@
-package watchlist;
+package watchlist.core;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
+
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -22,9 +26,13 @@ public class SaveLoadHandler {
      * @throws IOException if the file is invalid
      */
     public List<Movie> load(String filename) throws FileNotFoundException, IOException {
-        File file = getFile(filename);
-        List<Movie> movieList = objectMapper.readValue(file, new TypeReference<>(){});
-        return movieList;
+        try {
+            File file = getFile(filename);
+            List<Movie> movieList = objectMapper.readValue(file, new TypeReference<>(){});
+            return movieList;
+        } catch (Exception e) {
+            throw e;
+        }
     }
     
     /**
@@ -44,6 +52,7 @@ public class SaveLoadHandler {
      * @return The file with the given filename
      */
     public static File getFile(String filename) {
+        //InputStream in = SaveLoadHandler.class.getResourceAsStream("savefiles/" + filename + ".json");
         return new File(SaveLoadHandler.class.getResource("savefiles/").getPath() + filename + ".json");
 	}
 }

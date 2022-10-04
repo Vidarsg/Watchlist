@@ -1,18 +1,18 @@
-package watchlist;
+package watchlist.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WatchlistTest {
+public class MovieTest {
     @BeforeEach
     public void setup() {
         
     }
 
     @Test
-    @DisplayName("Testing the basic functions of the Watchlist-object")
+    @DisplayName("Testing the basic functions of the Movie-object")
     public void testBasicFunctions() {
-        
+
     }
 }

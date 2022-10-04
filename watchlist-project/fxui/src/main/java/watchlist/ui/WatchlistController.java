@@ -1,4 +1,4 @@
-package watchlist;
+package watchlist.ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+
+import watchlist.core.*;
 
 public class WatchlistController {
     private User user;

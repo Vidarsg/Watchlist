@@ -1,5 +1,7 @@
-package watchlist;
+package watchlist.core;
 
+import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,16 @@ public class Movie {
 
         this.image_url = image_url;
         this.thumb_url = thumb_url;
+
+        try {
+            try {
+                new URL(this.image_url);
+                new URL(this.thumb_url);
+            } catch (Exception e) {
+                throw new FileNotFoundException("");
+            }
+        } catch (FileNotFoundException e) {
+        }
     }
     public Movie(String name, int year, String desc, double rating) {
         new Movie(name, year, desc, rating, null, null, null, null, null);
