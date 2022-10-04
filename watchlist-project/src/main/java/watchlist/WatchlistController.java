@@ -8,47 +8,65 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
 public class WatchlistController {
     private User user;
     private Watchlist list;
     private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
-    private Movie activeBrowserMovie;
-    private Movie activeProfileMovie;
+    private Movie activeBrowserMovie; // not in use yet
+    private Movie activeProfileMovie; // not in use yet
     
-
+// BROWSER FIELDS
     @FXML
     private ListView<String> moviebrowser;
+    @FXML
+    private Text feedbackBoxBrowsing;
+
     @FXML
     private TextField watchMovieTitle;
     @FXML
     private Button watchMovieButton;
+
     @FXML
     private TextField addMovieTitle;
     @FXML
     private TextField addMovieYear;
+
+    // Information section of the browser
     @FXML
-    private Text feedbackBoxBrowsing;
+    private FlowPane infoBox;
+    @FXML
+    private Label infoTitle;
+    @FXML
+    private Text infoYear;
+    @FXML
+    private Text infoDesc;
+    @FXML
+    private Text infoRating;
+// ! BROWSER FIELDS
 
-
+// PROFILE FIELDS
     @FXML
     private ListView<String> watchedMovies;
+    @FXML
+    private Text feedbackBoxProfile;
+    
     @FXML
     private TextField unwatchMovieTitle;
     @FXML
     private Button unwatchMovieButton;
-    @FXML
-    private Text feedbackBoxProfile;
+// ! PROFILE FIELDS
 
    
     public void initialize() {
         user = new User("Username", 21);
         list = new Watchlist();
         handleLoad("watchlist");
-        updateMoviebrowser();
         updateGUI();
     }
 
@@ -143,16 +161,8 @@ public class WatchlistController {
             if (! user.unwatchMovie(title)) {
                 feedbackBoxProfile.setText("You have not watched this movie...");
             }
-            else {
-                for (Movie m : user.getMovies()) {
-                    if (m.toString().equals(title)) {
-                        user.unwatchMovie(m.getTitle());
-                        updateWatchedMovies();
-                    }
-                }
-            }
         }
-        updateGUI();
+        updateWatchedMovies();
     }
 
     // ! Handle methods for profile
@@ -170,6 +180,18 @@ public class WatchlistController {
         else {for (TextField t : tf) {t.setStyle("-fx-border-color:initial");}}
     }
 
+    private void showInfo(Movie movie) {
+        if (movie == null) {infoBox.setVisible(false);}
+        else {
+            infoBox.setVisible(true);
+            infoTitle.setText(movie.getTitle());
+            infoYear.setText(String.valueOf(movie.getYear()));
+            // Since this branch is behind on certain objects and their methods, we have to comment out these calls
+            //infoDesc.setText(movie.getDescription());
+            //infoRating.setText(movie.getRating()+" ("+movie.getRatingCount()+")");
+        }
+    }
+
     private void setListeners(ListView<String> lv, TextField tf, Button btn) {
         // Partially collected from https://stackoverflow.com/questions/12459086/how-to-perform-an-action-by-selecting-an-item-from-listview-in-javafx-2
         // We have customized it to our own project and added comments to show our understanding
@@ -183,6 +205,8 @@ public class WatchlistController {
                 for (Movie m : list.getList()) {
                     if (m.toString().equals(newValue)) {
                         Movie activeMovie = m;
+
+                        showInfo(activeMovie);
                         
                         // Set the value of the textField to the chosen Movie
                         tf.setText(activeMovie.toString());
