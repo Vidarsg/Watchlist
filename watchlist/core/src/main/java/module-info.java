@@ -1,6 +1,8 @@
 module watchlist.core {
-    requires com.fasterxml.jackson.databind;
+    requires transitive com.fasterxml.jackson.databind;
 
     exports watchlist.core;
+    exports watchlist.json;
+    
     opens watchlist.core to com.fasterxml.jackson.databind;
 }

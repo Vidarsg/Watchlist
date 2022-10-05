@@ -1,4 +1,7 @@
 module watchlist.ui {
+    requires com.fasterxml.jackson.databind;
+
+    requires javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
     

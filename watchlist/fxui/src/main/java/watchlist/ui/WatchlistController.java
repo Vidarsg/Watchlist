@@ -1,6 +1,5 @@
 package watchlist.ui;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
@@ -11,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import watchlist.core.*;
+import watchlist.json.SaveLoadHandler;
 
 public class WatchlistController {
     private User user;
@@ -39,7 +39,7 @@ public class WatchlistController {
     public void initialize() {
         user = new User("Username", 21);
         list = new Watchlist();
-        handleLoad("movies");
+        handleLoadResourceList("movies");
         updateMovies();
     }
 
@@ -49,11 +49,31 @@ public class WatchlistController {
 
     // Methods for file handling
 
-    private void handleLoad(String filename) {
+    public void handleLoadResourceList(String filename) {
         try {
-            list.setList(saveLoadHandler.load(filename));
-        } catch (FileNotFoundException e) {
+            list.setList(saveLoadHandler.loadResourceList(filename));
+        } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void handleLoadUserList() {
+        if (saveLoadHandler.getSaveFilePath() == null) {
+            saveLoadHandler.setSaveFile("test");
+        }
+        try {
+            list.setList(saveLoadHandler.loadUserList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleSaveUserList() {
+        if (saveLoadHandler.getSaveFilePath() == null) {
+            saveLoadHandler.setSaveFile("test");
+        }
+        try {
+            saveLoadHandler.saveUserList(list.getList());
         } catch (IOException e) {
             e.printStackTrace();
         }
