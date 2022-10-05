@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
@@ -41,6 +43,8 @@ public class WatchlistController {
     @FXML
     private FlowPane infoBox;
     @FXML
+    private ImageView infoImage;
+    @FXML
     private Label infoTitle;
     @FXML
     private Text infoYear;
@@ -67,6 +71,7 @@ public class WatchlistController {
         user = new User("Username", 21);
         list = new Watchlist();
         handleLoad("watchlist");
+        list.addMovie(new Movie("Test-title", 2022, "This is a small description of the movie.\nThe movie is about a person who does something.", 6.9, null, null, null, "https://m.media-amazon.com/images/M/MV5BNDQwODU5OWYtNDcyNi00MDQ1LThiOGMtZDkwNWJiM2Y3MDg0XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_.jpg", "https://m.media-amazon.com/images/M/MV5BNDQwODU5OWYtNDcyNi00MDQ1LThiOGMtZDkwNWJiM2Y3MDg0XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_.jpg"));
         updateGUI();
     }
 
@@ -184,11 +189,13 @@ public class WatchlistController {
         if (movie == null) {infoBox.setVisible(false);}
         else {
             infoBox.setVisible(true);
-            infoTitle.setText(movie.getTitle());
+            if (movie.getImage_url() != null) {infoImage.setImage(new Image(movie.getImage_url()));}
+            else {infoImage.setImage(null);}
+            infoTitle.setText(movie.getName());
             infoYear.setText(String.valueOf(movie.getYear()));
+            infoDesc.setText(movie.getDesc());
             // Since this branch is behind on certain objects and their methods, we have to comment out these calls
-            //infoDesc.setText(movie.getDescription());
-            //infoRating.setText(movie.getRating()+" ("+movie.getRatingCount()+")");
+            infoRating.setText(movie.getRating()+"/10 ("+ /* movie.getRatingCount()+ */ ")");
         }
     }
 
