@@ -33,7 +33,7 @@ public class User {
         return new ArrayList<Movie>(movies);
     }
     public ArrayList<String> getMovieNames() {
-        return new ArrayList<String>(movies.stream().map(x -> x.getTitle()).collect(Collectors.toList()));
+        return new ArrayList<String>(movies.stream().map(x -> x.getName()).collect(Collectors.toList()));
     }
 
     /**
@@ -52,7 +52,7 @@ public class User {
      */
     public boolean unwatchMovie(String title) {
         for (Movie m : movies) {
-            if (m.getTitle().equals(title)) {
+            if (m.toString().equals(title)) {
                 movies.remove(m);
                 return true;
             }

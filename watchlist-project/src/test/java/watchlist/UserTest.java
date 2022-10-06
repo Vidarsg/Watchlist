@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,9 +20,19 @@ public class UserTest {
         user = new User("Test User", 20);
 
         movies.clear();
-        movies.add(new Movie("Movie 1", 1991));
         movies.add(new Movie("Movie 2", 1992));
         movies.add(new Movie("Movie 3", 1993));
+
+        String title = "Movie 1";
+        int year = 1999;
+        String desc = "Description.";
+        double rating = 8.1;
+        ArrayList<String> actors = new ArrayList<String>(Arrays.asList("Main Character"));
+        ArrayList<String> directors = new ArrayList<String>(Arrays.asList("Director"));
+        ArrayList<String> genres = new ArrayList<String>(Arrays.asList("Action"));
+        String imgurl = "http://www.addresse.com/img.jpg";
+        String thumburl = "http://www.addresse.com/thumb.jpg";
+        movies.add(new Movie(title, year, desc, rating, actors, directors, genres, imgurl, thumburl));
     }
 
     @Test
@@ -48,11 +59,11 @@ public class UserTest {
         assertEquals(movies.get(0), user.getMovies().get(0));
 
         // Should be empty
-        assertTrue(user.unwatchMovie(movies.get(0).getTitle()));
+        assertTrue(user.unwatchMovie(movies.get(0).getName()));
         assertEquals(new ArrayList<Movie>(), user.getMovies());
 
         // Should not add the same movie
-        assertFalse(user.unwatchMovie(movies.get(0).getTitle()));
+        assertFalse(user.unwatchMovie(movies.get(0).getName()));
         assertEquals(new ArrayList<Movie>(), user.getMovies());
     }
 }
