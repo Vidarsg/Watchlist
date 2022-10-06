@@ -52,7 +52,7 @@ public class User {
      */
     public boolean unwatchMovie(String title) {
         for (Movie m : movies) {
-            if (m.getName().equals(title)) {
+            if (m.toString().equals(title)) {
                 movies.remove(m);
                 return true;
             }
