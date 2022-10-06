@@ -6,6 +6,8 @@
  
 I mappestrukturen vår finner du selve kodingsprosjektet i "**watchlist-project**"-mappen. Under denne mappen finner du java-filene som utgjør den funksjonelle appen vår samt tilsvarende testfiler som tester appens funksjonalitet. I tillegg har vi opprettet ressurser som fxml-filer, style-filer og lagringsfiler under "**resources\watchlist**".
 
+[Link til README-doc i kodingsprosjektet](watchlist-project/README.md)
+
 ### Dokumentasjon
 
 Vi har opprettet en mappe på rotnivå som inneholder dokumentasjon for hver øving ("release").
