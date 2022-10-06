@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Movie {
     private String name;
@@ -25,7 +27,8 @@ public class Movie {
      * @param name the title of the movie
      * @param year the release year of the movie
      */
-    public Movie(String name, int year, String desc, double rating, List<String> actors, List<String> directors, List<String> genre, String image_url, String thumb_url) {
+    @JsonCreator
+    public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year, @JsonProperty("desc") String desc, @JsonProperty("rating") double rating, @JsonProperty("actors") List<String> actors, @JsonProperty("directors") List<String> directors, @JsonProperty("genre") List<String> genre, @JsonProperty("image_url") String image_url, @JsonProperty("thumb_url") String thumb_url) {
         if (name.isEmpty()) {throw new IllegalArgumentException("The title cannot be empty");}
         this.name = name;
         
@@ -42,7 +45,6 @@ public class Movie {
         this.directors = directors;
         this.genre = genre;
 
-        this.thumb_url = thumb_url;
         try {
             this.image = new Image(image_url);
             this.image_url = image_url;

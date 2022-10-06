@@ -2,6 +2,7 @@ package watchlist;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.io.IOException;
 import java.util.stream.Collectors;
 
 import javafx.beans.value.ChangeListener;
@@ -103,10 +104,10 @@ public class WatchlistController {
 
     private void handleLoad(String filename) {
         try {
-            list = saveLoadHandler.load(filename);
+            list.setList(saveLoadHandler.load(filename));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (NumberFormatException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

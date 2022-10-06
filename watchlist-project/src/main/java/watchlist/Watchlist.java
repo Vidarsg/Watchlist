@@ -1,16 +1,25 @@
 package watchlist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Watchlist {
-    private ArrayList<Movie> list;
+    private List<Movie> list;
+
+    public Watchlist(List<Movie> list) {
+        this.list = list;
+    }
 
     public Watchlist() {
         this.list = new ArrayList<>();
     }
 
-    public ArrayList<Movie> getList() {
-        return new ArrayList<Movie>(list);
+    public List<Movie> getList() {
+        return list;
+    }
+
+    public void setList(List<Movie> list) {
+        this.list = list;
     }
 
     /**
