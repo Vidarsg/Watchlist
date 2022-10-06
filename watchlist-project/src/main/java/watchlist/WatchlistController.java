@@ -1,6 +1,7 @@
 package watchlist;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import javafx.beans.value.ChangeListener;
@@ -11,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
@@ -45,13 +45,19 @@ public class WatchlistController {
     @FXML
     private ImageView infoImage;
     @FXML
-    private Label infoTitle;
+    private Text infoTitle;
     @FXML
     private Text infoYear;
+    @FXML
+    private Label infoGenre;
     @FXML
     private Text infoDesc;
     @FXML
     private Text infoRating;
+    @FXML
+    private Text infoDirector;
+    @FXML
+    private Text infoActors;
 // ! BROWSER FIELDS
 
 // PROFILE FIELDS
@@ -71,7 +77,10 @@ public class WatchlistController {
         user = new User("Username", 21);
         list = new Watchlist();
         handleLoad("watchlist");
-        list.addMovie(new Movie("Test-title", 2022, "This is a small description of the movie.\nThe movie is about a person who does something.", 6.9, null, null, null, "https://m.media-amazon.com/images/M/MV5BNDQwODU5OWYtNDcyNi00MDQ1LThiOGMtZDkwNWJiM2Y3MDg0XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_.jpg", "https://m.media-amazon.com/images/M/MV5BNDQwODU5OWYtNDcyNi00MDQ1LThiOGMtZDkwNWJiM2Y3MDg0XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_.jpg"));
+        // Temporary replacement for more complex movie-import from JSON
+        list.addMovie(new Movie("Witness for the Prosecution", 1958, "A veteran British barrister must defend his client in a murder trial that has surprise after surprise.", 8.4, Arrays.asList("Tyrone Power", "Marlene Dietrich", "Charles Laughton"), Arrays.asList("Billy Wilder"), Arrays.asList("Crime", "Drama", "Mystery"), "https://m.media-amazon.com/images/M/MV5BNDQwODU5OWYtNDcyNi00MDQ1LThiOGMtZDkwNWJiM2Y3MDg0XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_.jpg", "https://m.media-amazon.com/images/M/MV5BNDQwODU5OWYtNDcyNi00MDQ1LThiOGMtZDkwNWJiM2Y3MDg0XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_.jpg"));
+        list.addMovie(new Movie("UP", 2009, "78-year-old Carl Fredricksen travels to Paradise Falls in his house equipped with balloons, inadvertently taking a young stowaway.", 8.3, Arrays.asList("Edward Asner", "Jordan Nagai", "John Ratzenberger"), Arrays.asList("Pete Docter", "Bob Peterson"), Arrays.asList("Animation", "Adventure", "Comedy"), "https://m.media-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_.jpg", "https://m.media-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"));
+        
         updateGUI();
     }
 
@@ -189,13 +198,34 @@ public class WatchlistController {
         if (movie == null) {infoBox.setVisible(false);}
         else {
             infoBox.setVisible(true);
-            if (movie.getImage_url() != null) {infoImage.setImage(new Image(movie.getImage_url()));}
+            if (movie.getImage_url() != null) {infoImage.setImage(movie.getImage());}
             else {infoImage.setImage(null);}
             infoTitle.setText(movie.getName());
             infoYear.setText(String.valueOf(movie.getYear()));
             infoDesc.setText(movie.getDesc());
             // Since this branch is behind on certain objects and their methods, we have to comment out these calls
-            infoRating.setText(movie.getRating()+"/10 ("+ /* movie.getRatingCount()+ */ ")");
+            infoRating.setText(movie.getRating()+"/10" /*("+  movie.getRatingCount()+ ")"*/);
+
+            StringBuilder sb = new StringBuilder();
+            if (movie.getDirectors().size()>0) {
+                for (String d : movie.getDirectors()) {sb.append(d+", ");}
+                sb.deleteCharAt(sb.length()-2);
+            } else {sb.append("Unknown");}
+            infoDirector.setText(sb.toString());
+
+            sb = new StringBuilder();
+            if (movie.getActors().size()>0) {
+                for (String a : movie.getActors()) {sb.append(a+", ");}
+                sb.deleteCharAt(sb.length()-2);
+            } else {sb.append("None");}
+            infoActors.setText(sb.toString());
+
+            sb = new StringBuilder();
+            if (movie.getGenre().size()>0) {
+                for (String g : movie.getGenre()) {sb.append(g+" - ");}
+                sb.delete(sb.length()-3,sb.length());
+            }
+            infoGenre.setText(sb.toString());
         }
     }
 
