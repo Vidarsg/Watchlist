@@ -81,7 +81,7 @@ public class WatchlistController {
     public void initialize() {
         user = new User("Username", 21);
         list = new Watchlist();
-        handleLoad("watchlist");
+        handleLoad("movies");
         // Temporary replacement for more complex movie-import from JSON
         list.addMovie(new Movie("Witness for the Prosecution", 1958, "A veteran British barrister must defend his client in a murder trial that has surprise after surprise.", 8.4, Arrays.asList("Tyrone Power", "Marlene Dietrich", "Charles Laughton"), Arrays.asList("Billy Wilder"), Arrays.asList("Crime", "Drama", "Mystery"), "https://m.media-amazon.com/images/M/MV5BNDQwODU5OWYtNDcyNi00MDQ1LThiOGMtZDkwNWJiM2Y3MDg0XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_.jpg", "https://m.media-amazon.com/images/M/MV5BNDQwODU5OWYtNDcyNi00MDQ1LThiOGMtZDkwNWJiM2Y3MDg0XkEyXkFqcGdeQXVyMDI2NDg0NQ@@._V1_.jpg"));
         list.addMovie(new Movie("UP", 2009, "78-year-old Carl Fredricksen travels to Paradise Falls in his house equipped with balloons, inadvertently taking a young stowaway.", 8.3, Arrays.asList("Edward Asner", "Jordan Nagai", "John Ratzenberger"), Arrays.asList("Pete Docter", "Bob Peterson"), Arrays.asList("Animation", "Adventure", "Comedy"), "https://m.media-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_.jpg", "https://m.media-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"));

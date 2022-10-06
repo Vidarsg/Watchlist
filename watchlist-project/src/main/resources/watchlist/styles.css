@@ -7,7 +7,7 @@
     user-select: none;
 }
 
-.tab-pane, TextField, ListView, .tabs, .tab, .tab-header-background {
+#base, .tab-pane, TextField, ListView, .tabs, .tab, .tab-header-background {
     -fx-background-color: #111;
     background-color: #111;
 }
@@ -56,12 +56,21 @@ TextField {
     border-width: 0 0 2px;
     -fx-border-radius: 2px;
     border-radius: 2px;
+    -fx-text-fill: #fff;
 }
 TextField:active {
     -fx-effect: dropshadow(one-pass-box, #fff, 0,1.0,0,2);
 }
 
-Label, Text, TextField {
+Label {
+    -fx-text-fill: #fff;
+}
+
+#logo {
+    -fx-text-fill:#ff9900;
+}
+
+Text, TextField {
     -fx-fill: #fff;
     fill: #fff;
     color: #fff;

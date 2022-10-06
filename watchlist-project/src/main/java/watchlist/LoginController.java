@@ -47,7 +47,7 @@ public class LoginController {
 			        stage.setTitle("Watchlist");
 			        stage.setResizable(false);
 			        stage.setScene(new Scene(root));
-                    stage.getIcons().add(new Image("file:images/watchlist-favicon.png"));
+                    stage.getIcons().add(new Image("file:src/main/resources/watchlist/images/watchlist-favicon.png"));
 			        stage.show();
 			        login.getScene().getWindow().hide();
 			        
