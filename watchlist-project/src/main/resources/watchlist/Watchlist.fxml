@@ -97,22 +97,13 @@
                   </AnchorPane>
                     <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                         <children>
-<<<<<<< HEAD
-                            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new movie" />
-                            <TextField fx:id="addMovieTitle" layoutX="14.0" layoutY="35.0" prefHeight="27.0" prefWidth="134.0" promptText="Title" />
-                            <TextField fx:id="addMovieYear" layoutX="163.0" layoutY="35.0" prefHeight="27.0" prefWidth="80.0" promptText="Published" />
-                            <Button layoutX="14.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleAddMovie" text="Add movie" />
-                            <Text fx:id="feedbackBoxBrowsing" fill="RED" layoutX="14.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
-                        <Label fx:id="BrowseUsername" layoutX="137.0" layoutY="168.0" prefHeight="17.0" prefWidth="102.0" />
-=======
                             <Text layoutX="89.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new movie" />
                             <TextField fx:id="addMovieTitle" layoutX="89.0" layoutY="50.0" prefHeight="27.0" prefWidth="134.0" promptText="Title" />
                             <TextField fx:id="addMovieYear" layoutX="238.0" layoutY="50.0" prefHeight="27.0" prefWidth="80.0" promptText="Published" />
                             <Button layoutX="89.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddMovie" text="Add movie" />
                             <Text fx:id="feedbackBoxBrowsing" fill="RED" layoutX="89.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
-                        <Separator layoutX="101.0" layoutY="21.0" prefWidth="200.0" />
-                        <Text fx:id="feedbackBoxProfile1" fill="RED" layoutX="91.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
->>>>>>> master
+                            <Separator layoutX="101.0" layoutY="21.0" prefWidth="200.0" />
+                            <Label fx:id="BrowseUsername" layoutX="137.0" layoutY="168.0" prefHeight="17.0" prefWidth="102.0" />
                         </children>
                     </AnchorPane>
                 </children>
