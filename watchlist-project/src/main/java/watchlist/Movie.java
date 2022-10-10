@@ -3,7 +3,7 @@ package watchlist;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.image.Image;
+//import javafx.scene.image.Image;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,8 +19,8 @@ public class Movie {
 
     private String image_url;
     private String thumb_url;
-    private Image image;
-    private Image thumb;
+    //private Image image;
+    //private Image thumb;
 
     /**
      * Creates a new Movie object with the given title and year
@@ -45,6 +45,9 @@ public class Movie {
         this.directors = directors;
         this.genre = genre;
 
+        this.image_url=image_url;
+        this.thumb_url=thumb_url;
+        /*
         try {
             this.image = new Image(image_url);
             this.image_url = image_url;
@@ -57,6 +60,7 @@ public class Movie {
             this.thumb = new Image(url);
             this.thumb_url = url;
         }
+        */
     }
     public Movie(String name, int year, String desc, double rating) {
         new Movie(name, year, desc, rating, null, null, null, null, null);
@@ -79,9 +83,9 @@ public class Movie {
     public List<String> getGenre() {return new ArrayList<String>(genre);}
 
     public String getImage_url() {return image_url;}
-    public Image getImage() {return image;}
+    //public Image getImage() {return image;}
     public String getThumb_url() {return thumb_url;}
-    public Image getThumb() {return thumb;}
+    //public Image getThumb() {return thumb;}
     // ! Getters
 
     // Methods

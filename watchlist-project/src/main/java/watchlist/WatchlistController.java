@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
@@ -79,7 +80,7 @@ public class WatchlistController {
 
    
     public void initialize() {
-        user = new User("Username", 21);
+        user = new User("Username");
         list = new Watchlist();
         handleLoad("movies");
         // Temporary replacement for more complex movie-import from JSON
@@ -91,7 +92,8 @@ public class WatchlistController {
 
     // Fetches username from Login.fxml and displays it in Watchlist.fxml
 
-    public void setUsername(String name) {    
+    public void setUsername(String name) {
+        user = new User(name); 
         BrowseUsername.setText(name);
         ProfileUsername.setText(name);
     }
@@ -210,7 +212,7 @@ public class WatchlistController {
         if (movie == null) {infoBox.setVisible(false);}
         else {
             infoBox.setVisible(true);
-            if (movie.getImage_url() != null) {infoImage.setImage(movie.getImage());}
+            if (movie.getImage_url() != null) {infoImage.setImage(new Image(movie.getImage_url()));}
             else {infoImage.setImage(null);}
             infoTitle.setText(movie.getName());
             infoYear.setText(String.valueOf(movie.getYear()));
