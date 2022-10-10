@@ -39,13 +39,13 @@ public class SaveLoadHandlerTest {
 
         //A few tests to make sure the loaded watchlist works as expected
         //Checks that you can add a movie to the watchlist
-        Movie inception = new Movie("Inception", 2010);
-        watchlist.addMovie(inception);
-        assertTrue(watchlist.getList().contains(inception));
+        Movie flaaklypa = new Movie("Flåklypa", 1975);
+        watchlist.addMovie(flaaklypa);
+        assertTrue(watchlist.getList().contains(flaaklypa));
 
         //Checks that you can remove a movie from the watchlist
-        watchlist.removeMovie(inception);
-        assertFalse(watchlist.getList().contains(inception));
+        watchlist.removeMovie(flaaklypa);
+        assertFalse(watchlist.getList().contains(flaaklypa));
     }
 
     /*

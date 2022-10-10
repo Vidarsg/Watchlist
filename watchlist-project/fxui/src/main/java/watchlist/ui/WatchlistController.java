@@ -26,8 +26,9 @@ public class WatchlistController {
     private User user;
     private Watchlist list;
     private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
-    private Movie activeBrowserMovie; // not in use yet
-    private Movie activeProfileMovie; // not in use yet
+    //Not in use yet
+    //private Movie activeBrowserMovie;
+    //private Movie activeProfileMovie;
     
 // BROWSER FIELDS
     @FXML
@@ -276,10 +277,11 @@ public class WatchlistController {
                         
                         // Enable the Watch-/Unwatch-button
                         btn.setDisable(false);
-
+                        
+                        /*
                         if (lv.equals(watchedMovies)) {activeProfileMovie = activeMovie;}
                         else {activeBrowserMovie = activeMovie;}
-
+                        */
                         return;
                     }
                 }

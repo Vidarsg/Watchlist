@@ -21,7 +21,7 @@
 }, {
   "name" : "Whiplash",
   "year" : 2014,
-  "desc" : "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student&apos;s potential.",
+  "desc" : "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student’s potential.",
   "rating" : 8.5,
   "actors" : [ "Miles Teller", "J.K. Simmons", "Melissa Benoist" ],
   "directors" : [ "Damien Chazelle" ],
@@ -31,10 +31,10 @@
 }, {
   "name" : "Warrior",
   "year" : 2011,
-  "desc" : "The youngest son of an alcoholic former boxer returns home, where he&apos;s trained by his father for competition in a mixed martial arts tournament - a path that puts the fighter on a collision course with his estranged, older brother.",
+  "desc" : "The youngest son of an alcoholic former boxer returns home, where he’s trained by his father for competition in a mixed martial arts tournament - a path that puts the fighter on a collision course with his estranged, older brother.",
   "rating" : 8.2,
   "actors" : [ "Tom Hardy", "Nick Nolte", "Joel Edgerton" ],
-  "directors" : [ "Gavin O&apos;Connor" ],
+  "directors" : [ "Gavin O’Connor" ],
   "genre" : [ "Action", "Drama", "Sport" ],
   "image_url" : "https://m.media-amazon.com/images/M/MV5BMTk4ODk5MTMyNV5BMl5BanBnXkFtZTcwMDMyNTg0Ng@@._V1_.jpg",
   "thumb_url" : "https://m.media-amazon.com/images/M/MV5BMTk4ODk5MTMyNV5BMl5BanBnXkFtZTcwMDMyNTg0Ng@@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
@@ -111,7 +111,7 @@
 }, {
   "name" : "Toy Story 3",
   "year" : 2010,
-  "desc" : "The toys are mistakenly delivered to a day-care center instead of the attic right before Andy leaves for college, and it&apos;s up to Woody to convince the other toys that they weren&apos;t abandoned and to return home.",
+  "desc" : "The toys are mistakenly delivered to a day-care center instead of the attic right before Andy leaves for college, and it’s up to Woody to convince the other toys that they weren’t abandoned and to return home.",
   "rating" : 8.3,
   "actors" : [ "Tom Hanks", "Tim Allen", "Joan Cusack" ],
   "directors" : [ "Lee Unkrich" ],
@@ -121,7 +121,7 @@
 }, {
   "name" : "Toy Story",
   "year" : 1995,
-  "desc" : "A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boy&apos;s bedroom.",
+  "desc" : "A cowboy doll is profoundly threatened and jealous when a new spaceman action figure supplants him as top toy in a boy’s bedroom.",
   "rating" : 8.3,
   "actors" : [ "Tom Hanks", "Tim Allen", "Don Rickles" ],
   "directors" : [ "John Lasseter" ],
@@ -131,7 +131,7 @@
 }, {
   "name" : "Top Gun: Maverick",
   "year" : 2022,
-  "desc" : "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but must confront ghosts of his past when he leads TOP GUN&apos;s elite graduates on a mission that demands the ultimate sacrifice from those chosen to ...",
+  "desc" : "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but must confront ghosts of his past when he leads TOP GUN’s elite graduates on a mission that demands the ultimate sacrifice from those chosen to ...",
   "rating" : 8.4,
   "actors" : [ "Tom Cruise", "Jennifer Connelly", "Miles Teller" ],
   "directors" : [ "Joseph Kosinski" ],
@@ -161,7 +161,7 @@
 }, {
   "name" : "To Be or Not to Be",
   "year" : 1942,
-  "desc" : "During the Nazi occupation of Poland, an acting troupe becomes embroiled in a Polish soldier&apos;s efforts to track down a German spy.",
+  "desc" : "During the Nazi occupation of Poland, an acting troupe becomes embroiled in a Polish soldier’s efforts to track down a German spy.",
   "rating" : 8.2,
   "actors" : [ "Carole Lombard", "Jack Benny", "Robert Stack" ],
   "directors" : [ "Ernst Lubitsch" ],
@@ -171,7 +171,7 @@
 }, {
   "name" : "Three Billboards Outside Ebbing, Missouri",
   "year" : 2017,
-  "desc" : "A mother personally challenges the local authorities to solve her daughter&apos;s murder when they fail to catch the culprit.",
+  "desc" : "A mother personally challenges the local authorities to solve her daughter’s murder when they fail to catch the culprit.",
   "rating" : 8.1,
   "actors" : [ "Frances McDormand", "Woody Harrelson", "Sam Rockwell" ],
   "directors" : [ "Martin McDonagh" ],
@@ -261,7 +261,7 @@
 }, {
   "name" : "The Terminator",
   "year" : 1984,
-  "desc" : "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity&apos;s future salvat...",
+  "desc" : "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity’s future salvat...",
   "rating" : 8.1,
   "actors" : [ "Arnold Schwarzenegger", "Linda Hamilton", "Michael Biehn" ],
   "directors" : [ "James Cameron" ],
@@ -361,7 +361,7 @@
 }, {
   "name" : "The Lord of the Rings: The Two Towers",
   "year" : 2002,
-  "desc" : "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron&apos;s new ally, Saruman, and his hordes of Isengard.",
+  "desc" : "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron’s new ally, Saruman, and his hordes of Isengard.",
   "rating" : 8.8,
   "actors" : [ "Elijah Wood", "Ian McKellen", "Viggo Mortensen" ],
   "directors" : [ "Peter Jackson" ],
@@ -371,7 +371,7 @@
 }, {
   "name" : "The Lord of the Rings: The Return of the King",
   "year" : 2003,
-  "desc" : "Gandalf and Aragorn lead the World of Men against Sauron&apos;s army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
+  "desc" : "Gandalf and Aragorn lead the World of Men against Sauron’s army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
   "rating" : 9.0,
   "actors" : [ "Elijah Wood", "Viggo Mortensen", "Ian McKellen" ],
   "directors" : [ "Peter Jackson" ],
@@ -431,7 +431,7 @@
 }, {
   "name" : "The Help",
   "year" : 2011,
-  "desc" : "An aspiring author during the civil rights movement of the 1960s decides to write a book detailing the African American maids&apos; point of view on the white families for which they work, and the hardships they go through on a daily b...",
+  "desc" : "An aspiring author during the civil rights movement of the 1960s decides to write a book detailing the African American maids’ point of view on the white families for which they work, and the hardships they go through on a daily b...",
   "rating" : 8.1,
   "actors" : [ "Viola Davis", "Emma Stone", "Octavia Spencer" ],
   "directors" : [ "Tate Taylor" ],
@@ -461,7 +461,7 @@
 }, {
   "name" : "The Great Dictator",
   "year" : 1941,
-  "desc" : "Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel&apos;s regime.",
+  "desc" : "Dictator Adenoid Hynkel tries to expand his empire while a poor Jewish barber tries to avoid persecution from Hynkel’s regime.",
   "rating" : 8.4,
   "actors" : [ "Charles Chaplin", "Paulette Goddard", "Jack Oakie" ],
   "directors" : [ "Charles Chaplin" ],
@@ -481,7 +481,7 @@
 }, {
   "name" : "The Grand Budapest Hotel",
   "year" : 2014,
-  "desc" : "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel&apos;s glorious years under an exceptional concierge.",
+  "desc" : "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel’s glorious years under an exceptional concierge.",
   "rating" : 8.1,
   "actors" : [ "Ralph Fiennes", "F. Murray Abraham", "Mathieu Amalric" ],
   "directors" : [ "Wes Anderson" ],
@@ -591,7 +591,7 @@
 }, {
   "name" : "The Dark Knight Rises",
   "year" : 2012,
-  "desc" : "Eight years after the Joker&apos;s reign of anarchy, Batman, with the help of the enigmatic Catwoman, is forced from his exile to save Gotham City from the brutal guerrilla terrorist Bane.",
+  "desc" : "Eight years after the Joker’s reign of anarchy, Batman, with the help of the enigmatic Catwoman, is forced from his exile to save Gotham City from the brutal guerrilla terrorist Bane.",
   "rating" : 8.4,
   "actors" : [ "Christian Bale", "Tom Hardy", "Anne Hathaway" ],
   "directors" : [ "Christopher Nolan" ],
@@ -621,7 +621,7 @@
 }, {
   "name" : "The Big Lebowski",
   "year" : 1998,
-  "desc" : "Ultimate L.A. slacker Jeff &quot;The Dude&quot; Lebowski, mistaken for a millionaire of the same name, seeks restitution for a rug ruined by debt collectors, enlisting his bowling buddies for help while trying to find the millionaire&apos;s miss...",
+  "desc" : "Ultimate L.A. slacker Jeff &quot;The Dude&quot; Lebowski, mistaken for a millionaire of the same name, seeks restitution for a rug ruined by debt collectors, enlisting his bowling buddies for help while trying to find the millionaire’s miss...",
   "rating" : 8.1,
   "actors" : [ "Jeff Bridges", "John Goodman", "Julianne Moore" ],
   "directors" : [ "Joel Coen", "Ethan Coen" ],
@@ -661,7 +661,7 @@
 }, {
   "name" : "Tengoku to jigoku",
   "year" : 1963,
-  "desc" : "An executive of a Yokohama shoe company becomes a victim of extortion when his chauffeur&apos;s son is kidnapped by mistake and held for ransom.",
+  "desc" : "An executive of a Yokohama shoe company becomes a victim of extortion when his chauffeur’s son is kidnapped by mistake and held for ransom.",
   "rating" : 8.4,
   "actors" : [ "Toshirô Mifune", "Yutaka Sada", "Tatsuya Nakadai" ],
   "directors" : [ "Akira Kurosawa" ],
@@ -701,7 +701,7 @@
 }, {
   "name" : "Star Wars: Episode VI - Return of the Jedi",
   "year" : 1983,
-  "desc" : "After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor&apos;s...",
+  "desc" : "After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor’s...",
   "rating" : 8.3,
   "actors" : [ "Mark Hamill", "Harrison Ford", "Carrie Fisher" ],
   "directors" : [ "Richard Marquand" ],
@@ -711,7 +711,7 @@
 }, {
   "name" : "Star Wars",
   "year" : 1977,
-  "desc" : "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire&apos;s world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth ...",
+  "desc" : "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire’s world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth ...",
   "rating" : 8.6,
   "actors" : [ "Mark Hamill", "Harrison Ford", "Carrie Fisher" ],
   "directors" : [ "George Lucas" ],
@@ -741,7 +741,7 @@
 }, {
   "name" : "Spider-Man: No Way Home",
   "year" : 2021,
-  "desc" : "With Spider-Man&apos;s identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.",
+  "desc" : "With Spider-Man’s identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear, forcing Peter to discover what it truly means to be Spider-Man.",
   "rating" : 8.3,
   "actors" : [ "Tom Holland", "Zendaya", "Benedict Cumberbatch" ],
   "directors" : [ "Jon Watts" ],
@@ -789,11 +789,11 @@
   "image_url" : "https://m.media-amazon.com/images/M/MV5BYWQxYzdhMDMtNjAyZC00NzE0LWFjYmQtYjk0YzMyYjA5NzZkXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg",
   "thumb_url" : "https://m.media-amazon.com/images/M/MV5BYWQxYzdhMDMtNjAyZC00NzE0LWFjYmQtYjk0YzMyYjA5NzZkXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
 }, {
-  "name" : "Singin&apos; in the Rain",
+  "name" : "Singin’ in the Rain",
   "year" : 1952,
   "desc" : "A silent film star falls for a chorus girl just as he and his delusionally jealous screen partner are trying to make the difficult transition to talking pictures in 1920s Hollywood.",
   "rating" : 8.3,
-  "actors" : [ "Gene Kelly", "Donald O&apos;Connor", "Debbie Reynolds" ],
+  "actors" : [ "Gene Kelly", "Donald O’Connor", "Debbie Reynolds" ],
   "directors" : [ "Stanley Donen", "Gene Kelly" ],
   "genre" : [ "Comedy", "Musical", "Romance" ],
   "image_url" : "https://m.media-amazon.com/images/M/MV5BZDRjNGViMjQtOThlMi00MTA3LThkYzQtNzJkYjBkMGE0YzE1XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_.jpg",
@@ -821,7 +821,7 @@
 }, {
   "name" : "Sherlock Jr.",
   "year" : 1924,
-  "desc" : "A film projectionist longs to be a detective, and puts his meagre skills to work when he is framed by a rival for stealing his girlfriend&apos;s father&apos;s pocketwatch.",
+  "desc" : "A film projectionist longs to be a detective, and puts his meagre skills to work when he is framed by a rival for stealing his girlfriend’s father’s pocketwatch.",
   "rating" : 8.2,
   "actors" : [ "Buster Keaton", "Kathryn McGuire", "Joe Keaton" ],
   "directors" : [ "Buster Keaton" ],
@@ -831,7 +831,7 @@
 }, {
   "name" : "Seppuku",
   "year" : 1964,
-  "desc" : "When a ronin requesting seppuku at a feudal lord&apos;s palace is told of the brutal suicide of another ronin who previously visited, he reveals how their pasts are intertwined - and in doing so challenges the clan&apos;s integrity.",
+  "desc" : "When a ronin requesting seppuku at a feudal lord’s palace is told of the brutal suicide of another ronin who previously visited, he reveals how their pasts are intertwined - and in doing so challenges the clan’s integrity.",
   "rating" : 8.6,
   "actors" : [ "Tatsuya Nakadai", "Akira Ishihama", "Shima Iwashita" ],
   "directors" : [ "Masaki Kobayashi" ],
@@ -841,7 +841,7 @@
 }, {
   "name" : "Sen to Chihiro no kamikakushi",
   "year" : 2003,
-  "desc" : "During her family&apos;s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",
+  "desc" : "During her family’s move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.",
   "rating" : 8.6,
   "actors" : [ "Daveigh Chase", "Suzanne Pleshette", "Miyu Irino" ],
   "directors" : [ "Hayao Miyazaki" ],
@@ -859,7 +859,7 @@
   "image_url" : "https://m.media-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
   "thumb_url" : "https://m.media-amazon.com/images/M/MV5BOTUwODM5MTctZjczMi00OTk4LTg3NWUtNmVhMTAzNTNjYjcyXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
 }, {
-  "name" : "Schindler&apos;s List",
+  "name" : "Schindler’s List",
   "year" : 1994,
   "desc" : "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
   "rating" : 9.0,
@@ -961,7 +961,7 @@
 }, {
   "name" : "Rebecca",
   "year" : 1940,
-  "desc" : "A self-conscious woman juggles adjusting to her new role as an aristocrat&apos;s wife and avoiding being intimidated by his first wife&apos;s spectral presence.",
+  "desc" : "A self-conscious woman juggles adjusting to her new role as an aristocrat’s wife and avoiding being intimidated by his first wife’s spectral presence.",
   "rating" : 8.1,
   "actors" : [ "Laurence Olivier", "Joan Fontaine", "George Sanders" ],
   "directors" : [ "Alfred Hitchcock" ],
@@ -991,7 +991,7 @@
 }, {
   "name" : "Rashômon",
   "year" : 1951,
-  "desc" : "The rape of a bride and the murder of her samurai husband are recalled from the perspectives of a bandit, the bride, the samurai&apos;s ghost and a woodcutter.",
+  "desc" : "The rape of a bride and the murder of her samurai husband are recalled from the perspectives of a bandit, the bride, the samurai’s ghost and a woodcutter.",
   "rating" : 8.2,
   "actors" : [ "Toshirô Mifune", "Machiko Kyô", "Masayuki Mori" ],
   "directors" : [ "Akira Kurosawa" ],
@@ -1041,7 +1041,7 @@
 }, {
   "name" : "Psycho",
   "year" : 1960,
-  "desc" : "A Phoenix secretary embezzles $40,000 from her employer&apos;s client, goes on the run, and checks into a remote motel run by a young man under the domination of his mother.",
+  "desc" : "A Phoenix secretary embezzles $40,000 from her employer’s client, goes on the run, and checks into a remote motel run by a young man under the domination of his mother.",
   "rating" : 8.5,
   "actors" : [ "Anthony Perkins", "Janet Leigh", "Vera Miles" ],
   "directors" : [ "Alfred Hitchcock" ],
@@ -1051,7 +1051,7 @@
 }, {
   "name" : "Prisoners",
   "year" : 2013,
-  "desc" : "When Keller Dover&apos;s daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts.",
+  "desc" : "When Keller Dover’s daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts.",
   "rating" : 8.1,
   "actors" : [ "Hugh Jackman", "Jake Gyllenhaal", "Viola Davis" ],
   "directors" : [ "Denis Villeneuve" ],
@@ -1071,7 +1071,7 @@
 }, {
   "name" : "Pirates of the Caribbean: The Curse of the Black Pearl",
   "year" : 2003,
-  "desc" : "Blacksmith Will Turner teams up with eccentric pirate &quot;Captain&quot; Jack Sparrow to save his love, the governor&apos;s daughter, from Jack&apos;s former pirate allies, who are now undead.",
+  "desc" : "Blacksmith Will Turner teams up with eccentric pirate &quot;Captain&quot; Jack Sparrow to save his love, the governor’s daughter, from Jack’s former pirate allies, who are now undead.",
   "rating" : 8.1,
   "actors" : [ "Johnny Depp", "Geoffrey Rush", "Orlando Bloom" ],
   "directors" : [ "Gore Verbinski" ],
@@ -1119,7 +1119,7 @@
   "image_url" : "https://m.media-amazon.com/images/M/MV5BMmFkNDY5OTktNzY3Yy00OTFlLThhNjktOTRhMmZjZmIxYjAxXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_.jpg",
   "thumb_url" : "https://m.media-amazon.com/images/M/MV5BMmFkNDY5OTktNzY3Yy00OTFlLThhNjktOTRhMmZjZmIxYjAxXkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
 }, {
-  "name" : "One Flew Over the Cuckoo&apos;s Nest",
+  "name" : "One Flew Over the Cuckoo’s Nest",
   "year" : 1975,
   "desc" : "In the Fall of 1963, a Korean War veteran and criminal pleads insanity and is admitted to a mental institution, where he rallies up the scared patients against the tyrannical nurse.",
   "rating" : 8.7,
@@ -1141,7 +1141,7 @@
 }, {
   "name" : "On the Waterfront",
   "year" : 1954,
-  "desc" : "An ex-prize fighter turned New Jersey longshoreman struggles to stand up to his corrupt union bosses, including his older brother, as he starts to connect with the grieving sister of one of the syndicate&apos;s victims.",
+  "desc" : "An ex-prize fighter turned New Jersey longshoreman struggles to stand up to his corrupt union bosses, including his older brother, as he starts to connect with the grieving sister of one of the syndicate’s victims.",
   "rating" : 8.1,
   "actors" : [ "Marlon Brando", "Karl Malden", "Lee J. Cobb" ],
   "directors" : [ "Elia Kazan" ],
@@ -1161,7 +1161,7 @@
 }, {
   "name" : "Nuovo Cinema Paradiso",
   "year" : 1990,
-  "desc" : "A filmmaker recalls his childhood when falling in love with the pictures at the cinema of his home village and forms a deep friendship with the cinema&apos;s projectionist.",
+  "desc" : "A filmmaker recalls his childhood when falling in love with the pictures at the cinema of his home village and forms a deep friendship with the cinema’s projectionist.",
   "rating" : 8.5,
   "actors" : [ "Philippe Noiret", "Enzo Cannavale", "Antonella Attili" ],
   "directors" : [ "Giuseppe Tornatore" ],
@@ -1191,7 +1191,7 @@
 }, {
   "name" : "Network",
   "year" : 1976,
-  "desc" : "A television network cynically exploits a deranged former anchor&apos;s ravings and revelations about the news media for its own profit, but finds that his message may be difficult to control.",
+  "desc" : "A television network cynically exploits a deranged former anchor’s ravings and revelations about the news media for its own profit, but finds that his message may be difficult to control.",
   "rating" : 8.1,
   "actors" : [ "Faye Dunaway", "William Holden", "Peter Finch" ],
   "directors" : [ "Sidney Lumet" ],
@@ -1231,7 +1231,7 @@
 }, {
   "name" : "Mononoke-hime",
   "year" : 1997,
-  "desc" : "On a journey to find the cure for a Tatarigami&apos;s curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime.",
+  "desc" : "On a journey to find the cure for a Tatarigami’s curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime.",
   "rating" : 8.4,
   "actors" : [ "Yôji Matsuda", "Yuriko Ishida", "Yûko Tanaka" ],
   "directors" : [ "Hayao Miyazaki" ],
@@ -1261,7 +1261,7 @@
 }, {
   "name" : "Metropolis",
   "year" : 1927,
-  "desc" : "In a futuristic city sharply divided between the working class and the city planners, the son of the city&apos;s mastermind falls in love with a working-class prophet who predicts the coming of a savior to mediate their differences.",
+  "desc" : "In a futuristic city sharply divided between the working class and the city planners, the son of the city’s mastermind falls in love with a working-class prophet who predicts the coming of a savior to mediate their differences.",
   "rating" : 8.3,
   "actors" : [ "Brigitte Helm", "Alfred Abel", "Gustav Fröhlich" ],
   "directors" : [ "Fritz Lang" ],
@@ -1271,7 +1271,7 @@
 }, {
   "name" : "Memento",
   "year" : 2001,
-  "desc" : "A man with short-term memory loss attempts to track down his wife&apos;s murderer.",
+  "desc" : "A man with short-term memory loss attempts to track down his wife’s murderer.",
   "rating" : 8.4,
   "actors" : [ "Guy Pearce", "Carrie-Anne Moss", "Joe Pantoliano" ],
   "directors" : [ "Christopher Nolan" ],
@@ -1311,7 +1311,7 @@
 }, {
   "name" : "Léon",
   "year" : 1994,
-  "desc" : "12-year-old Mathilda is reluctantly taken in by Léon, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his protégée and learns the assassin&apos;s trade.",
+  "desc" : "12-year-old Mathilda is reluctantly taken in by Léon, a professional assassin, after her family is murdered. An unusual relationship forms as she becomes his protégée and learns the assassin’s trade.",
   "rating" : 8.5,
   "actors" : [ "Jean Reno", "Gary Oldman", "Natalie Portman" ],
   "directors" : [ "Luc Besson" ],
@@ -1369,7 +1369,7 @@
   "image_url" : "https://m.media-amazon.com/images/M/MV5BZDdkNzMwZmUtY2Q5MS00ZmM2LWJhYjItYTBjMWY0MGM4MDRjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg",
   "thumb_url" : "https://m.media-amazon.com/images/M/MV5BZDdkNzMwZmUtY2Q5MS00ZmM2LWJhYjItYTBjMWY0MGM4MDRjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
 }, {
-  "name" : "Le fabuleux destin d&apos;Amélie Poulain",
+  "name" : "Le fabuleux destin d’Amélie Poulain",
   "year" : 2002,
   "desc" : "Amélie is an innocent and naive girl in Paris with her own sense of justice. She decides to help those around her and, along the way, discovers love.",
   "rating" : 8.3,
@@ -1383,7 +1383,7 @@
   "year" : 1962,
   "desc" : "The story of T.E. Lawrence, the English officer who successfully united and led the diverse, often warring, Arab tribes during World War I in order to fight the Turks.",
   "rating" : 8.3,
-  "actors" : [ "Peter O&apos;Toole", "Alec Guinness", "Anthony Quinn" ],
+  "actors" : [ "Peter O’Toole", "Alec Guinness", "Anthony Quinn" ],
   "directors" : [ "David Lean" ],
   "genre" : [ "Adventure", "Biography", "Drama" ],
   "image_url" : "https://m.media-amazon.com/images/M/MV5BYWY5ZjhjNGYtZmI2Ny00ODM0LWFkNzgtZmI1YzA2N2MxMzA0XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg",
@@ -1391,7 +1391,7 @@
 }, {
   "name" : "Ladri di biciclette",
   "year" : 1949,
-  "desc" : "In post-war Italy, a working-class man&apos;s bicycle is stolen, endangering his efforts to find work. He and his son set out to find it.",
+  "desc" : "In post-war Italy, a working-class man’s bicycle is stolen, endangering his efforts to find work. He and his son set out to find it.",
   "rating" : 8.3,
   "actors" : [ "Lamberto Maggiorani", "Enzo Staiola", "Lianella Carell" ],
   "directors" : [ "Vittorio De Sica" ],
@@ -1409,9 +1409,9 @@
   "image_url" : "https://m.media-amazon.com/images/M/MV5BYmJmM2Q4NmMtYThmNC00ZjRlLWEyZmItZTIwOTBlZDQ3NTQ1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
   "thumb_url" : "https://m.media-amazon.com/images/M/MV5BYmJmM2Q4NmMtYThmNC00ZjRlLWEyZmItZTIwOTBlZDQ3NTQ1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
 }, {
-  "name" : "La passion de Jeanne d&apos;Arc",
+  "name" : "La passion de Jeanne d’Arc",
   "year" : 1928,
-  "desc" : "In 1431, Jeanne d&apos;Arc is placed on trial on charges of heresy. The ecclesiastical jurists attempt to force Jeanne to recant her claims of holy visions.",
+  "desc" : "In 1431, Jeanne d’Arc is placed on trial on charges of heresy. The ecclesiastical jurists attempt to force Jeanne to recant her claims of holy visions.",
   "rating" : 8.2,
   "actors" : [ "Maria Falconetti", "Eugene Silvain", "André Berley" ],
   "directors" : [ "Carl Theodor Dreyer" ],
@@ -1451,7 +1451,7 @@
 }, {
   "name" : "Klaus",
   "year" : 2019,
-  "desc" : "A simple act of kindness always sparks another, even in a frozen, faraway place. When Smeerensburg&apos;s new postman, Jesper, befriends toymaker Klaus, their gifts melt an age-old feud and deliver a sleigh full of holiday traditions.",
+  "desc" : "A simple act of kindness always sparks another, even in a frozen, faraway place. When Smeerensburg’s new postman, Jesper, befriends toymaker Klaus, their gifts melt an age-old feud and deliver a sleigh full of holiday traditions.",
   "rating" : 8.1,
   "actors" : [ "Jason Schwartzman", "J.K. Simmons", "Rashida Jones" ],
   "directors" : [ "Sergio Pablos", "Carlos Martínez López" ],
@@ -1481,7 +1481,7 @@
 }, {
   "name" : "Jurassic Park",
   "year" : 1993,
-  "desc" : "A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked with protecting a couple of kids after a power failure causes the park&apos;s cloned dinosaurs to run loose.",
+  "desc" : "A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked with protecting a couple of kids after a power failure causes the park’s cloned dinosaurs to run loose.",
   "rating" : 8.2,
   "actors" : [ "Sam Neill", "Laura Dern", "Jeff Goldblum" ],
   "directors" : [ "Steven Spielberg" ],
@@ -1511,7 +1511,7 @@
 }, {
   "name" : "Jodaeiye Nader az Simin",
   "year" : 2011,
-  "desc" : "A married couple are faced with a difficult decision - to improve the life of their child by moving to another country or to stay in Iran and look after a deteriorating parent who has Alzheimer&apos;s disease.",
+  "desc" : "A married couple are faced with a difficult decision - to improve the life of their child by moving to another country or to stay in Iran and look after a deteriorating parent who has Alzheimer’s disease.",
   "rating" : 8.3,
   "actors" : [ "Payman Maadi", "Leila Hatami", "Sareh Bayat" ],
   "directors" : [ "Asghar Farhadi" ],
@@ -1521,7 +1521,7 @@
 }, {
   "name" : "Jaws",
   "year" : 1975,
-  "desc" : "When a killer shark unleashes chaos on a beach community off Cape Cod, it&apos;s up to a local sheriff, a marine biologist, and an old seafarer to hunt the beast down.",
+  "desc" : "When a killer shark unleashes chaos on a beach community off Cape Cod, it’s up to a local sheriff, a marine biologist, and an old seafarer to hunt the beast down.",
   "rating" : 8.1,
   "actors" : [ "Roy Scheider", "Robert Shaw", "Richard Dreyfuss" ],
   "directors" : [ "Steven Spielberg" ],
@@ -1541,7 +1541,7 @@
 }, {
   "name" : "Jagten",
   "year" : 2013,
-  "desc" : "A teacher lives a lonely life, all the while struggling over his son&apos;s custody. His life slowly gets better as he finds love and receives good news from his son, but his new luck is about to be brutally shattered by an innocent li...",
+  "desc" : "A teacher lives a lonely life, all the while struggling over his son’s custody. His life slowly gets better as he finds love and receives good news from his son, but his new luck is about to be brutally shattered by an innocent li...",
   "rating" : 8.3,
   "actors" : [ "Mads Mikkelsen", "Thomas Bo Larsen", "Annika Wedderkopp" ],
   "directors" : [ "Thomas Vinterberg" ],
@@ -1549,7 +1549,7 @@
   "image_url" : "https://m.media-amazon.com/images/M/MV5BMTg2NDg3ODg4NF5BMl5BanBnXkFtZTcwNzk3NTc3Nw@@._V1_.jpg",
   "thumb_url" : "https://m.media-amazon.com/images/M/MV5BMTg2NDg3ODg4NF5BMl5BanBnXkFtZTcwNzk3NTc3Nw@@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
 }, {
-  "name" : "It&apos;s a Wonderful Life",
+  "name" : "It’s a Wonderful Life",
   "year" : 1947,
   "desc" : "An angel is sent from Heaven to help a desperately frustrated businessman by showing him what life would have been like if he had never existed.",
   "rating" : 8.6,
@@ -1591,7 +1591,7 @@
 }, {
   "name" : "Interstellar",
   "year" : 2014,
-  "desc" : "A team of explorers travel through a wormhole in space in an attempt to ensure humanity&apos;s survival.",
+  "desc" : "A team of explorers travel through a wormhole in space in an attempt to ensure humanity’s survival.",
   "rating" : 8.6,
   "actors" : [ "Matthew McConaughey", "Anne Hathaway", "Jessica Chastain" ],
   "directors" : [ "Christopher Nolan" ],
@@ -1611,7 +1611,7 @@
 }, {
   "name" : "Inglourious Basterds",
   "year" : 2009,
-  "desc" : "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner&apos;s vengeful plans for the same.",
+  "desc" : "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner’s vengeful plans for the same.",
   "rating" : 8.3,
   "actors" : [ "Brad Pitt", "Diane Kruger", "Eli Roth" ],
   "directors" : [ "Quentin Tarantino" ],
@@ -1621,7 +1621,7 @@
 }, {
   "name" : "Indiana Jones and the Last Crusade",
   "year" : 1989,
-  "desc" : "In 1938, after his father Professor Henry Jones, Sr. goes missing while pursuing the Holy Grail, Professor Henry &quot;Indiana&quot; Jones, Jr. finds himself up against Adolf Hitler&apos;s Nazis again to stop them from obtaining its powers.",
+  "desc" : "In 1938, after his father Professor Henry Jones, Sr. goes missing while pursuing the Holy Grail, Professor Henry &quot;Indiana&quot; Jones, Jr. finds himself up against Adolf Hitler’s Nazis again to stop them from obtaining its powers.",
   "rating" : 8.2,
   "actors" : [ "Harrison Ford", "Sean Connery", "Alison Doody" ],
   "directors" : [ "Steven Spielberg" ],
@@ -1641,7 +1641,7 @@
 }, {
   "name" : "Incendies",
   "year" : 2011,
-  "desc" : "Twins journey to the Middle East to discover their family history and fulfill their mother&apos;s last wishes.",
+  "desc" : "Twins journey to the Middle East to discover their family history and fulfill their mother’s last wishes.",
   "rating" : 8.3,
   "actors" : [ "Lubna Azabal", "Mélissa Désormeaux-Poulin", "Maxim Gaudette" ],
   "directors" : [ "Denis Villeneuve" ],
@@ -1651,7 +1651,7 @@
 }, {
   "name" : "In the Name of the Father",
   "year" : 1994,
-  "desc" : "A man&apos;s coerced confession to an I.R.A. bombing he did not commit results in the imprisonment of his father as well. An English lawyer fights to free them.",
+  "desc" : "A man’s coerced confession to an I.R.A. bombing he did not commit results in the imprisonment of his father as well. An English lawyer fights to free them.",
   "rating" : 8.1,
   "actors" : [ "Daniel Day-Lewis", "Pete Postlethwaite", "Alison Crosbie" ],
   "directors" : [ "Jim Sheridan" ],
@@ -1673,7 +1673,7 @@
   "year" : 1956,
   "desc" : "A bureaucrat tries to find meaning in his life after he discovers he has terminal cancer.",
   "rating" : 8.3,
-  "actors" : [ "Takashi Shimura", "Nobuo Kaneko", "Shin&apos;ichi Himori" ],
+  "actors" : [ "Takashi Shimura", "Nobuo Kaneko", "Shin’ichi Himori" ],
   "directors" : [ "Akira Kurosawa" ],
   "genre" : [ "Drama" ],
   "image_url" : "https://m.media-amazon.com/images/M/MV5BZTcyYmQ2NDMtNWI1NS00MTNiLTk0NDctNWMwNWExYTNlYzk3XkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_.jpg",
@@ -1741,7 +1741,7 @@
 }, {
   "name" : "Harry Potter and the Deathly Hallows: Part 2",
   "year" : 2011,
-  "desc" : "Harry, Ron, and Hermione search for Voldemort&apos;s remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.",
+  "desc" : "Harry, Ron, and Hermione search for Voldemort’s remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.",
   "rating" : 8.1,
   "actors" : [ "Daniel Radcliffe", "Emma Watson", "Rupert Grint" ],
   "directors" : [ "David Yates" ],
@@ -1751,7 +1751,7 @@
 }, {
   "name" : "Hamilton",
   "year" : 2020,
-  "desc" : "The real life of one of America&apos;s foremost founding fathers and first Secretary of the Treasury, Alexander Hamilton. Captured live on Broadway from the Richard Rodgers Theater with the original Broadway cast.",
+  "desc" : "The real life of one of America’s foremost founding fathers and first Secretary of the Treasury, Alexander Hamilton. Captured live on Broadway from the Richard Rodgers Theater with the original Broadway cast.",
   "rating" : 8.4,
   "actors" : [ "Lin-Manuel Miranda", "Phillipa Soo", "Leslie Odom Jr." ],
   "directors" : [ "Thomas Kail" ],
@@ -1769,7 +1769,7 @@
   "image_url" : "https://m.media-amazon.com/images/M/MV5BMjQ1NjM3MTUxNV5BMl5BanBnXkFtZTgwMDc5MTY5OTE@._V1_.jpg",
   "thumb_url" : "https://m.media-amazon.com/images/M/MV5BMjQ1NjM3MTUxNV5BMl5BanBnXkFtZTgwMDc5MTY5OTE@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
 }, {
-  "name" : "Hachi: A Dog&apos;s Tale",
+  "name" : "Hachi: A Dog’s Tale",
   "year" : 2010,
   "desc" : "A college professor bonds with an abandoned dog he takes into his home.",
   "rating" : 8.1,
@@ -1801,7 +1801,7 @@
 }, {
   "name" : "Gran Torino",
   "year" : 2009,
-  "desc" : "Disgruntled Korean War veteran Walt Kowalski sets out to reform his neighbor, Thao Lor, a Hmong teenager who tried to steal Kowalski&apos;s prized possession: a 1972 Gran Torino.",
+  "desc" : "Disgruntled Korean War veteran Walt Kowalski sets out to reform his neighbor, Thao Lor, a Hmong teenager who tried to steal Kowalski’s prized possession: a 1972 Gran Torino.",
   "rating" : 8.1,
   "actors" : [ "Clint Eastwood", "Bee Vang", "Christopher Carley" ],
   "directors" : [ "Clint Eastwood" ],
@@ -1841,7 +1841,7 @@
 }, {
   "name" : "Gone Girl",
   "year" : 2014,
-  "desc" : "With his wife&apos;s disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it&apos;s suspected that he may not be innocent.",
+  "desc" : "With his wife’s disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it’s suspected that he may not be innocent.",
   "rating" : 8.1,
   "actors" : [ "Ben Affleck", "Rosamund Pike", "Neil Patrick Harris" ],
   "directors" : [ "David Fincher" ],
@@ -1883,7 +1883,7 @@
   "year" : 1987,
   "desc" : "A pragmatic U.S. Marine observes the dehumanizing effects the Vietnam War has on his fellow recruits from their brutal boot camp training to the bloody street fighting in Hue.",
   "rating" : 8.3,
-  "actors" : [ "Matthew Modine", "R. Lee Ermey", "Vincent D&apos;Onofrio" ],
+  "actors" : [ "Matthew Modine", "R. Lee Ermey", "Vincent D’Onofrio" ],
   "directors" : [ "Stanley Kubrick" ],
   "genre" : [ "Drama", "War" ],
   "image_url" : "https://m.media-amazon.com/images/M/MV5BNzkxODk0NjEtYjc4Mi00ZDI0LTgyYjEtYzc1NDkxY2YzYTgyXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg",
@@ -1931,7 +1931,7 @@
 }, {
   "name" : "Fargo",
   "year" : 1996,
-  "desc" : "Minnesota car salesman Jerry Lundegaard&apos;s inept crime falls apart due to his and his henchmen&apos;s bungling and the persistent police work of the quite pregnant Marge Gunderson.",
+  "desc" : "Minnesota car salesman Jerry Lundegaard’s inept crime falls apart due to his and his henchmen’s bungling and the persistent police work of the quite pregnant Marge Gunderson.",
   "rating" : 8.1,
   "actors" : [ "William H. Macy", "Frances McDormand", "Steve Buscemi" ],
   "directors" : [ "Joel Coen", "Ethan Coen" ],
@@ -2051,7 +2051,7 @@
 }, {
   "name" : "Der Untergang",
   "year" : 2005,
-  "desc" : "Traudl Junge, the final secretary for Adolf Hitler, tells of the Nazi dictator&apos;s final days in his Berlin bunker at the end of WWII.",
+  "desc" : "Traudl Junge, the final secretary for Adolf Hitler, tells of the Nazi dictator’s final days in his Berlin bunker at the end of WWII.",
   "rating" : 8.2,
   "actors" : [ "Bruno Ganz", "Alexandra Maria Lara", "Ulrich Matthes" ],
   "directors" : [ "Oliver Hirschbiegel" ],
@@ -2111,7 +2111,7 @@
 }, {
   "name" : "Coco",
   "year" : 2017,
-  "desc" : "Aspiring musician Miguel, confronted with his family&apos;s ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer.",
+  "desc" : "Aspiring musician Miguel, confronted with his family’s ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer.",
   "rating" : 8.4,
   "actors" : [ "Anthony Gonzalez", "Gael García Bernal", "Benjamin Bratt" ],
   "directors" : [ "Lee Unkrich", "Adrian Molina" ],
@@ -2131,7 +2131,7 @@
 }, {
   "name" : "Citizen Kane",
   "year" : 1941,
-  "desc" : "Following the death of publishing tycoon Charles Foster Kane, reporters scramble to uncover the meaning of his final utterance: &apos;Rosebud.&apos;",
+  "desc" : "Following the death of publishing tycoon Charles Foster Kane, reporters scramble to uncover the meaning of his final utterance: ’Rosebud.’",
   "rating" : 8.3,
   "actors" : [ "Orson Welles", "Joseph Cotten", "Dorothy Comingore" ],
   "directors" : [ "Orson Welles" ],
@@ -2141,7 +2141,7 @@
 }, {
   "name" : "Cidade de Deus",
   "year" : 2004,
-  "desc" : "In the slums of Rio, two kids&apos; paths diverge as one struggles to become a photographer and the other a kingpin.",
+  "desc" : "In the slums of Rio, two kids’ paths diverge as one struggles to become a photographer and the other a kingpin.",
   "rating" : 8.6,
   "actors" : [ "Alexandre Rodrigues", "Leandro Firmino", "Matheus Nachtergaele" ],
   "directors" : [ "Fernando Meirelles", "Kátia Lund" ],
@@ -2199,7 +2199,7 @@
   "image_url" : "https://m.media-amazon.com/images/M/MV5BY2Y3OWNkMTctYzNjYS00NWVkLTg4OWEtY2YxN2I3NDhlYzE0XkEyXkFqcGdeQXVyMTI3ODAyMzE2._V1_.jpg",
   "thumb_url" : "https://m.media-amazon.com/images/M/MV5BY2Y3OWNkMTctYzNjYS00NWVkLTg4OWEtY2YxN2I3NDhlYzE0XkEyXkFqcGdeQXVyMTI3ODAyMzE2._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
 }, {
-  "name" : "C&apos;era una volta il West",
+  "name" : "C’era una volta il West",
   "year" : 1969,
   "desc" : "A mysterious stranger with a harmonica joins forces with a notorious desperado to protect a beautiful widow from a ruthless assassin working for the railroad.",
   "rating" : 8.5,
@@ -2241,7 +2241,7 @@
 }, {
   "name" : "Before Sunset",
   "year" : 2004,
-  "desc" : "Nine years after Jesse and Celine first met, they encounter each other again on the French leg of Jesse&apos;s book tour.",
+  "desc" : "Nine years after Jesse and Celine first met, they encounter each other again on the French leg of Jesse’s book tour.",
   "rating" : 8.1,
   "actors" : [ "Ethan Hawke", "Julie Delpy", "Vernon Dobtcheff" ],
   "directors" : [ "Richard Linklater" ],
@@ -2271,9 +2271,9 @@
 }, {
   "name" : "Barry Lyndon",
   "year" : 1975,
-  "desc" : "An Irish rogue wins the heart of a rich widow and assumes her dead husband&apos;s aristocratic position in 18th-century England.",
+  "desc" : "An Irish rogue wins the heart of a rich widow and assumes her dead husband’s aristocratic position in 18th-century England.",
   "rating" : 8.1,
-  "actors" : [ "Ryan O&apos;Neal", "Marisa Berenson", "Patrick Magee" ],
+  "actors" : [ "Ryan O’Neal", "Marisa Berenson", "Patrick Magee" ],
   "directors" : [ "Stanley Kubrick" ],
   "genre" : [ "Adventure", "Drama", "War" ],
   "image_url" : "https://m.media-amazon.com/images/M/MV5BNmY0MWY2NDctZDdmMi00MjA1LTk0ZTQtZDMyZTQ1NTNlYzVjXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg",
@@ -2291,7 +2291,7 @@
 }, {
   "name" : "Bacheha-Ye aseman",
   "year" : 1999,
-  "desc" : "After a boy loses his sister&apos;s pair of shoes, he goes on a series of adventures in order to find them. When he can&apos;t, he tries a new way to &quot;win&quot; a new pair.",
+  "desc" : "After a boy loses his sister’s pair of shoes, he goes on a series of adventures in order to find them. When he can’t, he tries a new way to &quot;win&quot; a new pair.",
   "rating" : 8.2,
   "actors" : [ "Mohammad Amir Naji", "Amir Farrokh Hashemian", "Bahare Seddiqi" ],
   "directors" : [ "Majid Majidi" ],
@@ -2321,7 +2321,7 @@
 }, {
   "name" : "Avengers: Endgame",
   "year" : 2019,
-  "desc" : "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos&apos; actions and restore balance to the universe.",
+  "desc" : "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos’ actions and restore balance to the universe.",
   "rating" : 8.4,
   "actors" : [ "Robert Downey Jr.", "Chris Evans", "Mark Ruffalo" ],
   "directors" : [ "Anthony Russo", "Joe Russo" ],
@@ -2341,7 +2341,7 @@
 }, {
   "name" : "Amores perros",
   "year" : 2001,
-  "desc" : "A horrific car accident connects three stories, each involving characters dealing with loss, regret, and life&apos;s harsh realities, all in the name of love.",
+  "desc" : "A horrific car accident connects three stories, each involving characters dealing with loss, regret, and life’s harsh realities, all in the name of love.",
   "rating" : 8.1,
   "actors" : [ "Emilio Echevarría", "Gael García Bernal", "Goya Toledo" ],
   "directors" : [ "Alejandro G. Iñárritu" ],
@@ -2353,7 +2353,7 @@
   "year" : 1998,
   "desc" : "A former neo-nazi skinhead tries to prevent his younger brother from going down the same wrong path that he did.",
   "rating" : 8.5,
-  "actors" : [ "Edward Norton", "Edward Furlong", "Beverly D&apos;Angelo" ],
+  "actors" : [ "Edward Norton", "Edward Furlong", "Beverly D’Angelo" ],
   "directors" : [ "Tony Kaye" ],
   "genre" : [ "Crime", "Drama" ],
   "image_url" : "https://m.media-amazon.com/images/M/MV5BZTJhN2FkYWEtMGI0My00YWM4LWI2MjAtM2UwNjY4MTI2ZTQyXkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_.jpg",
@@ -2361,7 +2361,7 @@
 }, {
   "name" : "American Beauty",
   "year" : 1999,
-  "desc" : "A sexually frustrated suburban father has a mid-life crisis after becoming infatuated with his daughter&apos;s best friend.",
+  "desc" : "A sexually frustrated suburban father has a mid-life crisis after becoming infatuated with his daughter’s best friend.",
   "rating" : 8.4,
   "actors" : [ "Kevin Spacey", "Annette Bening", "Thora Birch" ],
   "directors" : [ "Sam Mendes" ],
@@ -2371,7 +2371,7 @@
 }, {
   "name" : "Amadeus",
   "year" : 1984,
-  "desc" : "The life, success and troubles of Wolfgang Amadeus Mozart, as told by Antonio Salieri, the contemporaneous composer who was insanely jealous of Mozart&apos;s talent and claimed to have murdered him.",
+  "desc" : "The life, success and troubles of Wolfgang Amadeus Mozart, as told by Antonio Salieri, the contemporaneous composer who was insanely jealous of Mozart’s talent and claimed to have murdered him.",
   "rating" : 8.4,
   "actors" : [ "F. Murray Abraham", "Tom Hulce", "Elizabeth Berridge" ],
   "directors" : [ "Milos Forman" ],
@@ -2431,7 +2431,7 @@
 }, {
   "name" : "A Clockwork Orange",
   "year" : 1972,
-  "desc" : "In the future, a sadistic gang leader is imprisoned and volunteers for a conduct-aversion experiment, but it doesn&apos;t go as planned.",
+  "desc" : "In the future, a sadistic gang leader is imprisoned and volunteers for a conduct-aversion experiment, but it doesn’t go as planned.",
   "rating" : 8.3,
   "actors" : [ "Malcolm McDowell", "Patrick Magee", "Michael Bates" ],
   "directors" : [ "Stanley Kubrick" ],

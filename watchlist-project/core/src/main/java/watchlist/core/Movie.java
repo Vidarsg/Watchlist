@@ -70,25 +70,30 @@ public class Movie {
     // ! Getters
 
     // Methods
-    public boolean equals(Movie other) {
-        if (other == null) {
-            return false;
+    public boolean equals(Object o) {
+        if (o instanceof Movie) {
+            Movie other = (Movie) o;
+    
+            if (other.getClass() != this.getClass()) {
+                return false;
+            }
+    
+            if (!this.name.equals(other.name)) {
+                return false;
+            }
+    
+            if (this.getYear() != other.getYear()) {
+                return false;
+            }
+    
+            return true;
         }
+        return false;
+    }
 
-        if (other.getClass() != this.getClass()) {
-            return false;
-        }
-
-        if (this.getName() != other.getName()) {
-            return false;
-        }
-
-        if (this.getYear() != other.getYear()) {
-            return false;
-        }
-
-        return true;
-
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 1337; // any arbitrary constant will do
     }
     // ! Methods
 
