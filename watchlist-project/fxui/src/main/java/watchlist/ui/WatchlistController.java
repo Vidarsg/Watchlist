@@ -108,7 +108,7 @@ public class WatchlistController {
     private Text infoActorsProfile;
 // ! PROFILE FIELDS
 
-   
+
     public void initialize() {
         user = new User("Username", 21);
         list = new Watchlist();
@@ -123,7 +123,16 @@ public class WatchlistController {
         updateGUI();
     }
     
-    private ChangeListener<String> generateListener(ListView<String> lv, TextField tf, Button btn) {
+    /**
+     * <p>Used to generate event listeners to items of a ListView. Creates a ChangeListener<String> to use in the methods addListener() and removeListener():</p>
+     * <pre>ListView.getSelectionModel().selectedItemProperty().addListener(ChangeListener<String>);</pre>
+     * <pre>ListView.getSelectionModel().selectedItemProperty().removeListener(ChangeListener<String>);</pre>
+     * @param listView The ListView where the items are located
+     * @param textField The corresponding TextField to keep track of selected item
+     * @param button The corresponding Button to watch/unwatch movies
+     * @return A ChangeListener<String> to use in the methods addListener() and removeListener()
+     */
+    private ChangeListener<String> generateListener(ListView<String> listView, TextField textField, Button button) {
         return new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -134,12 +143,12 @@ public class WatchlistController {
                         Movie activeMovie = m;
                         
                         // Set the value of the textField to the chosen Movie
-                        tf.setText(activeMovie.toString());
+                        textField.setText(activeMovie.toString());
                         
                         // Enable the Watch-/Unwatch-button
-                        btn.setDisable(false);
+                        button.setDisable(false);
 
-                        if (lv.equals(watchedMovies)) {activeProfileMovie = activeMovie;}
+                        if (listView.equals(watchedMovies)) {activeProfileMovie = activeMovie;}
                         else {activeBrowserMovie = activeMovie;}
 
                         updateGUI();
@@ -155,6 +164,10 @@ public class WatchlistController {
 
     // Methods for file handling
 
+    /**
+     * Loads a files content as the content of the Watchlist's list of movies.
+     * @param filename The file to load the list from
+     */
     public void handleLoadResourceList(String filename) {
         try {
             list.setList(saveLoadHandler.loadResourceList(filename));
@@ -163,6 +176,9 @@ public class WatchlistController {
         }
     }
 
+    /**
+     * Loads the users local list into the application. If no list is saved locally for the user, the method will create a new one.
+     */
     public void handleLoadUserList() {
         if (saveLoadHandler.getSaveFilePath() == null) {
             saveLoadHandler.setSaveFile("test");
@@ -174,6 +190,9 @@ public class WatchlistController {
         }
     }
 
+    /**
+     * Save the users list in the application into their local savefile. If no list is saved locally for the user, the method will create a new one.
+     */
     public void handleSaveUserList() {
         if (saveLoadHandler.getSaveFilePath() == null) {
             saveLoadHandler.setSaveFile("test");
@@ -190,6 +209,10 @@ public class WatchlistController {
 
     // Handle methods for browsing
 
+    /**
+     * <i>*FXML-method*</i>
+     * <p>Adds a movie to the list of movies contained in the Watchlist.</p>
+     */
     @FXML
     void handleAddMovie() {
         redBorder(false, addMovieTitle, addMovieYear);
@@ -218,6 +241,10 @@ public class WatchlistController {
         updateMoviebrowser();
     }
 
+    /**
+     * <i>*FXML-method*</i>
+     * <p>Marks a movie from the Watchlist browser as watched by the user and adds it to the users personal list of watched movies.</p>
+     */
     @FXML
     void handleWatchMovie() {
         feedbackBoxBrowsing.setText("");
@@ -239,6 +266,10 @@ public class WatchlistController {
 
     // Handle methods for profile
 
+    /**
+     * <i>*FXML-method*</i>
+     * <p>Marks a movie from the Watchlist browser as <b>not</b> watched by the user and removes it from the users personal list of watched movies.</p>
+     */
     @FXML
     void handleUnwatchMovie() {
         feedbackBoxProfile.setText("");
@@ -257,17 +288,26 @@ public class WatchlistController {
 
     // Help methods for GUI
 
+    /**
+     * Updates the whole Graphical User Interface (GUI) of the application.
+     */
     private void updateGUI() {
         updateBrowserGUI();
         updateProfileGUI();
     }
 
+    /**
+     * Updates the Graphical User Interface (GUI) of the browser-part of the application.
+     */
     private void updateBrowserGUI() {
         if (activeBrowserMovie != null) {
             showInfo(activeBrowserMovie, infoBox);
         }
     }
 
+    /**
+     * Updates the ListView of the browser-part of the application.
+     */
     private void updateMoviebrowser() {
         if (list.getList().size() > 0) {
             moviebrowser.setItems(FXCollections.observableArrayList(list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
@@ -275,12 +315,18 @@ public class WatchlistController {
         }
     }
 
+    /**
+     * Updates the Graphical User Interface (GUI) of the profile-part of the application.
+     */
     private void updateProfileGUI() {
         if (activeProfileMovie != null) {
             showInfo(activeProfileMovie, infoBoxProfile);
         }
     }
 
+    /**
+     * Updates the ListView of the profile-part of the application.
+     */
     private void updateWatchedMovies() {
         if (user.getMovies().size() > 0) {
             watchedMovies.setItems(FXCollections.observableArrayList(user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
@@ -293,12 +339,38 @@ public class WatchlistController {
         }
     }
 
-
-    private void redBorder(boolean set, TextField... tf) {
-        if (set) {for (TextField t : tf) {t.setStyle("-fx-border-color:red");}}
-        else {for (TextField t : tf) {t.setStyle("-fx-border-color:initial");}}
+    /**
+     * Adds/removes a red border to a <code>TextField</code> which is required for submitting when a user tries to submit something illegal.
+     * @param set Whether the red border should be set or removed
+     * @param textField The TextField to be styled
+     */
+    private void redBorder(boolean set, TextField... textField) {
+        if (set) {for (TextField t : textField) {t.setStyle("-fx-border-color:red");}}
+        else {for (TextField t : textField) {t.setStyle("-fx-border-color:initial");}}
     }
 
+    /**
+     * <p>Module to show information about movies for both browser- and profile-view.</p>
+     * <p>The pane which the movie will be displayed has to have this configuration of children:<p>
+     * <ol>
+     *  <li><pre>AnchorPane</pre>
+     *    <ol>
+     *      <li><pre>Text</pre></li>
+     *      <li><pre>Text</pre></li>
+     *      <li><pre>Label</pre></li>
+     *      <li><pre>Text</pre></li>
+     *      <li><pre>Text</pre></li>
+     *      <li><pre>Label</pre></li>
+     *      <li><pre>Text</pre></li>
+     *      <li><pre>Label</pre></li>
+     *      <li><pre>Text</pre></li>
+     *    </ol>
+     *  </li>
+     *  <li><pre>ImageView</pre></li>
+     * </ol>
+     * @param movie The movie to display
+     * @param pane The Pane where the movie should be displayed. Has to match the criterias for a display-pane
+     */
     private void showInfo(Movie movie, Pane pane) {
         if (movie == null) {pane.setVisible(false);}
         else {
@@ -352,15 +424,15 @@ public class WatchlistController {
 
     /**
      * Used to add listeners to a listView based on which ListView it is being called upon.
-     * @param lv
+     * @param listView The ListView where the listeners are to be set to each list item
      */
-    private void setListeners(ListView<String> lv) {
-        if (lv.equals(watchedMovies)) {
-            lv.getSelectionModel().selectedItemProperty().removeListener(profileChangeListener);
-            lv.getSelectionModel().selectedItemProperty().addListener(profileChangeListener);
+    private void setListeners(ListView<String> listView) {
+        if (listView.equals(watchedMovies)) {
+            listView.getSelectionModel().selectedItemProperty().removeListener(profileChangeListener);
+            listView.getSelectionModel().selectedItemProperty().addListener(profileChangeListener);
         } else {
-            lv.getSelectionModel().selectedItemProperty().removeListener(browserChangeListener);
-            lv.getSelectionModel().selectedItemProperty().addListener(browserChangeListener);
+            listView.getSelectionModel().selectedItemProperty().removeListener(browserChangeListener);
+            listView.getSelectionModel().selectedItemProperty().addListener(browserChangeListener);
         }
     }
 
