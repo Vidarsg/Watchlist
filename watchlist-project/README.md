@@ -14,7 +14,7 @@ Som bruker av Watchlist vil jeg se en oversikt over tilgjengelige filmer.
 Som bruker av Watchlist vil jeg kunne se en oversikt over filmer jeg har sett på profilen min.
 
 ### **Brukerhistorie #3** - Rangere filmer
-Som bruker av Watchlist vil jeg kunne gi rangering til filmer jeg har sett.
+Som bruker av Watchlist vil jeg kunne gi rangering til filmer jeg har sett for å ha oversikt over hvilke filmer jeg har likt. 
 
 ### **Brukerhistorie #4** - Sortere filmer etter sjanger
 Som bruker av Watchlist vil jeg se filmer sortert etter sjanger, slik at det blir lettere å finne filmer jeg liker.
