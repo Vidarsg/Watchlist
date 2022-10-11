@@ -1,8 +1,5 @@
 package watchlist.ui;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
@@ -113,7 +110,6 @@ public class WatchlistController {
         user = new User("Username", 21);
         list = new Watchlist();
         handleLoadResourceList("movies");
-        // Temporary replacement for more complex movie-import from JSON
 
         browserChangeListener = generateListener(moviebrowser, watchMovieTitle, watchMovieButton);
         profileChangeListener = generateListener(watchedMovies, unwatchMovieTitle, unwatchMovieButton);
