@@ -52,7 +52,6 @@ public class Movie {
     }
     // Temporary to prevent errors
     public Movie(String name, int year) {
-        //new Movie(name, year, "desc", 1.0, null, null, null, null, null);
         this.name = name;
         this.year = year;
     }

@@ -21,32 +21,29 @@
     <tabs>
         <Tab text="Browse">
             <content>
-                <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="901.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
                 <columnConstraints>
                     <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.64695739746094" minWidth="0.0" prefWidth="0.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.0" minWidth="10.0" prefWidth="338.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="147.17340087890625" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.82659912109375" minWidth="10.0" prefWidth="383.82659912109375" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="379.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="553.21240234375" minWidth="10.0" prefWidth="462.6689147949219" />
                 </columnConstraints>
                 <rowConstraints>
                     <RowConstraints />
-                    <RowConstraints maxHeight="192.46856689453125" minHeight="61.42150115966797" prefHeight="61.42150115966797" />
-                    <RowConstraints maxHeight="332.3729248046875" minHeight="10.0" prefHeight="332.3729248046875" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+                    <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="350.0" vgrow="SOMETIMES" />
                     <RowConstraints maxHeight="242.4710693359375" minHeight="10.0" prefHeight="93.6270751953125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="206.2263641357422" minHeight="0.0" prefHeight="24.96246337890625" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
                     
-                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Browse" wrappingWidth="300.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Browse" wrappingWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <font>
                             <Font size="42.0" />
                         </font>
                     </Text>
-                    <ListView fx:id="moviebrowser" prefHeight="300.0" prefWidth="237.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2" />
-                  <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                    <ListView fx:id="moviebrowser" prefHeight="300.0" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+                  <AnchorPane fx:id="infoBox" visible="false" prefHeight="350.0" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <FlowPane fx:id="infoBox" layoutX="106.0" layoutY="7.0" prefHeight="400.0" prefWidth="250.0" rowValignment="TOP">
+                        <FlowPane layoutX="250.0" layoutY="2.0" prefHeight="350.0" prefWidth="270.0" rowValignment="TOP">
                            <children>
                               <Text fx:id="infoTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="250.0">
                                  <font>
@@ -75,7 +72,7 @@
                               <Text fx:id="infoDirector" strokeType="OUTSIDE" strokeWidth="0.0" text="Directors here..." wrappingWidth="175.0" />
                               <Label prefHeight="17.0" prefWidth="70.0" text="Actors:" />
                               <Text fx:id="infoActors" strokeType="OUTSIDE" strokeWidth="0.0" text="Actors here..." wrappingWidth="175.0" />
-                              <TextField fx:id="watchMovieTitle" disable="true" prefHeight="29.0" prefWidth="150.0" promptText="Click on a movie..." visible="false">
+                              <TextField fx:id="watchMovieTitle" disable="true" prefHeight="29.0" prefWidth="135.0" promptText="Click on a movie..." visible="false">
                                  <FlowPane.margin>
                                     <Insets top="20.0" />
                                  </FlowPane.margin></TextField>
@@ -88,17 +85,18 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </FlowPane>
-                        <ImageView fx:id="infoImage" fitWidth="225.0" layoutX="-135.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="infoImage" fitWidth="225.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
-                    <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                    <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                         <children>
-                            <Text layoutX="89.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new movie" />
-                            <TextField fx:id="addMovieTitle" layoutX="89.0" layoutY="50.0" prefHeight="27.0" prefWidth="134.0" promptText="Title" />
-                            <TextField fx:id="addMovieYear" layoutX="238.0" layoutY="50.0" prefHeight="27.0" prefWidth="80.0" promptText="Published" />
-                            <Button layoutX="89.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddMovie" text="Add movie" />
-                            <Text fx:id="feedbackBoxBrowsing" fill="RED" layoutX="89.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
-                        <Separator layoutX="101.0" layoutY="21.0" prefWidth="200.0" />
+                            <Text layoutX="269.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new movie" />
+                            <TextField fx:id="addMovieTitle" layoutX="269.0" layoutY="28.0" prefHeight="27.0" prefWidth="134.0" promptText="Title" />
+                            <TextField fx:id="addMovieYear" layoutX="418.0" layoutY="28.0" prefHeight="27.0" prefWidth="80.0" promptText="Published" />
+                            <Button layoutX="269.0" layoutY="62.0" mnemonicParsing="false" onAction="#handleAddMovie" text="Add movie" />
+                            <Text fx:id="feedbackBoxBrowsing" fill="RED" layoutX="269.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
+                        <Separator layoutX="281.0" layoutY="-1.0" prefWidth="200.0" />
+                        <Text fx:id="feedbackBoxProfile1" fill="RED" layoutX="271.0" layoutY="-2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
                         </children>
                     </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
@@ -107,46 +105,88 @@
                      </children>
                   </AnchorPane>
                 </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" />
+               </padding>
                 </GridPane>
             </content>
         </Tab>
         <Tab text="Profile">
-         <content>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="901.0">
-               <columnConstraints>
-                  <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.64695739746094" minWidth="0.0" prefWidth="0.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.0" minWidth="10.0" prefWidth="338.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="147.17340087890625" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.82659912109375" minWidth="10.0" prefWidth="383.82659912109375" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints maxHeight="192.46856689453125" minHeight="61.42150115966797" prefHeight="61.42150115966797" />
-                  <RowConstraints maxHeight="332.3729248046875" minHeight="10.0" prefHeight="332.3729248046875" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="242.4710693359375" minHeight="10.0" prefHeight="93.6270751953125" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="206.2263641357422" minHeight="0.0" prefHeight="24.96246337890625" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <content>
+              <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                <columnConstraints>
+                    <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="379.0" minWidth="10.0" prefWidth="379.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="553.21240234375" minWidth="10.0" prefWidth="462.6689147949219" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" />
+                    <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="350.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="242.4710693359375" minHeight="10.0" prefHeight="93.6270751953125" vgrow="SOMETIMES" />
+                </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Profile" wrappingWidth="300.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" wrappingWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="42.0" />
                      </font>
                   </Text>
-                  <ListView fx:id="watchedMovies" prefHeight="300.0" prefWidth="237.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="2" />
-                  <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <ListView fx:id="watchedMovies" prefHeight="300.0" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2" />
+                  <AnchorPane fx:id="infoBoxProfile" visible="false" prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <TextField fx:id="unwatchMovieTitle" disable="true" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="121.0" promptText="Click on a movie..." />
-                        <Button fx:id="unwatchMovieButton" disable="true" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleUnwatchMovie" text="Unwatch movie" />
-                        <Text fx:id="feedbackBoxProfile" fill="RED" layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
+                        <FlowPane layoutX="239.0" layoutY="2.0" prefHeight="350.0" prefWidth="270.0" rowValignment="TOP">
+                           <children>
+                              <Text fx:id="infoTitleProfile" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="250.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="infoYearProfile" strokeType="OUTSIDE" strokeWidth="0.0" text="1999" wrappingWidth="40.0">
+                                 <FlowPane.margin>
+                                    <Insets right="5.0" />
+                                 </FlowPane.margin>
+                              </Text>
+                              <Label fx:id="infoGenreProfile" prefHeight="17.0" prefWidth="200.0" text="Genres...." />
+                              <Text fx:id="infoDescProfile" strokeType="OUTSIDE" strokeWidth="0.0" text="This is the description of the movie." wrappingWidth="250.0">
+                                 <font>
+                                    <Font name="System Italic" size="13.0" />
+                                 </font>
+                                 <FlowPane.margin>
+                                    <Insets />
+                                 </FlowPane.margin>
+                              </Text>
+                              <Text fx:id="infoRatingProfile" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating (count)" wrappingWidth="250.0">
+                                 <FlowPane.margin>
+                                    <Insets />
+                                 </FlowPane.margin>
+                              </Text>
+                              <Label alignment="TOP_LEFT" prefHeight="17.0" prefWidth="70.0" text="Director(s):" />
+                              <Text fx:id="infoDirectorProfile" strokeType="OUTSIDE" strokeWidth="0.0" text="Directors here..." wrappingWidth="175.0" />
+                              <Label prefHeight="17.0" prefWidth="70.0" text="Actors:" />
+                              <Text fx:id="infoActorsProfile" strokeType="OUTSIDE" strokeWidth="0.0" text="Actors here..." wrappingWidth="175.0" />
+                              <TextField fx:id="unwatchMovieTitle" disable="true" prefHeight="27.0" prefWidth="121.0" promptText="Click on a movie..." visible="false">
+                                 <FlowPane.margin>
+                                    <Insets top="20.0" />
+                                 </FlowPane.margin>
+                              </TextField>
+                              <Button fx:id="unwatchMovieButton" disable="true" mnemonicParsing="false" onAction="#handleUnwatchMovie" text="Unwatch movie">
+                                 <FlowPane.margin>
+                                    <Insets top="20.0" />
+                                 </FlowPane.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </FlowPane>
+                        <ImageView fx:id="infoImageProfile" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="ProfileUsername" layoutX="282.0" layoutY="5.0" prefHeight="17.0" prefWidth="102.0" />
-                     </children>
-                  </AnchorPane>
+                  <Text fx:id="feedbackBoxProfile" fill="RED" layoutX="269.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
                </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" />
+               </padding>
             </GridPane>
          </content>
         </Tab>
