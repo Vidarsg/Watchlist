@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <TabPane prefHeight="550.0" prefWidth="900.0" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="watchlist.ui.WatchlistController">
     <tabs>
@@ -90,32 +99,36 @@
                             <Button layoutX="89.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddMovie" text="Add movie" />
                             <Text fx:id="feedbackBoxBrowsing" fill="RED" layoutX="89.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
                         <Separator layoutX="101.0" layoutY="21.0" prefWidth="200.0" />
-                        <Text fx:id="feedbackBoxProfile1" fill="RED" layoutX="91.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
                         </children>
                     </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="BrowseUsername" layoutX="282.0" layoutY="5.0" prefHeight="17.0" prefWidth="102.0" />
+                     </children>
+                  </AnchorPane>
                 </children>
                 </GridPane>
             </content>
         </Tab>
         <Tab text="Profile">
          <content>
-            <GridPane>
-              <columnConstraints>
-                    <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.64695739746094" minWidth="0.0" prefWidth="0.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.0" minWidth="10.0" prefWidth="338.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="225.174072265625" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.00328063964844" minWidth="10.0" prefWidth="241.825927734375" />
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints />
-                    <RowConstraints maxHeight="192.46856689453125" minHeight="61.42150115966797" prefHeight="61.42150115966797" />
-                    <RowConstraints maxHeight="221.57849884033203" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
-                    <RowConstraints maxHeight="242.4710693359375" minHeight="10.0" prefHeight="229.03753662109375" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="206.2263641357422" minHeight="0.0" prefHeight="24.96246337890625" vgrow="SOMETIMES" />
-                </rowConstraints>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="901.0">
+               <columnConstraints>
+                  <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.64695739746094" minWidth="0.0" prefWidth="0.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.0" minWidth="10.0" prefWidth="338.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="334.0" minWidth="10.0" prefWidth="147.17340087890625" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.82659912109375" minWidth="10.0" prefWidth="383.82659912109375" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints maxHeight="192.46856689453125" minHeight="61.42150115966797" prefHeight="61.42150115966797" />
+                  <RowConstraints maxHeight="332.3729248046875" minHeight="10.0" prefHeight="332.3729248046875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="242.4710693359375" minHeight="10.0" prefHeight="93.6270751953125" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="206.2263641357422" minHeight="0.0" prefHeight="24.96246337890625" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" wrappingWidth="300.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Profile" wrappingWidth="300.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font size="42.0" />
                      </font>
@@ -126,6 +139,11 @@
                         <TextField fx:id="unwatchMovieTitle" disable="true" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="121.0" promptText="Click on a movie..." />
                         <Button fx:id="unwatchMovieButton" disable="true" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleUnwatchMovie" text="Unwatch movie" />
                         <Text fx:id="feedbackBoxProfile" fill="RED" layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="ProfileUsername" layoutX="282.0" layoutY="5.0" prefHeight="17.0" prefWidth="102.0" />
                      </children>
                   </AnchorPane>
                </children>

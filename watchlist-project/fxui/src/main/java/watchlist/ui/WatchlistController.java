@@ -45,6 +45,8 @@ public class WatchlistController {
     private TextField addMovieTitle;
     @FXML
     private TextField addMovieYear;
+    @FXML
+    private Label BrowseUsername;
 
     // Information section of the browser
     @FXML
@@ -72,6 +74,8 @@ public class WatchlistController {
     private ListView<String> watchedMovies;
     @FXML
     private Text feedbackBoxProfile;
+    @FXML
+    private Label ProfileUsername;
     
     @FXML
     private TextField unwatchMovieTitle;
@@ -81,7 +85,7 @@ public class WatchlistController {
 
    
     public void initialize() {
-        user = new User("Username", 21);
+        user = new User("Username");
         list = new Watchlist();
         handleLoadResourceList("movies");
         // Temporary replacement for more complex movie-import from JSON
@@ -89,6 +93,14 @@ public class WatchlistController {
         list.addMovie(new Movie("UP", 2009, "78-year-old Carl Fredricksen travels to Paradise Falls in his house equipped with balloons, inadvertently taking a young stowaway.", 8.3, Arrays.asList("Edward Asner", "Jordan Nagai", "John Ratzenberger"), Arrays.asList("Pete Docter", "Bob Peterson"), Arrays.asList("Animation", "Adventure", "Comedy"), "https://m.media-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_.jpg", "https://m.media-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"));
         
         updateGUI();
+    }
+
+    // Fetches username from Login.fxml and displays it in Watchlist.fxml
+
+    public void setUsername(String name) {
+        user = new User(name); 
+        BrowseUsername.setText(name);
+        ProfileUsername.setText(name);
     }
 
     private void updateMoviebrowser() {
