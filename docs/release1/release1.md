@@ -1,3 +1,5 @@
+[ Tilbake ](../../README.md)
+
 # Dokumentasjon Release 1
 
 I første øving har vi kodet bakgrunnen for appen vår og strukturert prosjektskjelletet vårt slik det skal se ut.

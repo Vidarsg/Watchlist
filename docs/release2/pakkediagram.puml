@@ -1,0 +1,30 @@
+@startuml pakkediagram
+
+component core {
+  package watchlist.core
+  package watchlist.json
+}
+
+component jackson {
+}
+
+component fxui {
+  package watchlist.ui
+}
+
+component javafx {
+  package javafx.graphics
+  package javafx.fxml
+}
+
+watchlist.core ..> jackson
+watchlist.json ..> jackson
+
+watchlist.json ..> watchlist.core
+
+watchlist.ui ..> watchlist.core
+watchlist.ui ..> watchlist.json
+watchlist.ui ..> javafx.fxml
+watchlist.ui ..> javafx.graphics
+
+@enduml
