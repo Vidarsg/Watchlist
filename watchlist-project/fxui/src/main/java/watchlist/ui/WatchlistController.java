@@ -118,6 +118,14 @@ public class WatchlistController {
 
         updateGUI();
     }
+
+    /**
+     * Made for testing of the controller.
+     * @return The Watchlist which is represented in this instance of the app
+     */
+    public Watchlist getWatchlist() {
+        return this.list;
+    }
     
     /**
      * <p>Used to generate event listeners to items of a ListView. Creates a ChangeListener<String> to use in the methods addListener() and removeListener():</p>
