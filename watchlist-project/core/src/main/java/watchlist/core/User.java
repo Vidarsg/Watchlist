@@ -6,18 +6,14 @@ import java.util.stream.Collectors;
 public class User {
     private int userID;
     private String name;
-    private int age;
     private ArrayList<Movie> movies = new ArrayList<Movie>();
 
     /**
      * Creates a new User object with the given name and age
      * @param name The users name
-     * @param age The users age (must be greater than 0)
      */
-    public User(String name, int age) {
+    public User(String name) {
         this.name = name;
-        if (age<0) {throw new IllegalArgumentException("Age must be a positive integer.");}
-        this.age = age;
     }
 
     public int getUserID() {
@@ -25,9 +21,6 @@ public class User {
     }
     public String getName() {
         return name;
-    }
-    public int getAge() {
-        return age;
     }
     public ArrayList<Movie> getMovies() {
         return new ArrayList<Movie>(movies);

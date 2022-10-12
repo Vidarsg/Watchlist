@@ -48,6 +48,8 @@ public class WatchlistController {
     private TextField addMovieTitle;
     @FXML
     private TextField addMovieYear;
+    @FXML
+    private Label BrowseUsername;
 
     // Information section of the browser
     @FXML
@@ -75,6 +77,8 @@ public class WatchlistController {
     private ListView<String> watchedMovies;
     @FXML
     private Text feedbackBoxProfile;
+    @FXML
+    private Label ProfileUsername;
     
     @FXML
     private TextField unwatchMovieTitle;
@@ -107,7 +111,7 @@ public class WatchlistController {
 
 
     public void initialize() {
-        user = new User("Username", 21);
+        user = new User("Username");
         list = new Watchlist();
         handleLoadResourceList("movies");
 
@@ -164,7 +168,13 @@ public class WatchlistController {
             }
         };
     }
+    // Fetches username from Login.fxml and displays it in Watchlist.fxml
 
+    public void setUsername(String name) {
+        user = new User(name); 
+        BrowseUsername.setText(name);
+        ProfileUsername.setText(name);
+    }
 
     // Methods for file handling
 
@@ -319,9 +329,6 @@ public class WatchlistController {
         }
     }
 
-    /**
-     * Updates the Graphical User Interface (GUI) of the profile-part of the application.
-     */
     private void updateProfileGUI() {
         if (activeProfileMovie != null) {
             showInfo(activeProfileMovie, infoBoxProfile);

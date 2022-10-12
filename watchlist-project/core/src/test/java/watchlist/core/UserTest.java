@@ -17,7 +17,7 @@ public class UserTest {
 
     @BeforeEach
     public void setup() {
-        user = new User("Test User", 20);
+        user = new User("Test User");
 
         movies.clear();
         movies.add(new Movie("Movie 2", 1992));
@@ -59,7 +59,7 @@ public class UserTest {
         assertEquals(movies.get(0), user.getMovies().get(0));
 
         // Should be empty
-        assertTrue(user.unwatchMovie(movies.get(0).getName()));
+        assertTrue(user.unwatchMovie(movies.get(0).toString()));
         assertEquals(new ArrayList<Movie>(), user.getMovies());
 
         // Should not add the same movie

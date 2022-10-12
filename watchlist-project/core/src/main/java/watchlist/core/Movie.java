@@ -18,6 +18,8 @@ public class Movie {
 
     private String image_url;
     private String thumb_url;
+    //private Image image;
+    //private Image thumb;
 
     /**
      * Creates a new Movie object with the given title and year
