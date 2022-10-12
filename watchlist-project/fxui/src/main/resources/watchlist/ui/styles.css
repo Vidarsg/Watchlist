@@ -7,10 +7,11 @@
     user-select: none;
 }
 
-.tab-pane, TextField, ListView, .tabs, .tab, .tab-header-background {
-    -fx-background-color: #181818;
-    background-color: #181818;
+#base, .tab-pane, ListView, .tabs, .tab, .tab-header-background {
+    -fx-background-color: #111;
+    background-color: #111;
 }
+
 .tab-pane {
     -fx-tab-min-width: 100px;
 }
@@ -49,22 +50,28 @@
     background-color: #ff9900;
 }
 
-TextField {
+#name {
     -fx-border-color: #000 #000 #fff;
     border-color: #000 #000 #fff;
     -fx-border-width: 0 0 2px;
     border-width: 0 0 2px;
     -fx-border-radius: 2px;
     border-radius: 2px;
-    -fx-text-fill: #fff;
+    -fx-text-fill: #000;
 }
+
 TextField:active {
     -fx-effect: dropshadow(one-pass-box, #fff, 0,1.0,0,2);
 }
 
 Label {
-    -fx-text-fill: #666;
+    -fx-text-fill: #fff;
 }
+
+#logo {
+    -fx-text-fill:#ff9900;
+}
+
 
 Text, TextField {
     -fx-fill: #fff;
