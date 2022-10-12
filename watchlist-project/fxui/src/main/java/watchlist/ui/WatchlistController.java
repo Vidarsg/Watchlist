@@ -143,7 +143,6 @@ public class WatchlistController {
         return new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                System.out.println(oldValue+" -> "+newValue);
                 // Iterate through all movies to find out which movie was clicked
                 for (Movie m : list.getList()) {
                     if (m.toString().equals(newValue)) {
