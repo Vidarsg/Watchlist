@@ -273,6 +273,7 @@ public class WatchlistController {
             }
         }
         updateWatchedMovies();
+        // TODO: Skriv til userlist-fil
     }
 
     // ! Handle methods for browsing
@@ -295,6 +296,7 @@ public class WatchlistController {
             }
         }
         updateWatchedMovies();
+        // TODO: Skriv til userlist-fil
     }
 
     // ! Handle methods for profile
