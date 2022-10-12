@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import java.util.List;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,9 +18,9 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import watchlist.core.Movie;
 import watchlist.core.Watchlist;
-import watchlist.json.SaveLoadHandler;
 
 public class AppTest extends ApplicationTest {
+    private ObjectMapper objectMapper = new ObjectMapper();
     private WatchlistController controller;
     private Watchlist watchlist;
     private Movie movie1, movie2, movie3;
@@ -40,10 +42,9 @@ public class AppTest extends ApplicationTest {
     
     @BeforeEach
     public void setup() {
-        SaveLoadHandler slh = new SaveLoadHandler();
         List<Movie> fileContent;
         try {
-            fileContent = slh.loadResourceList("test-movies");
+            fileContent = objectMapper.readValue(AppTest.class.getResourceAsStream("test-movies.json"), new TypeReference<>(){});
         } catch (Exception e) {
             fileContent = null; // To prevent error: "The local variable fileContent may not have been initialized"
             e.printStackTrace();

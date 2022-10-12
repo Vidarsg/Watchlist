@@ -111,7 +111,6 @@ public class WatchlistController {
 
 
     public void initialize() {
-        user = new User("Username");
         list = new Watchlist();
         handleLoadResourceList("movies");
 
@@ -173,7 +172,9 @@ public class WatchlistController {
     public void setUsername(String name) {
         user = new User(name); 
         BrowseUsername.setText(name);
-        ProfileUsername.setText(name);
+        //ProfileUsername.setText(name);
+        handleLoadUserList();
+        updateWatchedMovies();
     }
 
     // Methods for file handling
@@ -195,11 +196,11 @@ public class WatchlistController {
      */
     public void handleLoadUserList() {
         if (saveLoadHandler.getSaveFilePath() == null) {
-            saveLoadHandler.setSaveFile("test");
+            saveLoadHandler.setSaveFile(user.getName());
         }
         try {
-            list.setList(saveLoadHandler.loadUserList());
-        } catch (IOException e) {
+            user.setMovies(saveLoadHandler.loadUserList());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -209,10 +210,10 @@ public class WatchlistController {
      */
     public void handleSaveUserList() {
         if (saveLoadHandler.getSaveFilePath() == null) {
-            saveLoadHandler.setSaveFile("test");
+            saveLoadHandler.setSaveFile(user.getName());
         }
         try {
-            saveLoadHandler.saveUserList(list.getList());
+            saveLoadHandler.saveUserList(user.getMovies());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -273,7 +274,7 @@ public class WatchlistController {
             }
         }
         updateWatchedMovies();
-        // TODO: Skriv til userlist-fil
+        handleSaveUserList();
     }
 
     // ! Handle methods for browsing
@@ -296,7 +297,7 @@ public class WatchlistController {
             }
         }
         updateWatchedMovies();
-        // TODO: Skriv til userlist-fil
+        handleSaveUserList();
     }
 
     // ! Handle methods for profile

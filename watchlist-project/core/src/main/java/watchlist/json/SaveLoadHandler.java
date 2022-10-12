@@ -1,5 +1,6 @@
 package watchlist.json;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
@@ -35,8 +36,9 @@ public class SaveLoadHandler {
      * @return a List of Movie objects generated from the given file
      * @throws IOException if the file is invalid
      * @throws IllegalStateException if the saveFilePath is null
+     * @throws FileNotFoundException if the file does not exist
      */
-    public List<Movie> loadUserList() throws IOException, IllegalStateException {
+    public List<Movie> loadUserList() throws IOException, IllegalStateException, FileNotFoundException {
         if (saveFilePath == null) {
             throw new IllegalStateException("The saveFilePath is null");
         }
