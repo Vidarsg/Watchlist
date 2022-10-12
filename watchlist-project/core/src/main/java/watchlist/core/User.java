@@ -1,12 +1,13 @@
 package watchlist.core;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class User {
     private int userID;
     private String name;
-    private ArrayList<Movie> movies = new ArrayList<Movie>();
+    private List<Movie> movies = new ArrayList<Movie>();
 
     /**
      * Creates a new User object with the given name and age
@@ -19,12 +20,19 @@ public class User {
     public int getUserID() {
         return userID;
     }
+
     public String getName() {
         return name;
     }
-    public ArrayList<Movie> getMovies() {
-        return new ArrayList<Movie>(movies);
+
+    public List<Movie> getMovies() {
+        return movies;
     }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
+
     public ArrayList<String> getMovieNames() {
         return new ArrayList<String>(movies.stream().map(x -> x.getName()).collect(Collectors.toList()));
     }
