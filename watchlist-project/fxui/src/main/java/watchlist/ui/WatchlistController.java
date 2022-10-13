@@ -1,8 +1,13 @@
 package watchlist.ui;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
-
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,9 +32,12 @@ public class WatchlistController {
     private User user;
     private Watchlist list;
     private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
+    private ObjectMapper objectMapper = new ObjectMapper();
     private Movie activeBrowserMovie;
     private Movie activeProfileMovie;
     
+    @FXML
+    private String movieResource;
 // BROWSER FIELDS
     @FXML
     private ListView<String> moviebrowser;
@@ -113,7 +121,7 @@ public class WatchlistController {
     public void initialize() {
         user = new User("TestUser");
         list = new Watchlist();
-        handleLoadResourceList("movies");
+        handleLoadResourceList(movieResource);
 
         browserChangeListener = generateListener(moviebrowser, watchMovieTitle, watchMovieButton);
         profileChangeListener = generateListener(watchedMovies, unwatchMovieTitle, unwatchMovieButton);
@@ -186,9 +194,9 @@ public class WatchlistController {
      * @param filename The file to load the list from
      */
     public void handleLoadResourceList(String filename) {
-        try {
-            list.setList(saveLoadHandler.loadResourceList(filename));
-        } catch (IOException e) {
+        try (InputStream inputStream = WatchlistController.class.getResourceAsStream(filename + ".json")) {
+            list.setList(objectMapper.readValue(inputStream, new TypeReference<>(){}));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

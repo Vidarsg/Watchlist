@@ -2,7 +2,6 @@ package watchlist.json;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -20,16 +19,6 @@ public class SaveLoadHandler {
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
-
-    /**
-     * Loads a file with the given file name from the "resources" folder and creates a List of Movie objects from said file
-     * @param filename the String with the name of the file to load
-     * @return a List of Movie objects generated from the given file
-     * @throws IOException if the file is invalid
-     */
-    public List<Movie> loadResourceList(String filename) throws IOException {
-        return objectMapper.readValue(getInputStream(filename), new TypeReference<>(){});
-    }
 
     /**
      * Loads a file with the saveFilePath and creates a List of Movie objects from said file
@@ -56,15 +45,6 @@ public class SaveLoadHandler {
             throw new IllegalStateException("The saveFilePath is null");
         }
         objectWriter.writeValue(saveFilePath.toFile(), movieList);
-    }
-
-    /**
-     * Gets the file with the given filename as InputStream
-     * @param filename the String with the name of the file to get
-     * @return an InputStream of the file
-     */
-    public InputStream getInputStream(String filename) {
-        return SaveLoadHandler.class.getResourceAsStream(filename + ".json");
     }
 
     public void setSaveFile(String filename) {

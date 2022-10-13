@@ -2,18 +2,17 @@ package watchlist.ui;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -40,7 +39,6 @@ public class AppTest extends ApplicationTest {
     
     @BeforeEach
     public void setup() throws IOException {
-        //controller.setUsername("TestUser");
         List<Movie> fileContent = objectMapper.readValue(AppTest.class.getResourceAsStream("test-movies.json"), new TypeReference<>(){});
 
         movie1 = fileContent.get(0);
@@ -49,12 +47,6 @@ public class AppTest extends ApplicationTest {
     }
 
     // TODO: Add a test for testing the possibility to add a movie to Watchlist?
-        /* Something like this?
-            this.watchlist.addMovie(movie3);
-            this.controller.updateMoviebrowser();
-        */
-
-    // TODO: None of the tests are able to run because of "java.lang.IllegalAccessError: class org.testfx.toolkit.impl.ToolkitServiceImpl (in unnamed module @0x22635ba0) cannot access class com.sun.javafx.application.ParametersImpl (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.application to unnamed module @0x22635ba0"
 
     @Test
     @DisplayName("Testing the app setup")
@@ -108,13 +100,21 @@ public class AppTest extends ApplicationTest {
         assertNull(listView.getItems());
     }
 
-    // Help methods
-
+    // Help methods to be implemented
     private void checkListView(ListView<String> listView, Movie... movie) {
         // TODO: Add testing to compare a ListViews (param listView) items to expected item (param movie)
     }
 
     private void checkMovieList(Watchlist watchlist, Movie... movies) {
         // TODO: Add testing for whether watchlist consists of movie1 and movie2
+    }
+
+    @AfterEach
+    public void tearDown() {
+        try {
+            Files.deleteIfExists(Paths.get(System.getProperty("user.home"), "TestUser.json"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
