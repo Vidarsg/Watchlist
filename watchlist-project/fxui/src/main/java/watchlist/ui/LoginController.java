@@ -14,55 +14,60 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    @FXML private Button exit;
-    @FXML private Button login;
-    @FXML private TextField name;
-    @FXML private Label invalidInput;
+  @FXML
+  private Button exit;
+  @FXML
+  private Button login;
+  @FXML
+  private TextField name;
+  @FXML
+  private Label invalidInput;
 
-    public void initialize() {
+  public void initialize() {
 
-        Platform.runLater(new Runnable() {
+    Platform.runLater(new Runnable() {
 
-            // Sets TextField in focus when the app starts
+      // Sets TextField in focus when the app starts
 
-            @Override
-            public void run() {		
-                name.requestFocus();
-            }
-        });
+      @Override
+      public void run() {
+        name.requestFocus();
+      }
+    });
 
-        invalidInput.setVisible(false);
+    invalidInput.setVisible(false);
+  }
+
+  // Opens Watchlist.fxml if username is valid
+
+  @FXML
+  public void onSubmit(ActionEvent event) {
+    try {
+      if (name.getText().matches("[a-zA-Z æøåÆØÅ]+")) {
+        try {
+          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Watchlist.fxml"));
+          Parent root = (Parent) fxmlLoader.load();
+          Stage stage = new Stage();
+          stage.setTitle("Watchlist");
+          stage.setResizable(false);
+          stage.setScene(new Scene(root));
+          stage.getIcons().add(new Image(WatchlistApp.class.getResourceAsStream(
+              "images/watchlist-favicon.png")));
+          stage.show();
+          login.getScene().getWindow().hide();
+
+          WatchlistController appCon = fxmlLoader.getController();
+          appCon.setUsername(name.getText());
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      } else {
+        invalidInput.setVisible(true);
+        throw new IllegalArgumentException("Invalid username.");
+      }
+    } catch (IllegalArgumentException e) {
+      e.printStackTrace();
     }
-
-    // Opens Watchlist.fxml if username is valid
-
-    @FXML
-	public void onSubmit(ActionEvent event) {   
-		try {
-			if(name.getText().matches("[a-zA-Z æøåÆØÅ]+")) {
-		    	try {
-			        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Watchlist.fxml"));
-			        Parent root = (Parent) fxmlLoader.load();
-			        Stage stage = new Stage();
-			        stage.setTitle("Watchlist");
-			        stage.setResizable(false);
-			        stage.setScene(new Scene(root));
-					stage.getIcons().add(new Image(WatchlistApp.class.getResourceAsStream("images/watchlist-favicon.png")));
-			        stage.show();
-			        login.getScene().getWindow().hide();
-			        
-			        WatchlistController appCon = fxmlLoader.getController();
-			        appCon.setUsername(name.getText());
-			    } catch(Exception e) {
-			        e.printStackTrace();
-			    }
-			} else {
-				invalidInput.setVisible(true);
-				throw new IllegalArgumentException("Invalid username.");
-			}
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}
-	}
+  }
 
 }

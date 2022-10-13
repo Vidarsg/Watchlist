@@ -1,5 +1,9 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.format.settings.url": "watchlist-project/config/checkstyle/eclipse-java-google-style.xml",
-    //"java.checkstyle.configuration": "/google_checks.xml"
+    "java.checkstyle.configuration": "/google_checks.xml",
+    "[java]": {
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false
+    }
 }

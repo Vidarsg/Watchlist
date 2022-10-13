@@ -7,21 +7,22 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * JavaFX App
+ * JavaFX App.
  */
 public class WatchlistApp extends Application {
 
-    @Override
-    public void start(final Stage primaryStage) throws Exception {
-        primaryStage.setScene(new Scene(FXMLLoader.load(WatchlistApp.class.getResource("Login.fxml"))));
-        primaryStage.setTitle("Watchlist");
-        primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image(WatchlistApp.class.getResourceAsStream("images/watchlist-favicon.png")));
-        primaryStage.show();
-        
-    }
-    
-    public static void main(String[] args) {
-        WatchlistApp.launch(args);
-    }
+  @Override
+  public void start(final Stage primaryStage) throws Exception {
+    primaryStage.setScene(new Scene(FXMLLoader.load(WatchlistApp.class.getResource("Login.fxml"))));
+    primaryStage.setTitle("Watchlist");
+    primaryStage.setResizable(false);
+    primaryStage.getIcons().add(new Image(WatchlistApp.class.getResourceAsStream(
+        "images/watchlist-favicon.png")));
+    primaryStage.show();
+
+  }
+
+  public static void main(String[] args) {
+    WatchlistApp.launch(args);
+  }
 }

@@ -24,6 +24,6 @@ Under arbeidet med denne innleveringen var vi nødt til å refaktorere koden fra
 
 ### Testing og kodekvalitet
 
-Vi har forsøkt å sørge for at vi alltid har tester som er oppdatert og kjører riktig. Etter modulariseringen av koden opplevde vi en del utfordringer med JSON-testene, som gjorde at arbeidet med testene ble litt forsinket. Men vi har alltid lagt stor vekt på å teste manuelt gjennom brukergrensenittet, hvor vi har oppdaget en del større feil og sjekket at appen fungerer som den skal. 
+Vi har forsøkt å sørge for at vi alltid har tester som er oppdatert og kjører riktig. Etter modulariseringen av koden opplevde vi en del utfordringer med JSON-testene, som gjorde at arbeidet med testene ble litt forsinket. Men vi har alltid lagt stor vekt på å teste manuelt gjennom brukergrensenittet, hvor vi har oppdaget en del større feil og sjekket at appen fungerer som den skal. Det ble også store utfordringer knyttet til TestFX i begynnelsen, men det meste kom på plass før release.
 
-Hva gjelder kodekvalitet har vi valgt å bruke checkstyle for å sjekke formatteringen av koden og spotbugs for å finne bugs i den.
+Hva gjelder kodekvalitet har vi valgt å bruke Jacoco for testdekningsgrad, checkstyle for å sjekke formatteringen av koden og spotbugs for å finne bugs i den. Checkstyle har blitt satt opp med Google sin style guide for Java, som er plassert i mappen config/checkstyle. Spotbugs er satt opp med exclude.xml som er å finne i config/spotbugs. Denne er lånt fra todolist-prosjektet. Alle de tre nevnte verktøyene kjører som en del av `mvn install`, men om man kun ønsker å kjøre verktøyene kan man bruke `mvn verify`.
