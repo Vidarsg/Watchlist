@@ -3,6 +3,7 @@ package watchlist.core;
 import java.util.ArrayList;
 import java.util.List;
 
+//import javafx.scene.image.Image;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,9 +13,9 @@ public class Movie {
     private String desc;
     private double rating;
     
-    private List<String> actors = new ArrayList<String>();
-    private List<String> directors = new ArrayList<String>();
-    private List<String> genre = new ArrayList<String>();
+    private List<String> actors;
+    private List<String> directors;
+    private List<String> genre;
 
     private String image_url;
     private String thumb_url;
@@ -29,7 +30,7 @@ public class Movie {
         if (name.isEmpty()) {throw new IllegalArgumentException("The title cannot be empty");}
         this.name = name;
         
-        if (year < 1888) {throw new IllegalArgumentException("No motion picture was recorded before year 1888");}
+        if (year < 1888 || year > 2022) {throw new IllegalArgumentException("No motion picture was recorded before year 1888 or after year 2022 as of now");}
         this.year = year;
 
         if (desc.isEmpty()) {throw new IllegalArgumentException("The description cannot be empty");}
@@ -44,10 +45,22 @@ public class Movie {
 
         this.image_url = image_url;
         this.thumb_url = thumb_url;
+
+        /*
+        try {
+            this.image = new Image(image_url);
+            this.image_url = image_url;
+            this.thumb = new Image(thumb_url);
+            this.thumb_url = thumb_url;
+        } catch (Exception e) {
+            InputStream url = Movie.class.getResourceAsStream("images/coming_soon.jpeg");
+            this.image = new Image(url);
+            this.image_url = url.toString();
+            this.thumb = new Image(url);
+            this.thumb_url = url.toString();
+        }*/
     }
-    public Movie(String name, int year, String desc, double rating) {
-        new Movie(name, year, desc, rating, null, null, null, null, null);
-    }
+
     // Temporary to prevent errors
     public Movie(String name, int year) {
         //new Movie(name, year, "desc", 1.0, null, null, null, null, null);
@@ -66,38 +79,36 @@ public class Movie {
     public List<String> getGenre() {return new ArrayList<String>(genre);}
 
     public String getImage_url() {return image_url;}
+    //public Image getImage() {return image;}
     public String getThumb_url() {return thumb_url;}
+    //public Image getThumb() {return thumb;}
     // ! Getters
 
     // Methods
+    // Comparing Movie objects based on name and year
     public boolean equals(Object o) {
         if (o instanceof Movie) {
             Movie other = (Movie) o;
-    
-            if (other.getClass() != this.getClass()) {
-                return false;
-            }
-    
             if (!this.name.equals(other.name)) {
                 return false;
             }
-    
             if (this.getYear() != other.getYear()) {
                 return false;
             }
-    
             return true;
         }
         return false;
     }
 
+    //This method is not used, but is required by spotbugs
     public int hashCode() {
         assert false : "hashCode not designed";
         return 1337; // any arbitrary constant will do
     }
-    // ! Methods
 
     public String toString() {
         return name + " (" + year + ")";
     }
+    // ! Methods
 }
+

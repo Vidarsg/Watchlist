@@ -7,10 +7,11 @@
     user-select: none;
 }
 
-.tab-pane, TextField, ListView, .tabs, .tab, .tab-header-background {
+#base, .tab-pane, ListView, .tabs, .tab, .tab-header-background {
     -fx-background-color: #111;
     background-color: #111;
 }
+
 .tab-pane {
     -fx-tab-min-width: 100px;
 }
@@ -41,27 +42,45 @@
 }
 
 .list-cell:filled:hover {
-    -fx-background-color: #ffaa1188;
-    background-color: #ffaa1188;
+    -fx-background-color: #ff990088;
+    background-color: #ff990088;
 }
 .list-cell:filled:selected:focused, .list-cell:filled:selected {
     -fx-background-color: #ff9900;
     background-color: #ff9900;
 }
 
-TextField {
+#name {
     -fx-border-color: #000 #000 #fff;
     border-color: #000 #000 #fff;
     -fx-border-width: 0 0 2px;
     border-width: 0 0 2px;
     -fx-border-radius: 2px;
     border-radius: 2px;
+    -fx-text-fill: #000;
 }
+
 TextField:active {
     -fx-effect: dropshadow(one-pass-box, #fff, 0,1.0,0,2);
 }
 
-Label, Text, TextField {
+Label {
+    -fx-text-fill: #fff;
+}
+
+@font-face {
+    font-family: 'Haettenschweiler';
+    src: url('fonts/Haettenschweiler-Regular.ttf');
+}
+
+#logo {
+    -fx-text-fill:#ff9900;
+    -fx-font-family: 'Haettenschweiler';
+    -fx-font-size: 96px;
+}
+
+
+Text, TextField {
     -fx-fill: #fff;
     fill: #fff;
     color: #fff;

@@ -48,14 +48,18 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- test javafx with TextFX -->
-		<dependency>
-			<groupId>org.testfx</groupId>
-			<artifactId>testfx-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.testfx</groupId>
-			<artifactId>testfx-junit5</artifactId>
+		<!-- test javafx with TextFX -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.16-alpha</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -73,6 +77,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
         		<artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>${skipUiTests}</skipTests>
+                    <systemPropertyVariables>
+                        <headless>${headlessTests}</headless>
+                    </systemPropertyVariables>
+                    <argLine>
+                    @{jaCoCoArgLine}
+                    --add-opens watchlist.ui/watchlist.ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+                    --add-opens javafx.graphics/com.sun.glass.ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.glass.ui=ALL-UNNAMED
+                    --add-exports javafx.graphics/com.sun.glass.ui.delegate=ALL-UNNAMED
+                    </argLine>
+                </configuration>
 	        </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>

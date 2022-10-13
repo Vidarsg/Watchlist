@@ -1,37 +1,33 @@
 package watchlist.core;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class User {
-    private int userID;
     private String name;
-    private int age;
-    private ArrayList<Movie> movies = new ArrayList<Movie>();
+    private List<Movie> movies = new ArrayList<Movie>();
 
     /**
-     * Creates a new User object with the given name and age
+     * Creates a new User object with the given name
      * @param name The users name
-     * @param age The users age (must be greater than 0)
      */
-    public User(String name, int age) {
+    public User(String name) {
         this.name = name;
-        if (age<0) {throw new IllegalArgumentException("Age must be a positive integer.");}
-        this.age = age;
     }
 
-    public int getUserID() {
-        return userID;
-    }
     public String getName() {
         return name;
     }
-    public int getAge() {
-        return age;
+
+    public List<Movie> getMovies() {
+        return movies;
     }
-    public ArrayList<Movie> getMovies() {
-        return new ArrayList<Movie>(movies);
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
     }
+
     public ArrayList<String> getMovieNames() {
         return new ArrayList<String>(movies.stream().map(x -> x.getName()).collect(Collectors.toList()));
     }
@@ -52,9 +48,11 @@ public class User {
      */
     public boolean unwatchMovie(String title) {
         for (Movie m : movies) {
-            if (m.toString().equals(title)) {
-                movies.remove(m);
-                return true;
+            if (m != null) {
+                if (m.toString().equals(title)) {
+                    movies.remove(m);
+                    return true;
+                }
             }
         }
         return false;

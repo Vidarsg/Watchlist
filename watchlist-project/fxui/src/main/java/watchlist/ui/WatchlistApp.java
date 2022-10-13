@@ -2,11 +2,9 @@ package watchlist.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * JavaFX App
@@ -14,14 +12,16 @@ import java.io.IOException;
 public class WatchlistApp extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Watchlist.fxml"));
-        Parent parent = fxmlLoader.load();
-        stage.setScene(new Scene(parent));
-        stage.show();
+    public void start(final Stage primaryStage) throws Exception {
+        primaryStage.setScene(new Scene(FXMLLoader.load(WatchlistApp.class.getResource("Login.fxml"))));
+        primaryStage.setTitle("Watchlist");
+        primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image(WatchlistApp.class.getResourceAsStream("images/watchlist-favicon.png")));
+        primaryStage.show();
+        
     }
-
+    
     public static void main(String[] args) {
-        launch();
+        WatchlistApp.launch(args);
     }
 }
