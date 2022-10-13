@@ -97,7 +97,7 @@
                   </AnchorPane>
                     <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                         <children>
-                           <Text fx:id="feedbackBoxProfile1" fill="RED" layoutX="271.0" layoutY="-2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
+                           <Text fx:id="feedbackBoxBrowsing" fill="RED" layoutX="271.0" layoutY="-2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
                         </children>
                     </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">

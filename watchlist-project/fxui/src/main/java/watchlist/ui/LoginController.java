@@ -65,10 +65,4 @@ public class LoginController {
 		}
 	}
 
-    // Exits app
-    
-    public void exitProgram() {	 
-        System.exit(0);
-    }
-
 }
