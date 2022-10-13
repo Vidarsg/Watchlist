@@ -11,7 +11,7 @@ public class Watchlist {
     }
 
     public Watchlist() {
-        this.list = new ArrayList<>();
+        this.list = new ArrayList<Movie>();
     }
 
     public List<Movie> getList() {

@@ -111,6 +111,7 @@ public class WatchlistController {
 
 
     public void initialize() {
+        user = new User("TestUser");
         list = new Watchlist();
         handleLoadResourceList("movies");
 
@@ -145,21 +146,23 @@ public class WatchlistController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Iterate through all movies to find out which movie was clicked
                 for (Movie m : list.getList()) {
-                    if (m.toString().equals(newValue)) {
-                        Movie activeMovie = m;
-                        
-                        // Set the value of the textField to the chosen Movie
-                        textField.setText(activeMovie.toString());
-                        
-                        // Enable the Watch-/Unwatch-button
-                        button.setDisable(false);
-
-                        if (listView.equals(watchedMovies)) {activeProfileMovie = activeMovie;}
-                        else {activeBrowserMovie = activeMovie;}
-
-                        updateGUI();
-
-                        break;
+                    if (m != null) {
+                        if (m.toString().equals(newValue)) {
+                            Movie activeMovie = m;
+                            
+                            // Set the value of the textField to the chosen Movie
+                            textField.setText(activeMovie.toString());
+                            
+                            // Enable the Watch-/Unwatch-button
+                            button.setDisable(false);
+    
+                            if (listView.equals(watchedMovies)) {activeProfileMovie = activeMovie;}
+                            else {activeBrowserMovie = activeMovie;}
+    
+                            updateGUI();
+    
+                            break;
+                        }
                     }
                 }
 
@@ -225,38 +228,6 @@ public class WatchlistController {
 
     /**
      * <i>*FXML-method*</i>
-     * <p>Adds a movie to the list of movies contained in the Watchlist.</p>
-     */
-    @FXML
-    void handleAddMovie() {
-        redBorder(false, addMovieTitle, addMovieYear);
-        feedbackBoxBrowsing.setText("");
-
-        String title = addMovieTitle.getText();
-        String strYear = addMovieYear.getText();
-        int year = 0;
-        
-        try {
-            year = Integer.parseInt(strYear);
-            list.addMovie(new Movie(title, year));
-            
-            addMovieTitle.setText("");
-            addMovieYear.setText("");
-        } catch (NumberFormatException e) {
-            redBorder(true, addMovieYear);
-            feedbackBoxBrowsing.setText("Please fill in a valid year");
-        } catch (Exception e) {
-            if (title.isEmpty()) {redBorder(true, addMovieTitle);}
-            if (year<1888) {redBorder(true, addMovieYear);}
-            
-            feedbackBoxBrowsing.setText(e.getMessage());
-        }
-
-        updateMoviebrowser();
-    }
-
-    /**
-     * <i>*FXML-method*</i>
      * <p>Marks a movie from the Watchlist browser as watched by the user and adds it to the users personal list of watched movies.</p>
      */
     @FXML
@@ -266,9 +237,11 @@ public class WatchlistController {
         if (title.isEmpty()) {feedbackBoxBrowsing.setText("Please choose a movie from the list");}
         else {
             for (Movie m : list.getList()) {
-                if (m.toString().equals(title)) {
-                    feedbackBoxBrowsing.setText("Watched movie "+m.toString());
-                    user.watchMovie(m);
+                if (m != null) {
+                    if (m.toString().equals(title)) {
+                        feedbackBoxBrowsing.setText("Watched movie "+m.toString());
+                        user.watchMovie(m);
+                    }
                 }
             }
         }
@@ -350,16 +323,6 @@ public class WatchlistController {
             showInfo(null, infoBoxProfile);
             feedbackBoxProfile.setText("Nothing to show...");
         }
-    }
-
-    /**
-     * Adds/removes a red border to a <code>TextField</code> which is required for submitting when a user tries to submit something illegal.
-     * @param set Whether the red border should be set or removed
-     * @param textField The TextField to be styled
-     */
-    private void redBorder(boolean set, TextField... textField) {
-        if (set) {for (TextField t : textField) {t.setStyle("-fx-border-color:red");}}
-        else {for (TextField t : textField) {t.setStyle("-fx-border-color:initial");}}
     }
 
     /**

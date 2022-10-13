@@ -13,14 +13,12 @@ public class Movie {
     private String desc;
     private double rating;
     
-    private List<String> actors = new ArrayList<String>();
-    private List<String> directors = new ArrayList<String>();
-    private List<String> genre = new ArrayList<String>();
+    private List<String> actors;
+    private List<String> directors;
+    private List<String> genre;
 
     private String image_url;
     private String thumb_url;
-    //private Image image;
-    //private Image thumb;
 
     /**
      * Creates a new Movie object with the given title and year
@@ -32,7 +30,7 @@ public class Movie {
         if (name.isEmpty()) {throw new IllegalArgumentException("The title cannot be empty");}
         this.name = name;
         
-        if (year < 1888) {throw new IllegalArgumentException("No motion picture was recorded before year 1888");}
+        if (year < 1888 || year > 2022) {throw new IllegalArgumentException("No motion picture was recorded before year 1888 or after year 2022 as of now");}
         this.year = year;
 
         if (desc.isEmpty()) {throw new IllegalArgumentException("The description cannot be empty");}
@@ -62,9 +60,7 @@ public class Movie {
             this.thumb_url = url.toString();
         }*/
     }
-    public Movie(String name, int year, String desc, double rating) {
-        new Movie(name, year, desc, rating, null, null, null, null, null);
-    }
+
     // Temporary to prevent errors
     public Movie(String name, int year) {
         //new Movie(name, year, "desc", 1.0, null, null, null, null, null);
@@ -89,34 +85,30 @@ public class Movie {
     // ! Getters
 
     // Methods
+    // Comparing Movie objects based on name and year
     public boolean equals(Object o) {
         if (o instanceof Movie) {
             Movie other = (Movie) o;
-    
-            if (other.getClass() != this.getClass()) {
-                return false;
-            }
-    
             if (!this.name.equals(other.name)) {
                 return false;
             }
-    
             if (this.getYear() != other.getYear()) {
                 return false;
             }
-    
             return true;
         }
         return false;
     }
 
+    //This method is not used, but is required by spotbugs
     public int hashCode() {
         assert false : "hashCode not designed";
         return 1337; // any arbitrary constant will do
     }
-    // ! Methods
 
     public String toString() {
         return name + " (" + year + ")";
     }
+    // ! Methods
 }
+

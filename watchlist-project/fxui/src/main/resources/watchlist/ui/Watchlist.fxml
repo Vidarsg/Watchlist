@@ -97,13 +97,7 @@
                   </AnchorPane>
                     <AnchorPane prefHeight="123.0" prefWidth="250.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                         <children>
-                            <Text layoutX="269.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new movie" />
-                            <TextField fx:id="addMovieTitle" layoutX="269.0" layoutY="28.0" prefHeight="27.0" prefWidth="134.0" promptText="Title" />
-                            <TextField fx:id="addMovieYear" layoutX="418.0" layoutY="28.0" prefHeight="27.0" prefWidth="80.0" promptText="Published" />
-                            <Button layoutX="269.0" layoutY="62.0" mnemonicParsing="false" onAction="#handleAddMovie" text="Add movie" />
-                            <Text fx:id="feedbackBoxBrowsing" fill="RED" layoutX="269.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
-                        <Separator layoutX="281.0" layoutY="-1.0" prefWidth="200.0" />
-                        <Text fx:id="feedbackBoxProfile1" fill="RED" layoutX="271.0" layoutY="-2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
+                           <Text fx:id="feedbackBoxBrowsing" fill="RED" layoutX="271.0" layoutY="-2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" />
                         </children>
                     </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">

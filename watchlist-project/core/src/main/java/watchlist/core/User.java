@@ -5,20 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class User {
-    private int userID;
     private String name;
     private List<Movie> movies = new ArrayList<Movie>();
 
     /**
-     * Creates a new User object with the given name and age
+     * Creates a new User object with the given name
      * @param name The users name
      */
     public User(String name) {
         this.name = name;
-    }
-
-    public int getUserID() {
-        return userID;
     }
 
     public String getName() {
@@ -53,9 +48,11 @@ public class User {
      */
     public boolean unwatchMovie(String title) {
         for (Movie m : movies) {
-            if (m.toString().equals(title)) {
-                movies.remove(m);
-                return true;
+            if (m != null) {
+                if (m.toString().equals(title)) {
+                    movies.remove(m);
+                    return true;
+                }
             }
         }
         return false;
