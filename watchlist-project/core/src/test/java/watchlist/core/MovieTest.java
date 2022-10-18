@@ -165,7 +165,9 @@ public class MovieTest {
 
     // Same movie
     movie1 = new Movie("Whiplash", 2014,
-        "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student’s potential.",
+        "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of"
+        + " greatness are mentored by an instructor who will stop at nothing to realize a "
+        + "student’s potential.",
         8.5, List.of("Miles Teller", "J.K. Simmons", "Melissa Benoist"), List.of("Damien Chazelle"),
         List.of("Drama", "Music"),
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
