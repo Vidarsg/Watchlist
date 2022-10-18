@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Represents a user of the watchlist app.
+ *
  * @author IT1901 gruppe 63
  */
 public class User {
