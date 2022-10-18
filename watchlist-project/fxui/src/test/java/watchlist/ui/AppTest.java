@@ -50,7 +50,8 @@ public class AppTest extends ApplicationTest {
     movie1 = fileContent.get(0);
     movie2 = fileContent.get(1);
     movie3 = new Movie("Unforgiven", 1992,
-        "Retired Old West gunslinger William Munny reluctantly takes on one last job, with the help of his old partner Ned Logan and a young man",
+        "Retired Old West gunslinger William Munny reluctantly takes"
+        + "on one last job, with the help of his old partner Ned Logan and a young man",
         8.2, List.of("Clint Eastwood", "Gene Hackman", "Morgan Freeman"), List.of("Clint Eastwood"),
         List.of("Drama", "Western"),
         "https://m.media-amazon.com/images/M/MV5BODM3YWY4NmQtN2Y3Ni00OTg0LWFhZGQtZWE3ZWY4MTJlOWU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
@@ -113,7 +114,7 @@ public class AppTest extends ApplicationTest {
 
   // Help methods to be implemented
   private void checkListView(ListView<String> listView, Movie... movie) {
-    // TODO: Add testing to compare a ListViews (param listView) items 
+    // TODO: Add testing to compare a ListViews (param listView) items
     // to expected item (param movie)
   }
 

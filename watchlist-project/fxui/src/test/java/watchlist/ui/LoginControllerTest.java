@@ -14,7 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-public class ALoginControllerTest extends ApplicationTest {
+public class LoginControllerTest extends ApplicationTest {
 
   private LoginController controller;
 
@@ -50,7 +50,7 @@ public class ALoginControllerTest extends ApplicationTest {
 
   /*
    * @Test
-   * 
+   *
    * @DisplayName("Testing inputfield for invalid username") public void testInvalidUsername() {
    * assertThrows(IllegalArgumentException.class, () -> { TextField tf = lookup("#name").query();
    * clickOn(tf).write("123"); clickOn("#login"); }); }

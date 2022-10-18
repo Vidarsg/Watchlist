@@ -4,15 +4,17 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
 import watchlist.core.Movie;
 
+/** This class saves and loads files for the user.
+ *
+ * @author IT1901 gruppe 63
+ */
 public class SaveLoadHandler {
   private Path saveFilePath = null;
 
@@ -21,7 +23,7 @@ public class SaveLoadHandler {
 
   /**
    * Loads a file with the saveFilePath and creates a List of Movie objects from said file.
-   * 
+   *
    * @return a List of Movie objects generated from the given file
    * @throws IOException if the file is invalid
    * @throws IllegalStateException if the saveFilePath is null
@@ -37,7 +39,7 @@ public class SaveLoadHandler {
 
   /**
    * Saves a List of Movie objects to saveFilePath.
-   * 
+   *
    * @param movieList the List of Movie objects to save
    * @throws IOException if the List is invalid
    * @throws IllegalStateException if the saveFilePath is null
