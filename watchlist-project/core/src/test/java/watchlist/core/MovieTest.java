@@ -59,10 +59,10 @@ public class MovieTest {
     assertEquals(List.of("Drama", "Music"), movie1.getGenre());
     assertEquals(
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
-        movie1.getImage_url());
+        movie1.getImageUrl());
     assertEquals(
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
-        movie1.getThumb_url());
+        movie1.getThumbUrl());
 
     // Testing that the constructor throws IllegalArgumentExceptions
     assertThrows(IllegalArgumentException.class, () -> {
