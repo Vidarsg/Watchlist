@@ -1,12 +1,14 @@
 package watchlist.core;
 
-// import javafx.scene.image.Image;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/** This class represents a movie with all its relevant parameters.
+ *
+ * @author IT1901 gruppe 63
+ */
 public class Movie {
   private String name;
   private int year;
@@ -17,21 +19,21 @@ public class Movie {
   private List<String> directors;
   private List<String> genre;
 
-  private String image_url;
-  private String thumb_url;
+  private String imageUrl;
+  private String thumbUrl;
 
   /**
    * Creates a new Movie object with the given title and year.
-   * 
+   *
    * @param name the title of the movie
    * @param year the release year of the movie
    */
   @JsonCreator
-  public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year, 
+  public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year,
       @JsonProperty("desc") String desc,
       @JsonProperty("rating") double rating, @JsonProperty("actors") List<String> actors,
       @JsonProperty("directors") List<String> directors, @JsonProperty("genre") List<String> genre,
-      @JsonProperty("image_url") String image_url, @JsonProperty("thumb_url") String thumb_url) {
+      @JsonProperty("image_url") String imageUrl, @JsonProperty("thumb_url") String thumbUrl) {
     if (name.isEmpty()) {
       throw new IllegalArgumentException("The title cannot be empty");
     }
@@ -57,23 +59,8 @@ public class Movie {
     this.directors = directors;
     this.genre = genre;
 
-    this.image_url = image_url;
-    this.thumb_url = thumb_url;
-
-    /*
-     * try { this.image = new Image(image_url); this.image_url = image_url; this.thumb = new
-     * Image(thumb_url); this.thumb_url = thumb_url; } catch (Exception e) { InputStream url =
-     * Movie.class.getResourceAsStream("images/coming_soon.jpeg"); this.image = new Image(url);
-     * this.image_url = url.toString(); this.thumb = new Image(url);
-     * this.thumb_url = url.toString(); }
-     */
-  }
-
-  // Temporary to prevent errors
-  public Movie(String name, int year) {
-    // new Movie(name, year, "desc", 1.0, null, null, null, null, null);
-    this.name = name;
-    this.year = year;
+    this.imageUrl = imageUrl;
+    this.thumbUrl = thumbUrl;
   }
 
   // Getters
@@ -105,13 +92,13 @@ public class Movie {
     return new ArrayList<String>(genre);
   }
 
-  public String getImage_url() {
-    return image_url;
+  public String getImageUrl() {
+    return imageUrl;
   }
 
   // public Image getImage() {return image;}
-  public String getThumb_url() {
-    return thumb_url;
+  public String getThumbUrl() {
+    return thumbUrl;
   }
   // public Image getThumb() {return thumb;}
   // ! Getters
@@ -119,7 +106,7 @@ public class Movie {
   // Methods
   /**
    * Comparing Movie objects based on name and year.
-   * 
+   *
    * @param o the object to compare
    * @return true if movies are equal, false if not
    */
