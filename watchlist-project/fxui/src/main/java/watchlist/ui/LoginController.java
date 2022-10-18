@@ -13,9 +13,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /** Controller for login screen.
- * 
+ *
  * @author IT1901 gruppe 63
- * 
  */
 public class LoginController {
 
@@ -30,7 +29,7 @@ public class LoginController {
 
   /**
    * Runs login.fxml and sets TextField in focus when the window is opened.
-   * 
+   *
    */
   public void initialize() {
 
@@ -47,9 +46,8 @@ public class LoginController {
 
   /**
    * Opens Watchlist.fxml.
-   * 
+   *
    * @throws IllegalArgumentException if username is invalid
-   * 
    */
   @FXML
   public void onSubmit(ActionEvent event) {

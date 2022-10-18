@@ -21,16 +21,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-
 import watchlist.core.Movie;
 import watchlist.core.User;
 import watchlist.core.Watchlist;
 import watchlist.json.SaveLoadHandler;
 
 /** Controller for app window.
- * 
+ *
  * @author IT1901 gruppe 63
- * 
  */
 public class WatchlistController {
   private User user;
@@ -140,9 +138,8 @@ public class WatchlistController {
 
   /**
    * Made for testing of the controller.
-   * 
+   *
    * @return The Watchlist which is represented in this instance of the app
-   * 
    */
   public Watchlist getWatchlist() {
     return this.list;
@@ -154,15 +151,15 @@ public class WatchlistController {
    * Creates a ChangeListener<String> to use
    * in the methods addListener() and removeListener():
    * </p>
-   * 
+   *
    * <pre>
    * ListView.getSelectionModel().selectedItemProperty().addListener(ChangeListener<String>);
    * </pre>
-   * 
+   *
    * <pre>
    * ListView.getSelectionModel().selectedItemProperty().removeListener(ChangeListener<String>);
    * </pre>
-   * 
+   *
    * @param listView The ListView where the items are located
    * @param textField The corresponding TextField to keep track of selected item
    * @param button The corresponding Button to watch/unwatch movies
@@ -219,12 +216,11 @@ public class WatchlistController {
 
   /**
    * Loads a files content as the content of the Watchlist's list of movies.
-   * 
+   *
    * @param filename The file to load the list from
-   * 
    */
   public void handleLoadResourceList(String filename) {
-    try (InputStream inputStream = 
+    try (InputStream inputStream =
         WatchlistController.class.getResourceAsStream(filename + ".json")) {
       list.setList(objectMapper.readValue(inputStream, new TypeReference<>() {}));
     } catch (Exception e) {
@@ -271,7 +267,7 @@ public class WatchlistController {
   /*
    * <i>*FXML-method*</i>
    * <p>
-   * Marks a movie from the Watchlist browser as watched 
+   * Marks a movie from the Watchlist browser as watched
    * by the user and adds it to the users personal
    * list of watched movies.
    * </p>
@@ -384,95 +380,94 @@ public class WatchlistController {
    * <p>
    * Module to show information about movies for both browser- and profile-view.
    * </p>
-   * 
+   *
    * <p>
    * The pane which the movie will be displayed has to have this configuration of children:
    * </p>
    * <ol>
    * <li>
-   * 
+   *
    * <pre>
    * AnchorPane
    * </pre>
    * <ol>
    * <li>
-   * 
+   *
    * <pre>
    * Text
    * </pre>
-   * 
+   *
    * </li>
    * <li>
-   * 
+   *
    * <pre>
    * Text
    * </pre>
-   * 
+   *
    * </li>
    * <li>
-   * 
+   *
    * <pre>
    * Label
    * </pre>
-   * 
+   *
    * </li>
    * <li>
-   * 
+   *
    * <pre>
    * Text
    * </pre>
-   * 
+   *
    * </li>
    * <li>
-   * 
+   *
    * <pre>
    * Text
    * </pre>
-   * 
+   *
    * </li>
    * <li>
-   * 
+   *
    * <pre>
    * Label
    * </pre>
-   * 
+   *
    * </li>
    * <li>
-   * 
+   *
    * <pre>
    * Text
    * </pre>
-   * 
+   *
    * </li>
    * <li>
-   * 
+   *
    * <pre>
    * Label
    * </pre>
-   * 
+   *
    * </li>
    * <li>
-   * 
+   *
    * <pre>
    * Text
    * </pre>
-   * 
+   *
    * </li>
    * </ol>
    * </li>
    * <li>
-   * 
+   *
    * <pre>
    * ImageView
    * </pre>
-   * 
+   *
    * </li>
    * </ol>
-   * 
+   *
    * @param movie The movie to display
    * @param pane The Pane where the movie should be displayed.
    *        Has to match the criterias for a display-pane.
-   *        
    */
   private void showInfo(Movie movie, Pane pane) {
     if (movie == null) {
@@ -497,7 +492,7 @@ public class WatchlistController {
       title.setText(movie.getName());
       year.setText(String.valueOf(movie.getYear()));
       desc.setText(movie.getDesc());
-      // Since this branch is behind on certain objects and their methods, 
+      // Since this branch is behind on certain objects and their methods,
       // we have to comment out these
       // parts
 
@@ -544,9 +539,8 @@ public class WatchlistController {
 
   /**
    * Used to add listeners to a listView based on which ListView it is being called upon.
-   * 
+   *
    * @param listView The ListView where the listeners are to be set to each list item
-   * 
    */
   private void setListeners(ListView<String> listView) {
     if (listView.equals(watchedMovies)) {
