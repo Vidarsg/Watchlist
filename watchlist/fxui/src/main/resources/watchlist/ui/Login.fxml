@@ -14,7 +14,7 @@
          </font>
       </Button>
       <TextField fx:id="name" layoutX="187.0" layoutY="233.0" prefHeight="37.0" prefWidth="336.0" promptText="Name" />
-      <Label fx:id="invalidInput" layoutX="256.0" layoutY="289.0" prefHeight="21.0" prefWidth="189.0" text="Usernames can only contain letters" textFill="WHITE" />
+      <Label fx:id="invalidInput" layoutX="256.0" layoutY="289.0" prefHeight="21.0" prefWidth="189.0" text="Usernames cannot contain numbers or spaces" textFill="WHITE" />
       <Label fx:id="logo" layoutX="100.0" layoutY="56.0" prefHeight="149.0" text="WATCHLIST" textAlignment="CENTER" >
          <font>
             <Font name="Haettenschweiler" size="96.0" />

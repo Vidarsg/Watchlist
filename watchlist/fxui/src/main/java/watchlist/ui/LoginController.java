@@ -52,7 +52,7 @@ public class LoginController {
   @FXML
   public void onSubmit(ActionEvent event) {
     try {
-      if (name.getText().matches("[a-zA-Z æøåÆØÅ]+")) {
+      if (name.getText().matches("[a-zA-ZæøåÆØÅ]+")) {
         try {
           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Watchlist.fxml"));
           Parent root = (Parent) fxmlLoader.load();

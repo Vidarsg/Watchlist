@@ -42,7 +42,7 @@ public class LoginControllerTest extends ApplicationTest {
   @DisplayName("Testing inputfield for valid username")
   public void testValidUsername() {
     TextField tf = lookup("#name").query();
-    clickOn(tf).write("John Smith");
+    clickOn(tf).write("TestUser");
     clickOn("#login");
   }
 
