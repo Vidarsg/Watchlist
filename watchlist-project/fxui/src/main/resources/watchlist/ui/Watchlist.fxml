@@ -105,7 +105,7 @@
                     </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="BrowseUsername" layoutX="282.0" layoutY="5.0" prefHeight="17.0" prefWidth="102.0" />
+                        <Label fx:id="browseUsername" layoutX="282.0" layoutY="5.0" prefHeight="17.0" prefWidth="102.0" />
                      </children>
                   </AnchorPane>
                 </children>
@@ -190,7 +190,7 @@
                   <Text fx:id="feedbackBoxProfile" fill="RED" layoutX="269.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="230.0" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <children>
-                        <Label fx:id="ProfileUsername" layoutX="282.0" layoutY="5.0" prefHeight="17.0" prefWidth="102.0" />
+                        <Label fx:id="profileUsername" layoutX="282.0" layoutY="5.0" prefHeight="17.0" prefWidth="102.0" />
                      </children>
                   </AnchorPane>
                </children>
