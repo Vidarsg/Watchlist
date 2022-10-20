@@ -1,12 +1,12 @@
 module watchlist.springboot.restserver {
   requires transitive com.fasterxml.jackson.databind;
 
-  requires springboot.web;
-  requires springboot.beans;
-  requires springboot.boot;
-  requires springboot.context;
+  requires spring.web;
+  requires spring.beans;
+  requires spring.boot;
+  requires spring.context;
 
   requires watchlist.core;
 
-  opens todolist.springboot.restserver to spring.beans, spring.context, spring.web;
+  opens watchlist.springboot.restserver to spring.beans, spring.context, spring.web;
 }
