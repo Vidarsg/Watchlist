@@ -13,9 +13,6 @@
     <artifactId>springboot.restserver</artifactId>
     <packaging>jar</packaging>
 
-	<properties>
-		<java.version>17</java.version>
-	</properties>
 	<dependencies>
 		<dependency>
             <groupId>it1901.watchlist</groupId>
