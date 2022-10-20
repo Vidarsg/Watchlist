@@ -491,7 +491,7 @@ public class WatchlistController {
 
       title.setText(movie.getName());
       year.setText(String.valueOf(movie.getYear()));
-      desc.setText(movie.getDesc());
+      desc.setText(movie.getDescription());
       // Since this branch is behind on certain objects and their methods,
       // we have to comment out these
       // parts

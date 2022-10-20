@@ -41,7 +41,7 @@ public class MovieTest {
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg");
     movie4 = new Movie("Whiplash", 1948,
         "A struggling artist becomes a New York City prizefighter in an attempt to win"
-        + "the affection of the ring promoter's night club singing sister.", 
+        + "the affection of the ring promoter's night club singing sister.",
         List.of("emotional abuse","drummer","music school","teacher student relationship",
         "new york city"),
         6.4, 100, List.of("Dane Clark", "Alexis Smith", "Zachary Scott"),
@@ -57,7 +57,7 @@ public class MovieTest {
     movie1 = new Movie("Whiplash", 2014,
         "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of "
         + "greatness are mentored by an instructor who will stop at nothing to realize a student’s"
-        + " potential.", 
+        + " potential.",
         List.of("emotional abuse","drummer","music school","teacher student relationship",
         "new york city"),
         8.5, 100, List.of("Miles Teller", "J.K. Simmons", "Melissa Benoist"),
@@ -70,7 +70,7 @@ public class MovieTest {
         "A promising young drummer enrolls at a cut-throat music conservatory where his "
         + "dreams of greatness are mentored by an instructor who will stop at nothing to realize a"
         + " student’s potential.",
-        movie1.getDesc());
+        movie1.getDescription());
     assertEquals(8.5, movie1.getRating());
     assertEquals(List.of("Miles Teller", "J.K. Simmons", "Melissa Benoist"), movie1.getActors());
     assertEquals(List.of("Damien Chazelle"), movie1.getDirectors());
@@ -154,7 +154,7 @@ public class MovieTest {
       movie1 = new Movie("Whiplash", 2014,
           "A promising young drummer enrolls at a cut-throat music conservatory where his dreams "
           + "of greatness are mentored by an instructor who will stop at nothing to realize a "
-          + "student’s potential.", 
+          + "student’s potential.",
           List.of("emotional abuse","drummer","music school","teacher student relationship",
           "new york city"),
           10.5, 100, List.of("Miles Teller",

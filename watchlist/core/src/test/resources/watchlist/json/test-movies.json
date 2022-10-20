@@ -6,8 +6,8 @@
   "rating": 8.5,
   "ratingCount": 845656,
   "year": "2014",
-  "thumb_url": "https://m.media-amazon.com/images/M/MV5BMjMxNzAzMjY0NF5BMl5BanBnXkFtZTgwOTE4NTgyMjE@._V1_.jpg",
-  "image_url": "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+  "thumbUrl": "https://m.media-amazon.com/images/M/MV5BMjMxNzAzMjY0NF5BMl5BanBnXkFtZTgwOTE4NTgyMjE@._V1_.jpg",
+  "imageUrl": "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
   "actors": ["Miles Teller","J.K. Simmons","Melissa Benoist"],
   "directors": ["Damien Chazelle"]
 }, {
@@ -18,8 +18,8 @@
   "rating": 8.3,
   "ratingCount": 401027,
   "year": "1958",
-  "thumb_url": "https://m.media-amazon.com/images/M/MV5BMDZkMDVhYTMtNzZiZS00YTYwLTk5ZmEtNmJmNGVjZDg2ZWM5XkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_.jpg",
-  "image_url": "https://m.media-amazon.com/images/M/MV5BYTE4ODEwZDUtNDFjOC00NjAxLWEzYTQtYTI1NGVmZmFlNjdiL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_.jpg",
+  "thumbUrl": "https://m.media-amazon.com/images/M/MV5BMDZkMDVhYTMtNzZiZS00YTYwLTk5ZmEtNmJmNGVjZDg2ZWM5XkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_.jpg",
+  "imageUrl": "https://m.media-amazon.com/images/M/MV5BYTE4ODEwZDUtNDFjOC00NjAxLWEzYTQtYTI1NGVmZmFlNjdiL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_.jpg",
   "actors": ["James Stewart","Kim Novak","Barbara Bel Geddes"],
   "directors": ["Alfred Hitchcock"]
 }, {
@@ -30,8 +30,8 @@
   "rating": 8.3,
   "ratingCount": 1036119,
   "year": "2009",
-  "thumb_url": "https://m.media-amazon.com/images/M/MV5BMjE4NTQ0MTM3M15BMl5BanBnXkFtZTgwMDY1NDgyMzE@._V1_.jpg",
-  "image_url": "https://m.media-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_.jpg",
+  "thumbUrl": "https://m.media-amazon.com/images/M/MV5BMjE4NTQ0MTM3M15BMl5BanBnXkFtZTgwMDY1NDgyMzE@._V1_.jpg",
+  "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_.jpg",
   "actors": ["Edward Asner","Jordan Nagai","John Ratzenberger"],
   "directors": ["Pete Docter","Bob Peterson"]
 } ]

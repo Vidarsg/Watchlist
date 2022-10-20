@@ -12,7 +12,7 @@ import java.util.List;
 public class Movie {
   private String name;
   private int year;
-  private String desc;
+  private String description;
   private List<String> keywords;
   private double rating;
   private int ratingCount;
@@ -32,11 +32,12 @@ public class Movie {
    */
   @JsonCreator
   public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year,
-      @JsonProperty("description") String desc, @JsonProperty("keywords") List<String> keywords,
+      @JsonProperty("description") String description,
+      @JsonProperty("keywords") List<String> keywords,
       @JsonProperty("rating") double rating, @JsonProperty("ratingCount") int ratingCount,
       @JsonProperty("actors") List<String> actors,
       @JsonProperty("directors") List<String> directors, @JsonProperty("genre") List<String> genre,
-      @JsonProperty("image_url") String imageUrl, @JsonProperty("thumb_url") String thumbUrl) {
+      @JsonProperty("imageUrl") String imageUrl, @JsonProperty("thumbUrl") String thumbUrl) {
     if (name.isEmpty()) {
       throw new IllegalArgumentException("The title cannot be empty");
     }
@@ -48,10 +49,11 @@ public class Movie {
     }
     this.year = year;
 
-    if (desc == null || desc.isEmpty()) {
+    if (description == null || description.isEmpty()) {
       throw new IllegalArgumentException("The description cannot be empty");
     }
-    this.desc = desc;
+    this.description = description;
+    this.keywords = keywords;
 
     if (rating < 1 || rating > 10) {
       throw new IllegalArgumentException("Rating must be between 1 and 10");
@@ -88,12 +90,20 @@ public class Movie {
     return year;
   }
 
-  public String getDesc() {
-    return desc;
+  public String getDescription() {
+    return description;
+  }
+
+  public List<String> getKeywords() {
+    return keywords;
   }
 
   public double getRating() {
     return (double) Math.round(rating * 100) / 100;
+  }
+
+  public int getRatingCount() {
+    return ratingCount;
   }
 
   public List<String> getActors() {
@@ -149,7 +159,7 @@ public class Movie {
   public String toString() {
     return name + " (" + year + ")";
   }
-  
+
   /**
    * Adds a rating to this movie and calculates the new rating.
    * @param rating The new rating from the user
