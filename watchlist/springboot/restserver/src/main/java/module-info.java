@@ -1,4 +1,4 @@
-module watchlist.springboot {
+module watchlist.springboot.restserver {
   requires transitive com.fasterxml.jackson.databind;
 
   requires springboot.web;
@@ -8,5 +8,5 @@ module watchlist.springboot {
 
   requires watchlist.core;
 
-  opens watchlist.core to com.fasterxml.jackson.databind;
+  opens todolist.springboot.restserver to spring.beans, spring.context, spring.web;
 }
