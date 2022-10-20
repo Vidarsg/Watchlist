@@ -148,22 +148,22 @@ public class WatchlistController {
   /**
    * <p>
    * Used to generate event listeners to items of a ListView.
-   * Creates a ChangeListener<String> to use
+   * Creates a ChangeListener to use
    * in the methods addListener() and removeListener():
    * </p>
    *
    * <pre>
-   * ListView.getSelectionModel().selectedItemProperty().addListener(ChangeListener<String>);
+   * ListView.getSelectionModel().selectedItemProperty().addListener(ChangeListener);
    * </pre>
    *
    * <pre>
-   * ListView.getSelectionModel().selectedItemProperty().removeListener(ChangeListener<String>);
+   * ListView.getSelectionModel().selectedItemProperty().removeListener(ChangeListener);
    * </pre>
    *
    * @param listView The ListView where the items are located
    * @param textField The corresponding TextField to keep track of selected item
    * @param button The corresponding Button to watch/unwatch movies
-   * @return A ChangeListener<String> to use in the methods addListener() and removeListener()
+   * @return A ChangeListener to use in the methods addListener() and removeListener()
    */
   private ChangeListener<String> generateListener(
       ListView<String> listView, TextField textField, Button button) {
