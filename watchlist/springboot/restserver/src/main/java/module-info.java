@@ -5,6 +5,7 @@ module watchlist.springboot.restserver {
   requires spring.beans;
   requires spring.boot;
   requires spring.context;
+  requires spring.boot.autoconfigure;
 
   requires watchlist.core;
 
