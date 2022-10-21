@@ -101,3 +101,9 @@ Text, TextField {
     -fx-effect: dropshadow(one-pass-box, black, 0,1.0,0,0);
     -fx-translate-y: 0;
 }
+
+#ratingStars SVGPath {
+    -fx-fill: #ff00;
+    -fx-stroke: #fff;
+    -fx-stroke-type: inside
+}

@@ -164,9 +164,20 @@ public class Movie {
    * Adds a rating to this movie and calculates the new rating.
    * @param rating The new rating from the user
    */
-  public void rate(double rating) {
+  public void rate(int rating) {
     double count = (this.ratingCount / this.rating) + 1;
     this.ratingCount += rating;
+    this.rating = ratingCount / count;
+  }
+
+  /**
+   * Updates an users rating of the movie without making a new rating.
+   * @param oldValue The last rating from the user
+   * @param newValue The new rating from the user
+   */
+  public void updateRating(double oldValue, double newValue) {
+    double count = (this.ratingCount / this.rating);
+    this.ratingCount += (newValue - oldValue);
     this.rating = ratingCount / count;
   }
   // ! Methods

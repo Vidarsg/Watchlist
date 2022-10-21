@@ -2,6 +2,7 @@ package watchlist.ui;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.stream.Collectors;
@@ -14,12 +15,14 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
 import watchlist.core.Movie;
 import watchlist.core.User;
@@ -80,6 +83,11 @@ public class WatchlistController {
   private Text infoDirector;
   @FXML
   private Text infoActors;
+
+  @FXML
+  private FlowPane ratingStars;
+  @FXML
+  private Slider ratingSlider;
   // ! BROWSER FIELDS
 
   // PROFILE FIELDS
@@ -126,7 +134,20 @@ public class WatchlistController {
   public void initialize() {
     user = new User("TestUser");
     list = new Watchlist();
-    handleLoadResourceList(movieResource);
+    //handleLoadResourceList(movieResource);
+    handleLoadResourceList("movies");
+
+    ratingSlider.valueProperty().addListener(new ChangeListener<Object>() {
+      @Override
+      public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+        if (activeBrowserMovie != null) {
+          activeBrowserMovie.updateRating((double) oldValue, (double) newValue);
+          updateRating((double) newValue);
+        } else {
+          ratingSlider.setDisable(true);
+        }
+      }
+    });
 
     browserChangeListener = generateListener(moviebrowser, watchMovieTitle, watchMovieButton);
     profileChangeListener = generateListener(watchedMovies, unwatchMovieTitle, unwatchMovieButton);
@@ -472,8 +493,10 @@ public class WatchlistController {
   private void showInfo(Movie movie, Pane pane) {
     if (movie == null) {
       pane.setVisible(false);
+      ratingSlider.setDisable(true);
     } else {
       pane.setVisible(true);
+      ratingSlider.setDisable(false);
 
       ObservableList<Node> children = pane.getChildren();
       ImageView img = (ImageView) children.get(1);
@@ -492,13 +515,8 @@ public class WatchlistController {
       title.setText(movie.getName());
       year.setText(String.valueOf(movie.getYear()));
       desc.setText(movie.getDescription());
-      // Since this branch is behind on certain objects and their methods,
-      // we have to comment out these
-      // parts
-
       Text rating = (Text) f.get(4);
-      // 5th child is a label
-      rating.setText(movie.getRating() + "/10" /* ("+  movie.getRatingCount()+ ")" */);
+      rating.setText(movie.getRating() + "/10 (" + movie.getRatingCount() +  ")");
 
       StringBuilder sb = new StringBuilder();
       if (movie.getDirectors().size() > 0) {
@@ -509,6 +527,8 @@ public class WatchlistController {
       } else {
         sb.append("Unknown");
       }
+
+      // 5th child is a label
       Text director = (Text) f.get(6);
       // 7th child is a label
       director.setText(sb.toString());
@@ -535,6 +555,26 @@ public class WatchlistController {
       }
       genre.setText(sb.toString());
     }
+  }
+
+  /**
+   * Updates the rating graphics.
+   * @param value The value to indicate with graphics
+   */
+  private void updateRating(double value) {
+    System.out.println(value);
+    ObservableList<Node> child = ratingStars.getChildren();
+    for (int i = 0; i < child.size(); i++) {
+      if (child.get(i).getClass().equals(SVGPath.class)) {
+        if (i <= value) {
+          child.get(i).setStyle("-fx-fill: #ff0;");
+        } else {
+          child.get(i).setStyle("-fx-fill: #0000;");
+        }
+      }
+    }
+
+    // TODO: store this rating to the user object
   }
 
   /**
