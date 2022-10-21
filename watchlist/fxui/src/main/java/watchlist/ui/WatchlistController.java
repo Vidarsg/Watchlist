@@ -562,7 +562,6 @@ public class WatchlistController {
    * @param value The value to indicate with graphics
    */
   private void updateRating(double value) {
-    System.out.println(value);
     ObservableList<Node> child = ratingStars.getChildren();
     for (int i = 0; i < child.size(); i++) {
       if (child.get(i).getClass().equals(SVGPath.class)) {

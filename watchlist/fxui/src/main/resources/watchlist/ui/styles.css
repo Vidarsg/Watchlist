@@ -107,3 +107,8 @@ Text, TextField {
     -fx-stroke: #fff;
     -fx-stroke-type: inside
 }
+
+.slider, .slider .track {
+    -fx-opacity: 0;
+    opacity: 0;
+}
