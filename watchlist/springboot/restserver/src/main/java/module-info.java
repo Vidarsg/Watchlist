@@ -9,5 +9,5 @@ module watchlist.springboot.restserver {
 
   requires watchlist.core;
 
-  opens watchlist.springboot.restserver to spring.beans, spring.context, spring.web;
+  opens watchlist.springboot.restserver to spring.beans, spring.context, spring.web, watchlist.core;
 }
