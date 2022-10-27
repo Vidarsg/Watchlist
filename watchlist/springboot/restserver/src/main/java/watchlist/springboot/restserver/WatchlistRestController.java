@@ -1,17 +1,25 @@
 package watchlist.springboot.restserver;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import watchlist.core.Movie;
 
 
 @RestController
 public class WatchlistRestController {
 
-  @GetMapping("/movie")
-  public String getMovie(@RequestParam(value = "name", defaultValue = "Whiplash") String name) {
-    System.out.println("Get request: /movie");
-    return "movie";
+  @Autowired
+  private WatchlistRestService watchlistRestService;
+
+  @GetMapping("/movies")
+  public List<Movie> getMovies(@RequestParam(value = "name", defaultValue = "Whiplash")
+      String name) {
+    return watchlistRestService.getWatchlist().getList();
   }
 
 }
