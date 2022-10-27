@@ -4,6 +4,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.stream.Collectors;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -40,6 +44,8 @@ public class WatchlistController {
 
   @FXML
   private String movieResource;
+  @FXML
+  private String getMovies;
   // BROWSER FIELDS
   @FXML
   private ListView<String> moviebrowser;
@@ -126,7 +132,7 @@ public class WatchlistController {
   public void initialize() {
     user = new User("TestUser");
     list = new Watchlist();
-    handleLoadResourceList(movieResource);
+    handleLoadResourceListHttp();
 
     browserChangeListener = generateListener(moviebrowser, watchMovieTitle, watchMovieButton);
     profileChangeListener = generateListener(watchedMovies, unwatchMovieTitle, unwatchMovieButton);
@@ -225,6 +231,28 @@ public class WatchlistController {
       list.setList(objectMapper.readValue(inputStream, new TypeReference<>() {}));
     } catch (Exception e) {
       e.printStackTrace();
+    }
+  }
+
+  /**
+   * Request movie resource file from rest server. If this fails, try to load local movie
+   * resource file.
+   */
+  public void handleLoadResourceListHttp() {
+    try {
+      HttpClient client = HttpClient.newHttpClient();
+      HttpRequest request = HttpRequest.newBuilder(new URI(getMovies))
+          .GET()
+          .build();
+      HttpResponse<String> response = client.send(request,
+          HttpResponse.BodyHandlers.ofString());
+      list.setList(objectMapper.readValue(response.body(), new TypeReference<>() {}));
+      System.out.print("Succesfully loaded movie resource from server.");
+    } catch (Exception e) {
+      System.err.println("ERROR: Couldn't send GET request.");
+      e.printStackTrace();
+      System.out.println("Trying to load local movie resource instead.");
+      handleLoadResourceList(movieResource);
     }
   }
 
