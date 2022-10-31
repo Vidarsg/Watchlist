@@ -102,6 +102,14 @@ Text, TextField {
     -fx-translate-y: 0;
 }
 
+
+#infoGenre .label {
+    -fx-underline: true;
+    -fx-cursor: hand;
+    cursor: hand;
+}
+
+
 #ratingStars SVGPath {
     -fx-fill: #ff00;
     -fx-stroke: #fff;
@@ -111,4 +119,11 @@ Text, TextField {
 .slider, .slider .track {
     -fx-opacity: 0;
     opacity: 0;
+    -fx-cursor: hand;
+    cursor: hand;
+
+}
+.slider .thumb {
+    -fx-pref-width: 0px;
+    -fx-pref-height: 0px;
 }

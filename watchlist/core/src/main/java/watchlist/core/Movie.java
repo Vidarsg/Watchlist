@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-/** This class represents a movie with all its relevant parameters.
+/**
+ * This class represents a movie with all its relevant parameters.
  *
  * @author IT1901 gruppe 63
  */
@@ -24,11 +25,23 @@ public class Movie {
   private String imageUrl;
   private String thumbUrl;
 
+  private int userRating;
+
   /**
-   * Creates a new Movie object with the given title and year.
-   *
-   * @param name the title of the movie
-   * @param year the release year of the movie
+   * Creates a new movie object with the given parameters.
+   * 
+   * @param name        Movie title
+   * @param year        Published year
+   * @param description Description of movie
+   * @param keywords    Keywords to describe the movies content
+   * @param rating      IMBDs registered rating
+   * @param ratingCount IMDBs registered ratingcount
+   * @param actors      Participating actors
+   * @param directors   Directors of the movie
+   * @param genre       Genre(s) of the movie
+   * @param imageUrl    URL to image
+   * @param thumbUrl    URL to thumb image
+   * @param userRating  Users rating of the movie
    */
   @JsonCreator
   public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year,
@@ -37,7 +50,8 @@ public class Movie {
       @JsonProperty("rating") double rating, @JsonProperty("ratingCount") int ratingCount,
       @JsonProperty("actors") List<String> actors,
       @JsonProperty("directors") List<String> directors, @JsonProperty("genre") List<String> genre,
-      @JsonProperty("imageUrl") String imageUrl, @JsonProperty("thumbUrl") String thumbUrl) {
+      @JsonProperty("imageUrl") String imageUrl, @JsonProperty("thumbUrl") String thumbUrl,
+      @JsonProperty("userRating") int... userRating) {
     if (name.isEmpty()) {
       throw new IllegalArgumentException("The title cannot be empty");
     }
@@ -61,7 +75,7 @@ public class Movie {
     this.rating = rating;
     if (ratingCount <= rating) {
       throw new IllegalArgumentException("RatingCount must be at least the same value as rating ("
-      + rating + ")");
+          + rating + ")");
     }
     this.ratingCount = ratingCount;
 
@@ -71,15 +85,27 @@ public class Movie {
 
     this.imageUrl = imageUrl;
     this.thumbUrl = thumbUrl;
+
+    if (userRating != null && userRating.length > 0) {
+      if (userRating[0] < 1 || userRating[0] > 10) {
+        throw new IllegalArgumentException("userRating must be between 1 and 10");
+      } else {
+        this.userRating = userRating[0];
+      }
+    } else {
+      this.userRating = 0;
+    }
   }
 
   /*
-  public Movie(String name, int year, String desc, double rating, int ratingCount,
-      List<String> actors,List<String> directors,List<String> genre,
-      String imageUrl, String thumbUrl) {
-    new Movie(name, year, desc, List.of(), rating, ratingCount,
-    actors, directors, genre, imageUrl, thumbUrl);
-  }*/
+   * public Movie(String name, int year, String desc, double rating, int
+   * ratingCount,
+   * List<String> actors,List<String> directors,List<String> genre,
+   * String imageUrl, String thumbUrl) {
+   * new Movie(name, year, desc, List.of(), rating, ratingCount,
+   * actors, directors, genre, imageUrl, thumbUrl);
+   * }
+   */
 
   // Getters
   public String getName() {
@@ -122,11 +148,13 @@ public class Movie {
     return imageUrl;
   }
 
-  // public Image getImage() {return image;}
   public String getThumbUrl() {
     return thumbUrl;
   }
-  // public Image getThumb() {return thumb;}
+
+  public int getUserRating() {
+    return userRating;
+  }
   // ! Getters
 
   // Methods
@@ -162,24 +190,29 @@ public class Movie {
 
   /**
    * Adds a rating to this movie and calculates the new rating.
+   * 
    * @param rating The new rating from the user
    */
   public void rate(int rating) {
     double count = (this.ratingCount / this.rating) + 1;
     this.ratingCount += rating;
     this.rating = ratingCount / count;
+
+    this.userRating = rating;
   }
 
   /**
    * Updates an users rating of the movie without making a new rating.
+   * 
    * @param oldValue The last rating from the user
    * @param newValue The new rating from the user
    */
-  public void updateRating(double oldValue, double newValue) {
+  public void updateRating(int oldValue, int newValue) {
     double count = (this.ratingCount / this.rating);
     this.ratingCount += (newValue - oldValue);
     this.rating = ratingCount / count;
+
+    this.userRating = newValue;
   }
   // ! Methods
 }
-

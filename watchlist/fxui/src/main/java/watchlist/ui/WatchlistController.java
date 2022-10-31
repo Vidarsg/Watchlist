@@ -126,6 +126,11 @@ public class WatchlistController {
   private Text infoDirectorProfile;
   @FXML
   private Text infoActorsProfile;
+
+  @FXML
+  private FlowPane ratingStarsProfile;
+  @FXML
+  private Slider ratingSliderProfile;
   // ! PROFILE FIELDS
 
   /**
@@ -563,6 +568,13 @@ public class WatchlistController {
         }
         genre.getChildren().remove(genre.getChildren().size() - 1);
       }
+
+      if (movie.getUserRating() > 0) {
+        ratingSlider.setValue(movie.getUserRating() - 1);
+      } else {
+        ratingSlider.setValue(0);
+        updateRating(-1);
+      }
     }
   }
 
@@ -571,7 +583,7 @@ public class WatchlistController {
    * 
    * @param value The value to indicate with graphics
    */
-  private void updateRating(double value) {
+  private void updateRating(int value) {
     ObservableList<Node> child = ratingStars.getChildren();
     for (int i = 0; i < child.size(); i++) {
       if (child.get(i).getClass().equals(SVGPath.class)) {
