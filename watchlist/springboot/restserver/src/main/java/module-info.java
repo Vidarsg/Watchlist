@@ -1,5 +1,5 @@
 module watchlist.springboot.restserver {
-  requires transitive com.fasterxml.jackson.databind;
+  requires com.fasterxml.jackson.databind;
 
   requires spring.web;
   requires spring.beans;
@@ -9,5 +9,5 @@ module watchlist.springboot.restserver {
 
   requires watchlist.core;
 
-  opens watchlist.springboot.restserver to spring.beans, spring.context, spring.web, watchlist.core;
+  opens watchlist.springboot.restserver to spring.beans, spring.context, spring.web;
 }
