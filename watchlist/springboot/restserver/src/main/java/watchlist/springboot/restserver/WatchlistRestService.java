@@ -75,11 +75,13 @@ public class WatchlistRestService {
    * @param filename name of file to be loaded.
    */
   public void handleLoadResourceList(String filename) {
-    try {
+    try (InputStream inputStream =
+        WatchlistRestService.class.getResourceAsStream(filename + ".json")) {
       System.out.println("Trying to load resource: " + filename);
-      InputStream inputStream = WatchlistRestService.class.getResourceAsStream(filename + ".json");
       System.out.println(inputStream.toString());
       watchlist.setList(objectMapper.readValue(inputStream, new TypeReference<>() {}));
+    } catch (RuntimeException e) {
+      throw e;
     } catch (Exception e) {
       //e.printStackTrace();
       System.out.println("Couldn't load resource");
