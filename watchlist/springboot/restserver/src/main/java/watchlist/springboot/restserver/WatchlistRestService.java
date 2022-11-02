@@ -3,6 +3,7 @@ package watchlist.springboot.restserver;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class WatchlistRestService {
   private Watchlist watchlist;
   private ObjectMapper objectMapper = new ObjectMapper();
   private User user;
-  private SaveLoadHandler saveLoadHandler;
+  private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
 
   private String movieResource = "movies";
 
@@ -29,15 +30,8 @@ public class WatchlistRestService {
   public WatchlistRestService(Watchlist watchlist, User user) {
     this.watchlist = watchlist;
     this.user = user;
-    this.saveLoadHandler = new SaveLoadHandler();
-    saveLoadHandler.setSaveFile("springboot-watchlist.json");
-    try {
-      handleLoadResourceList("movies");
-      System.out.println("File loaded succesfully");
-    } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println("File loading failed");
-    }
+    saveLoadHandler.setSaveFile(user.getName());
+    handleLoadResourceList(movieResource);
   }
 
   /**
@@ -47,10 +41,8 @@ public class WatchlistRestService {
     //Create default
     this.watchlist = new Watchlist();
     this.user = new User("defaultUser");
-    this.saveLoadHandler = new SaveLoadHandler();
-    saveLoadHandler.setSaveFile("springboot-watchlist.json");
+    saveLoadHandler.setSaveFile(user.getName());
     handleLoadResourceList(movieResource);
-
   }
 
   public Watchlist getWatchlist() {
@@ -88,5 +80,31 @@ public class WatchlistRestService {
     }
   }
 
+  /**
+   * Loads the user's watchlist from their local savefile.
+   */
+  public void handleLoadUserList() {
+    if (saveLoadHandler != null) {
+      try {
+        user.setMovies(saveLoadHandler.loadUserList());
+      } catch (Exception e) {
+        //e.printStackTrace();
+        System.out.println("Couldn't load user's watchlist.");
+      }
+    }
+  }
 
+  /**
+   * Saves the user's watchlist to their local savefile.
+   */
+  public void handleSaveUserList() {
+    if (saveLoadHandler != null) {
+      try {
+        saveLoadHandler.saveUserList(user.getMovies());
+      } catch (IOException e) {
+        //e.printStackTrace();
+        System.out.println("Couldn't save user's watchlist.");
+      }
+    }
+  }
 }

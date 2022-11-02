@@ -27,6 +27,8 @@
     <fx:define>
       <String fx:id="movieResource" fx:value="movies" />
       <String fx:id="getMovies" fx:value="http://localhost:8080/movies" />
+      <String fx:id="getUserList" fx:value="http://localhost:8080/getUserList" />
+      <String fx:id="putUserList" fx:value="http://localhost:8080/putUserList" />
     </fx:define>
     <tabs>
         <Tab text="Browse" fx:id="browserTab">
