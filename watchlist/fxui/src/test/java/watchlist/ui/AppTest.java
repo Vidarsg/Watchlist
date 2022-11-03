@@ -51,8 +51,9 @@ public class AppTest extends ApplicationTest {
     movie2 = fileContent.get(1);
     movie3 = new Movie("Unforgiven", 1992,
         "Retired Old West gunslinger William Munny reluctantly takes"
-        + "on one last job, with the help of his old partner Ned Logan and a young man",
-        8.2, List.of("Clint Eastwood", "Gene Hackman", "Morgan Freeman"), List.of("Clint Eastwood"),
+        + "on one last job, with the help of his old partner Ned Logan and a young man", List.of(),
+        8.2, 100,
+        List.of("Clint Eastwood", "Gene Hackman", "Morgan Freeman"),List.of("Clint Eastwood"),
         List.of("Drama", "Western"),
         "https://m.media-amazon.com/images/M/MV5BODM3YWY4NmQtN2Y3Ni00OTg0LWFhZGQtZWE3ZWY4MTJlOWU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
         "https://m.media-amazon.com/images/M/MV5BODM3YWY4NmQtN2Y3Ni00OTg0LWFhZGQtZWE3ZWY4MTJlOWU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL__QL50.jpg");
@@ -131,3 +132,4 @@ public class AppTest extends ApplicationTest {
     }
   }
 }
+
