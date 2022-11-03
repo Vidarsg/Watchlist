@@ -83,12 +83,15 @@ public class WatchlistRestService {
   /**
    * Loads the user's watchlist from their local savefile.
    */
-  public void handleLoadUserList() {
+  public void handleLoadUserList(String username) {
     if (saveLoadHandler != null) {
       try {
+        this.user.setName(username);
+        saveLoadHandler.setSaveFile(user.getName());
+        System.out.println("in handle load user list");
         user.setMovies(saveLoadHandler.loadUserList());
       } catch (Exception e) {
-        //e.printStackTrace();
+        e.printStackTrace();
         System.out.println("Couldn't load user's watchlist.");
       }
     }
@@ -97,13 +100,17 @@ public class WatchlistRestService {
   /**
    * Saves the user's watchlist to their local savefile.
    */
-  public void handleSaveUserList() {
+  public void handleSaveUserList(String jsonString) {
+    System.out.println("Trying to save user list");
     if (saveLoadHandler != null) {
       try {
-        saveLoadHandler.saveUserList(user.getMovies());
+        System.out.println("in handle save user list");
+        saveLoadHandler.saveUserList(objectMapper.readValue(jsonString, new TypeReference<>() {}));
       } catch (IOException e) {
         //e.printStackTrace();
         System.out.println("Couldn't save user's watchlist.");
+      } catch (Exception e) {
+        e.printStackTrace();
       }
     }
   }

@@ -26,9 +26,7 @@
 <TabPane prefHeight="550.0" prefWidth="900.0" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="watchlist.ui.WatchlistController">
     <fx:define>
       <String fx:id="movieResource" fx:value="movies" />
-      <String fx:id="getMovies" fx:value="http://localhost:8080/movies" />
-      <String fx:id="getUserList" fx:value="http://localhost:8080/getUserList" />
-      <String fx:id="putUserList" fx:value="http://localhost:8080/putUserList" />
+      <String fx:id="serverUrl" fx:value="http://localhost:8080/" />
     </fx:define>
     <tabs>
         <Tab text="Browse" fx:id="browserTab">
