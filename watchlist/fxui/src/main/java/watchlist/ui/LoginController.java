@@ -1,7 +1,7 @@
 package watchlist.ui;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /** Controller for login screen.
@@ -40,6 +42,15 @@ public class LoginController {
         name.requestFocus();
       }
     });
+    
+    name.setOnKeyPressed(new EventHandler<KeyEvent>() {
+      @Override
+      public void handle(KeyEvent key) {
+          if (key.getCode().equals(KeyCode.ENTER)) {
+              onSubmit();
+          }
+      }
+    });
 
     invalidInput.setVisible(false);
   }
@@ -50,7 +61,7 @@ public class LoginController {
    * @throws IllegalArgumentException if username is invalid
    */
   @FXML
-  public void onSubmit(ActionEvent event) {
+  public void onSubmit() {
     try {
       if (name.getText().matches("[a-zA-ZæøåÆØÅ]+")) {
         try {

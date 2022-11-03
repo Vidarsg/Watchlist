@@ -12,8 +12,10 @@ import java.util.List;
 public class Movie {
   private String name;
   private int year;
-  private String desc;
+  private String description;
+  private List<String> keywords;
   private double rating;
+  private int ratingCount;
 
   private List<String> actors;
   private List<String> directors;
@@ -30,10 +32,12 @@ public class Movie {
    */
   @JsonCreator
   public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year,
-      @JsonProperty("desc") String desc,
-      @JsonProperty("rating") double rating, @JsonProperty("actors") List<String> actors,
+      @JsonProperty("description") String description,
+      @JsonProperty("keywords") List<String> keywords,
+      @JsonProperty("rating") double rating, @JsonProperty("ratingCount") int ratingCount,
+      @JsonProperty("actors") List<String> actors,
       @JsonProperty("directors") List<String> directors, @JsonProperty("genre") List<String> genre,
-      @JsonProperty("image_url") String imageUrl, @JsonProperty("thumb_url") String thumbUrl) {
+      @JsonProperty("imageUrl") String imageUrl, @JsonProperty("thumbUrl") String thumbUrl) {
     if (name.isEmpty()) {
       throw new IllegalArgumentException("The title cannot be empty");
     }
@@ -45,15 +49,21 @@ public class Movie {
     }
     this.year = year;
 
-    if (desc.isEmpty()) {
+    if (description == null || description.isEmpty()) {
       throw new IllegalArgumentException("The description cannot be empty");
     }
-    this.desc = desc;
+    this.description = description;
+    this.keywords = keywords;
 
     if (rating < 1 || rating > 10) {
       throw new IllegalArgumentException("Rating must be between 1 and 10");
     }
     this.rating = rating;
+    if (ratingCount <= rating) {
+      throw new IllegalArgumentException("RatingCount must be at least the same value as rating ("
+      + rating + ")");
+    }
+    this.ratingCount = ratingCount;
 
     this.actors = actors;
     this.directors = directors;
@@ -62,6 +72,14 @@ public class Movie {
     this.imageUrl = imageUrl;
     this.thumbUrl = thumbUrl;
   }
+
+  /*
+  public Movie(String name, int year, String desc, double rating, int ratingCount,
+      List<String> actors,List<String> directors,List<String> genre,
+      String imageUrl, String thumbUrl) {
+    new Movie(name, year, desc, List.of(), rating, ratingCount,
+    actors, directors, genre, imageUrl, thumbUrl);
+  }*/
 
   // Getters
   public String getName() {
@@ -72,12 +90,20 @@ public class Movie {
     return year;
   }
 
-  public String getDesc() {
-    return desc;
+  public String getDescription() {
+    return description;
+  }
+
+  public List<String> getKeywords() {
+    return keywords;
   }
 
   public double getRating() {
-    return rating;
+    return (double) Math.round(rating * 100) / 100;
+  }
+
+  public int getRatingCount() {
+    return ratingCount;
   }
 
   public List<String> getActors() {
@@ -132,6 +158,27 @@ public class Movie {
 
   public String toString() {
     return name + " (" + year + ")";
+  }
+
+  /**
+   * Adds a rating to this movie and calculates the new rating.
+   * @param rating The new rating from the user
+   */
+  public void rate(int rating) {
+    double count = (this.ratingCount / this.rating) + 1;
+    this.ratingCount += rating;
+    this.rating = ratingCount / count;
+  }
+
+  /**
+   * Updates an users rating of the movie without making a new rating.
+   * @param oldValue The last rating from the user
+   * @param newValue The new rating from the user
+   */
+  public void updateRating(double oldValue, double newValue) {
+    double count = (this.ratingCount / this.rating);
+    this.ratingCount += (newValue - oldValue);
+    this.rating = ratingCount / count;
   }
   // ! Methods
 }

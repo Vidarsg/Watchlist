@@ -1,6 +1,7 @@
 package watchlist.core;
 
 import java.util.ArrayList;
+//import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -86,4 +87,27 @@ public class User {
     }
     return false;
   }
+
+  /**
+   * Method for sorting userlist by title.
+   */
+  /* public void sortUserlistByName() {
+    Collections.sort(movies, (m1, m2) -> m1.getName().compareTo(m2.getName()));
+  }
+
+  /**
+   * Method for sorting userlist by release year.
+   */
+  /* public void sortUserlistByYear() {
+    Collections.sort(movies, (m1, m2) -> Integer.compare(m1.getYear(), m2.getYear()));
+  }
+
+  /**
+   * Method for sorting userlist by rating.
+   */
+  /* public void sortUserlistByRating() {
+    Collections.sort(movies, (m1, m2) -> Double.compare(m1.getRating(), m2.getRating()));
+    Collections.reverse(movies);
+  }
+  */
 }

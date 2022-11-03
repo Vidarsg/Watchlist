@@ -101,3 +101,7 @@ Text, TextField {
     -fx-effect: dropshadow(one-pass-box, black, 0,1.0,0,0);
     -fx-translate-y: 0;
 }
+
+.combo-box .label {
+    -fx-text-fill: rgb(0, 0, 0); 
+}

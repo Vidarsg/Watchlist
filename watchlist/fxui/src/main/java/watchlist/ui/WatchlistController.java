@@ -2,6 +2,7 @@ package watchlist.ui;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.stream.Collectors;
@@ -9,17 +10,23 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.SVGPath;
 import javafx.scene.text.Text;
 import watchlist.core.Movie;
 import watchlist.core.User;
@@ -37,6 +44,8 @@ public class WatchlistController {
   private ObjectMapper objectMapper = new ObjectMapper();
   private Movie activeBrowserMovie;
   private Movie activeProfileMovie;
+
+  private String movieResourceString;
 
   @FXML
   private String movieResource;
@@ -60,6 +69,10 @@ public class WatchlistController {
   private TextField addMovieYear;
   @FXML
   private Label browseUsername;
+  @FXML
+  private ComboBox<String> browseMovieSort;
+  @FXML
+  private TextField movieFilter;
 
   // Information section of the browser
   @FXML
@@ -80,6 +93,11 @@ public class WatchlistController {
   private Text infoDirector;
   @FXML
   private Text infoActors;
+
+  @FXML
+  private FlowPane ratingStars;
+  @FXML
+  private Slider ratingSlider;
   // ! BROWSER FIELDS
 
   // PROFILE FIELDS
@@ -89,6 +107,8 @@ public class WatchlistController {
   private Text feedbackBoxProfile;
   @FXML
   private Label profileUsername;
+  @FXML
+  private ComboBox<String> profileMovieSort;
 
   @FXML
   private TextField unwatchMovieTitle;
@@ -121,12 +141,43 @@ public class WatchlistController {
 
 
   /**
-   * Runs watchlist.fxml and creates new user and watchlist objects.
+   * Runs watchlist.fxml and creates new user and watchlist object.
    */
   public void initialize() {
     user = new User("TestUser");
     list = new Watchlist();
-    handleLoadResourceList(movieResource);
+    movieResourceString = "movies";
+    //handleLoadResourceList(movieResource);
+    handleLoadResourceList(movieResourceString);
+
+    ObservableList<String> sortValues = FXCollections
+        .observableArrayList("Title", "Year", "Rating");
+    browseMovieSort.getItems().setAll(sortValues);
+    browseMovieSort.setValue(sortValues.get(0));
+    profileMovieSort.getItems().setAll(sortValues);
+    profileMovieSort.setValue(sortValues.get(0));
+
+    movieFilter.setOnKeyPressed(new EventHandler<KeyEvent>() {
+      @Override
+      public void handle(KeyEvent key) {
+          if (key.getCode().equals(KeyCode.ENTER))  {
+              addFilter();
+              movieFilter.setText("");
+          }
+      }
+    });
+
+    ratingSlider.valueProperty().addListener(new ChangeListener<Object>() {
+      @Override
+      public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+        if (activeBrowserMovie != null) {
+          activeBrowserMovie.updateRating((double) oldValue, (double) newValue);
+          updateRating((double) newValue);
+        } else {
+          ratingSlider.setDisable(true);
+        }
+      }
+    });
 
     browserChangeListener = generateListener(moviebrowser, watchMovieTitle, watchMovieButton);
     profileChangeListener = generateListener(watchedMovies, unwatchMovieTitle, unwatchMovieButton);
@@ -201,13 +252,65 @@ public class WatchlistController {
   }
 
   /**
+   * Resets the watchlist-object back to the initial watchlist. (without filtering)
+   */
+  private void resetWatchlist() {
+    handleLoadResourceList(movieResourceString);
+  }
+
+  /**
+   * Adds a new filter to the watchlist browserpage.
+   */
+  public void addFilter() {
+    resetWatchlist();
+    list.filterWatchlist(movieFilter.getText());
+    updateMoviebrowser();
+    updateGui();
+  }
+
+  /**
+   * Method for swapping between sorting values in browserpage.
+   */
+  public void changeSortingInBrowser() {
+    if (browseMovieSort.getValue() == "Title") {
+      list.sortWatchlistByName();
+    }
+    if (browseMovieSort.getValue() == "Year") {
+      list.sortWatchlistByYear();
+    }
+    if (browseMovieSort.getValue() == "Rating") {
+      list.sortWatchlistByRating();
+    }
+    updateMoviebrowser();
+    updateGui();
+  }
+
+  /**
+   * Method for swapping between sorting values in profilepage.
+   */
+  /*public void changeSortingInProfile() {
+    if (profileMovieSort.getValue() == "Title") {
+      user.sortUserlistByName();
+    }
+    if (profileMovieSort.getValue() == "Year") {
+      user.sortUserlistByYear();
+    }
+    if (profileMovieSort.getValue() == "Rating") {
+      user.sortUserlistByRating();
+    }
+    updateMoviebrowser();
+    updateGui();
+  }
+  */
+
+  /**
    * Creates a user object.
    * Fetches username from Login.fxml and displays it in Watchlist.fxml.
    */
   public void setUsername(String name) {
     user = new User(name);
     browseUsername.setText(name);
-    // profileUsername.setText(name);
+    profileUsername.setText(name);
     handleLoadUserList();
     updateWatchedMovies();
   }
@@ -472,8 +575,10 @@ public class WatchlistController {
   private void showInfo(Movie movie, Pane pane) {
     if (movie == null) {
       pane.setVisible(false);
+      ratingSlider.setDisable(true);
     } else {
       pane.setVisible(true);
+      ratingSlider.setDisable(false);
 
       ObservableList<Node> children = pane.getChildren();
       ImageView img = (ImageView) children.get(1);
@@ -491,14 +596,9 @@ public class WatchlistController {
 
       title.setText(movie.getName());
       year.setText(String.valueOf(movie.getYear()));
-      desc.setText(movie.getDesc());
-      // Since this branch is behind on certain objects and their methods,
-      // we have to comment out these
-      // parts
-
+      desc.setText(movie.getDescription());
       Text rating = (Text) f.get(4);
-      // 5th child is a label
-      rating.setText(movie.getRating() + "/10" /* ("+  movie.getRatingCount()+ ")" */);
+      rating.setText(movie.getRating() + "/10 (" + movie.getRatingCount() +  ")");
 
       StringBuilder sb = new StringBuilder();
       if (movie.getDirectors().size() > 0) {
@@ -509,6 +609,8 @@ public class WatchlistController {
       } else {
         sb.append("Unknown");
       }
+
+      // 5th child is a label
       Text director = (Text) f.get(6);
       // 7th child is a label
       director.setText(sb.toString());
@@ -535,6 +637,26 @@ public class WatchlistController {
       }
       genre.setText(sb.toString());
     }
+  }
+
+  /**
+   * Updates the rating graphics.
+   * 
+   * @param value The value to indicate with graphics
+   */
+  private void updateRating(double value) {
+    ObservableList<Node> child = ratingStars.getChildren();
+    for (int i = 0; i < child.size(); i++) {
+      if (child.get(i).getClass().equals(SVGPath.class)) {
+        if (i <= value) {
+          child.get(i).setStyle("-fx-fill: #ff0;");
+        } else {
+          child.get(i).setStyle("-fx-fill: #0000;");
+        }
+      }
+    }
+
+    // TODO: store this rating to the user object
   }
 
   /**
