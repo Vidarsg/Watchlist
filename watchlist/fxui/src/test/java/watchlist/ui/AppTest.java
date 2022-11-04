@@ -129,6 +129,24 @@ public class AppTest extends ApplicationTest {
     assertNull(listView.getItems());
   }
 
+  @Test
+  @DisplayName("Testing user rating a movie")
+  public void testRateMovie() {
+    testWatchMovie();
+
+    clickOn("#profileTab");
+
+    final ListView<Movie> listView = lookup("#watchedMovies").query();
+
+    clickOn(listView.lookup(".list-cell"));
+    clickOn("#ratingSlider");
+    assertEquals(6, listView.getItems().get(0).getUserRating());
+
+    moveBy(-50, 0);
+    drag().dropBy(150, 0);
+    assertEquals(10, listView.getItems().get(0).getUserRating());
+  }
+
   /**
    * Checks whether a listView consists of a list of Movies.
    * 
