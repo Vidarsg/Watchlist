@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.stream.Collectors;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -46,7 +45,7 @@ public class WatchlistController {
   private String movieResource;
   // BROWSER FIELDS
   @FXML
-  private ListView<String> moviebrowser;
+  private ListView<Movie> moviebrowser;
   @FXML
   private Text feedbackBoxBrowsing;
 
@@ -56,7 +55,7 @@ public class WatchlistController {
   private Button watchMovieButton;
 
   // For listeners on list-items
-  private ChangeListener<String> browserChangeListener;
+  private ChangeListener<Movie> browserChangeListener;
 
   @FXML
   private TextField addMovieTitle;
@@ -93,7 +92,7 @@ public class WatchlistController {
 
   // PROFILE FIELDS
   @FXML
-  private ListView<String> watchedMovies;
+  private ListView<Movie> watchedMovies;
   @FXML
   private Text feedbackBoxProfile;
   @FXML
@@ -105,7 +104,7 @@ public class WatchlistController {
   private Button unwatchMovieButton;
 
   // For listeners on list-items
-  private ChangeListener<String> profileChangeListener;
+  private ChangeListener<Movie> profileChangeListener;
 
   // Information section of the profile
   @FXML
@@ -192,16 +191,16 @@ public class WatchlistController {
    * @return A ChangeListener to use in the methods addListener() and
    *         removeListener()
    */
-  private ChangeListener<String> generateListener(
-      ListView<String> listView, TextField textField, Button button) {
-    return new ChangeListener<String>() {
+  private ChangeListener<Movie> generateListener(
+      ListView<Movie> listView, TextField textField, Button button) {
+    return new ChangeListener<Movie>() {
       @Override
       public void changed(
-          ObservableValue<? extends String> observable, String oldValue, String newValue) {
+          ObservableValue<? extends Movie> observable, Movie oldValue, Movie newValue) {
         // Iterate through all movies to find out which movie was clicked
         for (Movie m : list.getList()) {
           if (m != null) {
-            if (m.toString().equals(newValue)) {
+            if (m.equals(newValue)) {
               Movie activeMovie = m;
 
               // Set the value of the textField to the chosen Movie
@@ -222,7 +221,6 @@ public class WatchlistController {
             }
           }
         }
-
       }
     };
   }
@@ -243,11 +241,12 @@ public class WatchlistController {
 
   /**
    * Loads a files content as the content of the Watchlist's list of movies.
-   *
+   * 
    * @param filename The file to load the list from
    */
   public void handleLoadResourceList(String filename) {
-    try (InputStream inputStream = WatchlistController.class.getResourceAsStream(filename + ".json")) {
+    try (InputStream inputStream = WatchlistController.class
+        .getResourceAsStream(filename + ".json")) {
       list.setList(objectMapper.readValue(inputStream, new TypeReference<>() {
       }));
     } catch (Exception e) {
@@ -375,7 +374,7 @@ public class WatchlistController {
     if (list.getList().size() > 0) {
       moviebrowser.setItems(FXCollections
           .observableArrayList(
-              list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
+              list.getList()));
       setListeners(moviebrowser);
     }
   }
@@ -393,7 +392,7 @@ public class WatchlistController {
     if (user.getMovies().size() > 0) {
       watchedMovies.setItems(FXCollections
           .observableArrayList(
-              user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
+              user.getMovies()));
       setListeners(watchedMovies);
       feedbackBoxProfile.setText("");
     } else {
@@ -412,86 +411,11 @@ public class WatchlistController {
    * The pane which the movie will be displayed has to have this configuration of
    * children:
    * </p>
-   * <ol>
-   * <li>
-   *
-   * <pre>
-   * AnchorPane
-   * </pre>
-   * <ol>
-   * <li>
-   *
-   * <pre>
-   * Text
-   * </pre>
-   *
-   * </li>
-   * <li>
-   *
-   * <pre>
-   * Text
-   * </pre>
-   *
-   * </li>
-   * <li>
-   *
-   * <pre>
-   * Label
-   * </pre>
-   *
-   * </li>
-   * <li>
-   *
-   * <pre>
-   * Text
-   * </pre>
-   *
-   * </li>
-   * <li>
-   *
-   * <pre>
-   * Text
-   * </pre>
-   *
-   * </li>
-   * <li>
-   *
-   * <pre>
-   * Label
-   * </pre>
-   *
-   * </li>
-   * <li>
-   *
-   * <pre>
-   * Text
-   * </pre>
-   *
-   * </li>
-   * <li>
-   *
-   * <pre>
-   * Label
-   * </pre>
-   *
-   * </li>
-   * <li>
-   *
-   * <pre>
-   * Text
-   * </pre>
-   *
-   * </li>
-   * </ol>
-   * </li>
-   * <li>
-   *
-   * <pre>
+   * 
+   * <p>
+   * AnchorPane {Text, Text, Label, Text, Text, Label, Text, Label, Text},
    * ImageView
-   * </pre>
-   *
-   * </li>
-   * </ol>
+   * </p>
    *
    * @param movie The movie to display
    * @param pane  The Pane where the movie should be displayed.
@@ -523,7 +447,8 @@ public class WatchlistController {
       year.setText(String.valueOf(movie.getYear()));
       desc.setText(movie.getDescription());
       Text rating = (Text) f.get(4);
-      rating.setText(movie.getRating() + "/10 (" + movie.getRatingCount() + ")");
+      rating.setText(movie.getRating() + "/10 (" +
+          Math.ceil(movie.getRatingCount() / movie.getRating()) + ")");
 
       StringBuilder sb = new StringBuilder();
       if (movie.getDirectors().size() > 0) {
@@ -603,7 +528,7 @@ public class WatchlistController {
    * @param listView The ListView where the listeners are to be set to each list
    *                 item
    */
-  private void setListeners(ListView<String> listView) {
+  private void setListeners(ListView<Movie> listView) {
     if (listView.equals(watchedMovies)) {
       listView.getSelectionModel().selectedItemProperty().removeListener(profileChangeListener);
       listView.getSelectionModel().selectedItemProperty().addListener(profileChangeListener);

@@ -11,10 +11,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
@@ -90,22 +92,25 @@ public class AppTest extends ApplicationTest {
   @Test
   @DisplayName("Testing user watching a movie")
   public void testWatchMovie() {
-    final ListView<String> listView = lookup("#moviebrowser").query();
+    final ListView<Movie> listView = lookup("#moviebrowser").query();
+    final ListView<Movie> watchedMovies = lookup("#watchedMovies").query();
+    final Iterator<Node> listItems = listView.lookupAll(".list-cell").iterator();
+
     clickOn("#browserTab");
 
-    clickOn(listView.getItems().get(0));
+    clickOn(listItems.next());
     clickOn("#watchMovieButton");
-    checkListView(listView, movie1);
+    checkListView(watchedMovies, movie1);
 
-    clickOn(listView.getItems().get(1));
+    clickOn(listItems.next());
     clickOn("#watchMovieButton");
-    checkListView(listView, movie1, movie2);
+    checkListView(watchedMovies, movie1, movie2);
   }
 
   @Test
   @DisplayName("Testing user watching a movie")
   public void testUnwatchMovie() {
-    final ListView<String> listView = lookup("#watchedMovies").query();
+    final ListView<Movie> listView = lookup("#watchedMovies").query();
     // TODO: Add movies (movie1 and movie2) to watchedMovies without using the
     // watchMovie methods...
 
@@ -115,11 +120,11 @@ public class AppTest extends ApplicationTest {
 
     clickOn("#profileTab");
 
-    clickOn(listView.getItems().get(0));
+    clickOn(listView.lookup(".list-cell"));
     clickOn("#unwatchMovieButton");
     checkListView(listView, movie2);
 
-    clickOn(listView.getItems().get(0));
+    clickOn(listView.lookup(".list-cell"));
     clickOn("#unwatchMovieButton");
     assertNull(listView.getItems());
   }
@@ -130,11 +135,11 @@ public class AppTest extends ApplicationTest {
    * @param listView The listview to compare
    * @param movie    The list of movies to compare to
    */
-  private void checkListView(ListView<String> listView, Movie... movies) {
-    ObservableList<String> items = listView.getItems();
+  private void checkListView(ListView<Movie> listView, Movie... movies) {
+    ObservableList<Movie> items = listView.getItems();
     assertEquals(movies.length, items.size());
     for (Movie m : movies) {
-      if (!items.contains(m.toString())) {
+      if (!items.contains(m)) {
         fail("At least one movie is not included in the ListView.");
       }
     }
