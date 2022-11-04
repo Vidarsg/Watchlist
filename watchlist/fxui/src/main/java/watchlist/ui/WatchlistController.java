@@ -83,11 +83,6 @@ public class WatchlistController {
   private Text infoDirector;
   @FXML
   private Text infoActors;
-
-  @FXML
-  private FlowPane ratingStars;
-  @FXML
-  private Slider ratingSlider;
   // ! BROWSER FIELDS
 
   // PROFILE FIELDS
@@ -127,9 +122,9 @@ public class WatchlistController {
   private Text infoActorsProfile;
 
   @FXML
-  private FlowPane ratingStarsProfile;
+  private FlowPane ratingStars;
   @FXML
-  private Slider ratingSliderProfile;
+  private Slider ratingSlider;
   // ! PROFILE FIELDS
 
   /**
@@ -143,9 +138,11 @@ public class WatchlistController {
 
     ratingSlider.valueProperty().addListener(new ChangeListener<Number>() {
       @Override
-      public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-        if (activeBrowserMovie != null) {
-          activeBrowserMovie.updateRating(oldValue.intValue() + 1, newValue.intValue() + 1);
+      public void changed(
+          ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+
+        if (activeProfileMovie != null) {
+          activeProfileMovie.updateRating(oldValue.intValue() + 1, newValue.intValue() + 1);
           updateRating(newValue.intValue());
         } else {
           ratingSlider.setDisable(true);
@@ -494,11 +491,13 @@ public class WatchlistController {
         genre.getChildren().remove(genre.getChildren().size() - 1);
       }
 
-      if (movie.getUserRating() > 0) {
-        ratingSlider.setValue(movie.getUserRating() - 1);
-      } else {
-        ratingSlider.setValue(0);
-        updateRating(-1);
+      if (pane.equals(infoBoxProfile)) {
+        if (movie.getUserRating() > 0) {
+          ratingSlider.setValue(movie.getUserRating() - 1);
+        } else {
+          ratingSlider.setValue(0);
+          updateRating(-1);
+        }
       }
     }
   }
