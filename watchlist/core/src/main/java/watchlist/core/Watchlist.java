@@ -3,7 +3,8 @@ package watchlist.core;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Represents the list of movies that can be watched.
+/**
+ * Represents the list of movies that can be watched.
  *
  * @author IT1901 gruppe 63
  */
@@ -61,4 +62,5 @@ public class Watchlist {
   public void removeMovie(Movie movie) {
     list.remove(movie);
   }
+
 }

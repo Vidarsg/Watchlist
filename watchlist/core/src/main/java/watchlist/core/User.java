@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** Represents a user of the watchlist app.
+/**
+ * Represents a user of the watchlist app.
  *
  * @author IT1901 gruppe 63
  */
@@ -55,7 +56,7 @@ public class User {
    */
   public ArrayList<String> getMovieNames() {
     return new ArrayList<String>(movies.stream().map(x -> x.getName()).collect(
-    Collectors.toList()));
+        Collectors.toList()));
   }
 
   /**
@@ -73,7 +74,8 @@ public class User {
    * Unregisters a movie which the user already has marked as watched.
    *
    * @param title The title of the movie to remove from the users watched movies
-   * @return True if the users watched movies contains the movie title and it gets removed
+   * @return True if the users watched movies contains the movie title and it gets
+   *         removed
    */
   public boolean unwatchMovie(String title) {
     for (Movie m : movies) {
