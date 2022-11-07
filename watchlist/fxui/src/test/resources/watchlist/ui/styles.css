@@ -1,0 +1,129 @@
+.root {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-outline: none;
+    outline: none;
+    -fx-user-select: none;
+    user-select: none;
+}
+
+#base, .tab-pane, ListView, .tabs, .tab, .tab-header-background {
+    -fx-background-color: #111;
+    background-color: #111;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 100px;
+}
+.tab .tab-label {
+    -fx-text-fill: #fff;
+    -fx-font-size: 20px;
+    font-size: 20px;
+}
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #ff9900;
+    -fx-underline: true;
+}
+.tab-header-area {
+    -fx-padding: 5 0 0 336.6667;
+    padding: 5 0 0 336.6667;
+}
+
+.list-cell {
+    -fx-text-fill: #fff;
+}
+.list-cell:even {
+    -fx-background-color: #333333;
+    background-color: #333333;
+}
+.list-cell:odd {
+    -fx-background-color: #363636;
+    background-color: #363636;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #ff990088;
+    background-color: #ff990088;
+}
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #ff9900;
+    background-color: #ff9900;
+}
+
+#name {
+    -fx-border-color: #000 #000 #fff;
+    border-color: #000 #000 #fff;
+    -fx-border-width: 0 0 2px;
+    border-width: 0 0 2px;
+    -fx-border-radius: 2px;
+    border-radius: 2px;
+    -fx-text-fill: #000;
+}
+
+TextField:active {
+    -fx-effect: dropshadow(one-pass-box, #fff, 0,1.0,0,2);
+}
+
+Label {
+    -fx-text-fill: #fff;
+}
+
+@font-face {
+    font-family: 'Haettenschweiler';
+    src: url('fonts/Haettenschweiler-Regular.ttf');
+}
+
+#logo {
+    -fx-text-fill:#ff9900;
+    -fx-font-family: 'Haettenschweiler';
+    -fx-font-size: 96px;
+}
+
+
+Text, TextField {
+    -fx-fill: #fff;
+    fill: #fff;
+    color: #fff;
+}
+
+.button {
+    background-color: #ff9900;
+    -fx-background-color: #ff9900;
+    cursor: hand;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+}
+.button:hover {
+    -fx-effect: dropshadow(one-pass-box, black, 0,1.0,0,2);
+    -fx-translate-y: -2px;
+}
+.button:pressed {
+    -fx-effect: dropshadow(one-pass-box, black, 0,1.0,0,0);
+    -fx-translate-y: 0;
+}
+
+
+#infoGenre .label {
+    -fx-underline: true;
+    -fx-cursor: hand;
+    cursor: hand;
+}
+
+
+#ratingStars SVGPath {
+    -fx-fill: #ff00;
+    -fx-stroke: #fff;
+    -fx-stroke-type: inside
+}
+
+.slider, .slider .track {
+    -fx-opacity: 0;
+    opacity: 0;
+    -fx-cursor: hand;
+    cursor: hand;
+
+}
+.slider .thumb {
+    -fx-pref-width: 0px;
+    -fx-pref-height: 0px;
+}

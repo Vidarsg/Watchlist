@@ -133,8 +133,7 @@ public class WatchlistController {
   public void initialize() {
     user = new User("TestUser");
     list = new Watchlist();
-    // handleLoadResourceList(movieResource);
-    handleLoadResourceList("movies");
+    handleLoadResourceList(movieResource);
 
     ratingSlider.valueProperty().addListener(new ChangeListener<Number>() {
       @Override

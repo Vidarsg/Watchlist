@@ -30,7 +30,7 @@
       <Tab fx:id="browserTab" text="Browse">
          <content>
             <fx:define>
-               <String fx:id="movieResource" fx:value="test-movies" />
+               <String fx:id="movieResource" fx:value="movies" />
             </fx:define>
                <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="900.0">
                <columnConstraints>
@@ -204,7 +204,6 @@
                <Insets bottom="10.0" left="10.0" />
             </padding>
          </GridPane>
-         
       </content>
       </Tab>
    </tabs>
