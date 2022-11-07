@@ -51,7 +51,7 @@ public class Movie {
       @JsonProperty("actors") List<String> actors,
       @JsonProperty("directors") List<String> directors, @JsonProperty("genre") List<String> genre,
       @JsonProperty("imageUrl") String imageUrl, @JsonProperty("thumbUrl") String thumbUrl,
-      @JsonProperty("userRating") int... userRating) {
+      @JsonProperty("userRating") int userRating) {
     if (name.isEmpty()) {
       throw new IllegalArgumentException("The title cannot be empty");
     }
@@ -86,26 +86,12 @@ public class Movie {
     this.imageUrl = imageUrl;
     this.thumbUrl = thumbUrl;
 
-    if (userRating != null && userRating.length > 0) {
-      if (userRating[0] < 1 || userRating[0] > 10) {
-        throw new IllegalArgumentException("userRating must be between 1 and 10");
-      } else {
-        this.userRating = userRating[0];
-      }
-    } else {
+    if (userRating < 1 || userRating > 10) {
       this.userRating = 0;
+    } else {
+      this.userRating = userRating;
     }
   }
-
-  /*
-   * public Movie(String name, int year, String desc, double rating, int
-   * ratingCount,
-   * List<String> actors,List<String> directors,List<String> genre,
-   * String imageUrl, String thumbUrl) {
-   * new Movie(name, year, desc, List.of(), rating, ratingCount,
-   * actors, directors, genre, imageUrl, thumbUrl);
-   * }
-   */
 
   // Getters
   public String getName() {

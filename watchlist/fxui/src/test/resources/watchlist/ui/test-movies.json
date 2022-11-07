@@ -9,7 +9,8 @@
   "thumbUrl": "https://m.media-amazon.com/images/M/MV5BMjMxNzAzMjY0NF5BMl5BanBnXkFtZTgwOTE4NTgyMjE@._V1_.jpg",
   "imageUrl": "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
   "actors": ["Miles Teller","J.K. Simmons","Melissa Benoist"],
-  "directors": ["Damien Chazelle"]
+  "directors": ["Damien Chazelle"],
+  "userRating": 0
 }, {
   "description": "78-year-old Carl Fredricksen travels to Paradise Falls in his house equipped with balloons, inadvertently taking a young stowaway.",
   "genre": ["Animation","Adventure","Comedy"],
@@ -21,5 +22,6 @@
   "thumbUrl": "https://m.media-amazon.com/images/M/MV5BMjE4NTQ0MTM3M15BMl5BanBnXkFtZTgwMDY1NDgyMzE@._V1_.jpg",
   "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTk3NDE2NzI4NF5BMl5BanBnXkFtZTgwNzE1MzEyMTE@._V1_.jpg",
   "actors": ["Edward Asner","Jordan Nagai","John Ratzenberger"],
-  "directors": ["Pete Docter","Bob Peterson"]
+  "directors": ["Pete Docter","Bob Peterson"],
+  "userRating": 0
 } ]

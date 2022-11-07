@@ -517,6 +517,7 @@ public class WatchlistController {
         }
       }
     }
+    handleSaveUserList();
   }
 
   /**

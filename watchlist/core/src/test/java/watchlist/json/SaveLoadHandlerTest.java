@@ -30,7 +30,8 @@ public class SaveLoadHandlerTest {
     try {
       watchlist.setList(objectMapper.readValue(
           SaveLoadHandlerTest.class.getResourceAsStream("test-movies.json"),
-          new TypeReference<>() {}));
+          new TypeReference<>() {
+          }));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -44,7 +45,8 @@ public class SaveLoadHandlerTest {
       saveLoadHandler.saveUserList(user.getMovies());
     }, "An exception should be thrown when the saveFilePath is null");
 
-    // Setting user List equal watchlist, saving to file and testing that no exceptions are thrown
+    // Setting user List equal watchlist, saving to file and testing that no
+    // exceptions are thrown
     saveLoadHandler.setSaveFile(user.getName());
     user.setMovies(watchlist.getList());
     try {

@@ -39,7 +39,7 @@ public class AppTest extends ApplicationTest {
 
   @Override
   public void start(final Stage stage) throws Exception {
-    final FXMLLoader loader = new FXMLLoader(getClass().getResource("Watchlist.fxml"));
+    final FXMLLoader loader = new FXMLLoader(getClass().getResource("Test-Watchlist.fxml"));
     final Parent root = loader.load();
     this.controller = loader.getController();
     this.watchlist = controller.getWatchlist();
@@ -68,7 +68,8 @@ public class AppTest extends ApplicationTest {
         List.of("Clint Eastwood", "Gene Hackman", "Morgan Freeman"), List.of("Clint Eastwood"),
         List.of("Drama", "Western"),
         "https://m.media-amazon.com/images/M/MV5BODM3YWY4NmQtN2Y3Ni00OTg0LWFhZGQtZWE3ZWY4MTJlOWU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
-        "https://m.media-amazon.com/images/M/MV5BODM3YWY4NmQtN2Y3Ni00OTg0LWFhZGQtZWE3ZWY4MTJlOWU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL__QL50.jpg");
+        "https://m.media-amazon.com/images/M/MV5BODM3YWY4NmQtN2Y3Ni00OTg0LWFhZGQtZWE3ZWY4MTJlOWU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
+        0);
   }
 
   // TODO: Add a test for testing the possibility to add a movie to Watchlist?
