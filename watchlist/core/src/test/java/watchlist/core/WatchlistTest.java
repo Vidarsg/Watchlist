@@ -14,6 +14,9 @@ public class WatchlistTest {
   private Movie movie2;
   private Watchlist watchlist;
 
+  /**
+   * Setup for the tests.
+   */
   @BeforeEach
   public void setup() {
     movie1 = new Movie("Unforgiven", 1992,

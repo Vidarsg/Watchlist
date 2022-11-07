@@ -443,8 +443,8 @@ public class WatchlistController {
       year.setText(String.valueOf(movie.getYear()));
       desc.setText(movie.getDescription());
       Text rating = (Text) f.get(4);
-      rating.setText(movie.getRating() + "/10 (" +
-          Math.ceil(movie.getRatingCount() / movie.getRating()) + ")");
+      rating.setText(movie.getRating() + "/10 ("
+          + Math.ceil(movie.getRatingCount() / movie.getRating()) + ")");
 
       StringBuilder sb = new StringBuilder();
       if (movie.getDirectors().size() > 0) {

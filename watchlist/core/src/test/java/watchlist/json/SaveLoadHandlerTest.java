@@ -23,6 +23,9 @@ public class SaveLoadHandlerTest {
   private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
   private ObjectMapper objectMapper = new ObjectMapper();
 
+  /**
+   * Setup for the tests.
+   */
   @BeforeEach
   public void setup() {
     user = new User("TestUser");
@@ -90,6 +93,9 @@ public class SaveLoadHandlerTest {
     }
   }
 
+  /**
+   * Deletes the savefile after each test.
+   */
   @AfterEach
   public void tearDown() {
     try {

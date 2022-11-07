@@ -17,6 +17,9 @@ public class UserTest {
   private Movie movie2;
   private ArrayList<String> movieNames = new ArrayList<String>();
 
+  /**
+   * Setup for the tests.
+   */
   @BeforeEach
   public void setup() {
     user = new User("TestUser");
