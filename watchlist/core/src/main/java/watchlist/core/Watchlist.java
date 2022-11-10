@@ -106,7 +106,5 @@ public class Watchlist {
         }
       }
     }
-    this.list = list.stream().distinct().collect(Collectors.toList());
   }
-
 }

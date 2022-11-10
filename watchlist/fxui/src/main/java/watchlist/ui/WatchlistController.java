@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.stream.Collectors;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -39,6 +40,7 @@ import watchlist.json.SaveLoadHandler;
 public class WatchlistController {
   private User user;
   private Watchlist list;
+  private Watchlist initialList;
   private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
   private ObjectMapper objectMapper = new ObjectMapper();
   private Movie activeBrowserMovie;
@@ -145,10 +147,11 @@ public class WatchlistController {
   public void initialize() {
     user = new User("TestUser");
     list = new Watchlist();
+    initialList = new Watchlist();
     movieResourceString = "movies";
     //handleLoadResourceList(movieResource);
     handleLoadResourceList(movieResourceString);
-    list.sortWatchlistByName();
+    list.setList(initialList.getList());
 
     ObservableList<String> sortValues = FXCollections
         .observableArrayList("Title", "Year", "Rating");
@@ -262,7 +265,8 @@ public class WatchlistController {
   private void handleLoadResourceList(String filename) {
     try (InputStream inputStream =
         WatchlistController.class.getResourceAsStream(filename + ".json")) {
-      list.setList(objectMapper.readValue(inputStream, new TypeReference<>() {}));
+      initialList.setList(objectMapper.readValue(inputStream, new TypeReference<>() {}));
+      list.setList(initialList.getList());
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -319,7 +323,7 @@ public class WatchlistController {
     if (title.isEmpty()) {
       feedbackBoxBrowsing.setText("Please choose a movie from the list");
     } else {
-      for (Movie m : list.getList()) {
+      for (Movie m : initialList.getList()) {
         if (m != null) {
           if (m.toString().equals(title)) {
             feedbackBoxBrowsing.setText("Watched movie " + m.toString());
@@ -337,13 +341,16 @@ public class WatchlistController {
    */
   public void changeSortingInBrowser() {
     if (browseMovieSort.getValue() == "Title") {
-      list.sortWatchlistByName();
+      initialList.sortWatchlistByName();
+      list.setList(initialList.getList());
     }
     if (browseMovieSort.getValue() == "Year") {
-      list.sortWatchlistByYear();
+      initialList.sortWatchlistByYear();
+      list.setList(initialList.getList());
     }
     if (browseMovieSort.getValue() == "Rating") {
-      list.sortWatchlistByRating();
+      initialList.sortWatchlistByRating();
+      list.setList(initialList.getList());
     }
     updateMoviebrowser();
     updateBrowserGui();
@@ -669,6 +676,13 @@ public class WatchlistController {
     updateMoviebrowser();
     updateWatchedMovies();
     updateGui();
+  }
+
+  /**
+   * Sets the shown list back to the initial list.
+   */
+  public void resetToInitialList() {
+    list.setList(initialList.getList());
   }
 
   // ! Help methods for GUI
