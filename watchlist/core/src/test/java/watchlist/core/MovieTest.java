@@ -2,6 +2,7 @@ package watchlist.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,7 +27,7 @@ public class MovieTest {
         "Retired Old West gunslinger William Munny reluctantly takes on one last job,"
             + "with the help of his old partner Ned Logan and a young man",
         List.of("revenge", "revisionist western", "one last job", "sadist", "gun control"),
-        8.2, 100, List.of("Clint Eastwood", "Gene Hackman", "Morgan Freeman"),
+        5.25, 42, List.of("Clint Eastwood", "Gene Hackman", "Morgan Freeman"),
         List.of("Clint Eastwood"), List.of("Drama", "Western"),
         "https://m.media-amazon.com/images/M/MV5BODM3YWY4NmQtN2Y3Ni00OTg0LWFhZGQtZWE3ZWY4MTJlOWU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
         "https://m.media-amazon.com/images/M/MV5BODM3YWY4NmQtN2Y3Ni00OTg0LWFhZGQtZWE3ZWY4MTJlOWU4XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
@@ -41,7 +42,7 @@ public class MovieTest {
         List.of("Damien Chazelle"), List.of("Drama", "Music"),
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
-        0);
+        5);
     movie4 = new Movie("Whiplash", 1948,
         "A struggling artist becomes a New York City prizefighter in an attempt to win"
             + "the affection of the ring promoter's night club singing sister.",
@@ -68,7 +69,7 @@ public class MovieTest {
         List.of("Damien Chazelle"), List.of("Drama", "Music"),
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
-        0);
+        5);
     assertEquals("Whiplash", movie1.getName());
     assertEquals(2014, movie1.getYear());
     assertEquals(
@@ -87,6 +88,37 @@ public class MovieTest {
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
         movie1.getThumbUrl());
 
+    movie1 = new Movie("Whiplash", 2014,
+        "A promising young drummer enrolls at a cut-throat music conservatory where his dreams "
+            + "of greatness are mentored by an instructor who will stop at nothing to realize a "
+            + "student’s potential.",
+        List.of("emotional abuse", "drummer", "music school", "teacher student relationship",
+            "new york city"),
+        10, 100, List.of("Miles Teller",
+            "J.K. Simmons",
+            "Melissa Benoist"),
+        List.of("Damien Chazelle"),
+        List.of("Drama", "Music"),
+        "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
+        -1);
+    assertEquals(0, movie1.getUserRating(), "The userRating should be 0 if it is lower than 1");
+    movie1 = new Movie("Whiplash", 2014,
+        "A promising young drummer enrolls at a cut-throat music conservatory where his dreams "
+            + "of greatness are mentored by an instructor who will stop at nothing to realize a "
+            + "student’s potential.",
+        List.of("emotional abuse", "drummer", "music school", "teacher student relationship",
+            "new york city"),
+        10, 100, List.of("Miles Teller",
+            "J.K. Simmons",
+            "Melissa Benoist"),
+        List.of("Damien Chazelle"),
+        List.of("Drama", "Music"),
+        "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
+        11);
+    assertEquals(0, movie1.getUserRating(), "The userRating should be 0 if it is higher than 10");
+
     // Testing that the constructor throws IllegalArgumentExceptions
     assertThrows(IllegalArgumentException.class, () -> {
       movie1 = new Movie("", 2014,
@@ -101,6 +133,7 @@ public class MovieTest {
           "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
           0);
     }, "An exception should be thrown when the name is empty");
+
     assertThrows(IllegalArgumentException.class, () -> {
       movie1 = new Movie("Whiplash", 1337,
           "A promising young drummer enrolls at a cut-throat music conservatory where his dreams"
@@ -117,6 +150,7 @@ public class MovieTest {
           "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
           0);
     }, "An exception should be thrown when the year is before 1888");
+
     assertThrows(IllegalArgumentException.class, () -> {
       movie1 = new Movie("Whiplash", 2030,
           "A promising young drummer enrolls at a cut-throat music conservatory where his dreams"
@@ -133,6 +167,7 @@ public class MovieTest {
           "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
           0);
     }, "An exception should be thrown when the year is after 2022");
+
     assertThrows(IllegalArgumentException.class, () -> {
       movie1 = new Movie("Whiplash",
           2014, "",
@@ -145,6 +180,7 @@ public class MovieTest {
           "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
           0);
     }, "An exception should be thrown when the description is empty");
+
     assertThrows(IllegalArgumentException.class, () -> {
       movie1 = new Movie("Whiplash", 2014,
           "A promising young drummer enrolls at a cut-throat music conservatory where his dreams "
@@ -161,6 +197,7 @@ public class MovieTest {
           "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
           0);
     }, "An exception should be thrown when the rating is lower than 1");
+
     assertThrows(IllegalArgumentException.class, () -> {
       movie1 = new Movie("Whiplash", 2014,
           "A promising young drummer enrolls at a cut-throat music conservatory where his dreams "
@@ -177,6 +214,20 @@ public class MovieTest {
           "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
           0);
     }, "An exception should be thrown when the rating is higher than 10");
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      movie1 = new Movie("Whiplash", 2014,
+          "A promising young drummer enrolls at a cut-throat music conservatory where his dreams"
+              + "of greatness are mentored by an instructor who will stop at nothing to realize a"
+              + " student’s potential.",
+          List.of("emotional abuse", "drummer", "music school", "teacher student relationship",
+              "new york city"),
+          9, 7, List.of("Miles Teller", "J.K. Simmons", "Melissa Benoist"),
+          List.of("Damien Chazelle"), List.of("Drama", "Music"),
+          "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+          "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
+          0);
+    }, "An exception should be thrown when the ratingCount is lower than the rating");
   }
 
   @Test
@@ -204,5 +255,24 @@ public class MovieTest {
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
         0);
     assertTrue(movie1.equals(movie3));
+  }
+
+  @Test
+  @DisplayName("Testing the rating method")
+  public void testRating() {
+    // Movie2 : 5.25 (42 / 8)
+    movie2.rate(3);
+    assertEquals(3, movie2.getUserRating());
+    assertEquals(5.0, movie2.getRating());
+
+    // Movie2 : 5.0 (45 / 9)
+    movie2.rate(9);
+    assertEquals(9, movie2.getUserRating());
+    assertEquals(5.4, movie2.getRating());
+
+    // Movie2 : 5.4 (54 / 10)
+    movie2.updateRating(9, 10);
+    assertEquals(10, movie2.getUserRating());
+    assertEquals(5.5, movie2.getRating());
   }
 }

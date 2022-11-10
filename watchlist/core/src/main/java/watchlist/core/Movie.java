@@ -73,7 +73,7 @@ public class Movie {
       throw new IllegalArgumentException("Rating must be between 1 and 10");
     }
     this.rating = rating;
-    if (ratingCount <= rating) {
+    if (ratingCount < rating) {
       throw new IllegalArgumentException("RatingCount must be at least the same value as rating ("
           + rating + ")");
     }
