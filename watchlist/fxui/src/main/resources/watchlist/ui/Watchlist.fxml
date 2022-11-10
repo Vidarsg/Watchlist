@@ -26,6 +26,7 @@
 <TabPane prefHeight="550.0" prefWidth="900.0" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="watchlist.ui.WatchlistController">
     <fx:define>
       <String fx:id="movieResource" fx:value="movies" />
+      <String fx:id="serverUrl" fx:value="http://localhost:8080/" />
     </fx:define>
     <tabs>
         <Tab text="Browse" fx:id="browserTab">
@@ -44,7 +45,7 @@
                     <RowConstraints maxHeight="242.4710693359375" minHeight="10.0" prefHeight="93.6270751953125" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    
+
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Browse" wrappingWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <font>
                             <Font size="42.0" />

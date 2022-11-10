@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>it1901.watchlist</groupId>
     <artifactId>parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -11,7 +11,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
-        <skipUiTests>false</skipUiTests>
+         <jupiter.version>5.8.1</jupiter.version>
+         <jackson.version>2.13.3</jackson.version>
+        <skipUiTests>true</skipUiTests>
         <headlessTests>false</headlessTests>
     </properties>
 
@@ -46,6 +48,23 @@
                 <version>2.2</version>
                 <scope>test</scope>
             </dependency>
+
+            <!-- Jackson -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>3.12.4</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -143,6 +162,7 @@
     <modules>
         <module>core</module>
         <module>fxui</module>
+        <module>springboot/restserver</module>
     </modules>
 
 </project>

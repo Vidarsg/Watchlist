@@ -1,9 +1,17 @@
 package watchlist.ui;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse;
 import java.util.stream.Collectors;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -40,6 +48,9 @@ public class WatchlistController {
 
   @FXML
   private String movieResource;
+  @FXML
+  private String serverUrl;
+
   // BROWSER FIELDS
   @FXML
   private ListView<String> moviebrowser;
@@ -126,7 +137,7 @@ public class WatchlistController {
   public void initialize() {
     user = new User("TestUser");
     list = new Watchlist();
-    handleLoadResourceList(movieResource);
+    handleLoadResourceListHttp();
 
     browserChangeListener = generateListener(moviebrowser, watchMovieTitle, watchMovieButton);
     profileChangeListener = generateListener(watchedMovies, unwatchMovieTitle, unwatchMovieButton);
@@ -208,7 +219,7 @@ public class WatchlistController {
     user = new User(name);
     browseUsername.setText(name);
     // profileUsername.setText(name);
-    handleLoadUserList();
+    handleLoadUserListHttp(name);
     updateWatchedMovies();
   }
 
@@ -229,6 +240,28 @@ public class WatchlistController {
   }
 
   /**
+   * Request movie resource file from rest server. If this fails, try to load local movie
+   * resource file.
+   */
+  public void handleLoadResourceListHttp() {
+    try {
+      HttpClient client = HttpClient.newHttpClient();
+      HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/movies"))
+          .GET()
+          .build();
+      HttpResponse<String> response = client.send(request,
+          HttpResponse.BodyHandlers.ofString());
+      list.setList(objectMapper.readValue(response.body(), new TypeReference<>() {}));
+      System.out.print("Succesfully loaded movie resource from server.");
+    } catch (Exception e) {
+      System.err.println("ERROR: Couldn't send GET request.");
+      e.printStackTrace();
+      System.out.println("Trying to load local movie resource instead.");
+      handleLoadResourceList(movieResource);
+    }
+  }
+
+  /**
    * Loads the users local list into the application. If no list is saved locally for the user, the
    * method will create a new one.
    */
@@ -240,6 +273,25 @@ public class WatchlistController {
       user.setMovies(saveLoadHandler.loadUserList());
     } catch (Exception e) {
       e.printStackTrace();
+    }
+  }
+
+  /**
+   * Request user's file from rest server. If this fails, try to load local file.
+   */
+  public void handleLoadUserListHttp(String username) {
+    try {
+      HttpClient client = HttpClient.newHttpClient();
+      HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/user/" + username))
+          .GET().build();
+      HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+      user.setMovies(objectMapper.readValue(response.body(), new TypeReference<>() {}));
+      System.out.print("Succesfully loaded user's list from server.");
+    } catch (Exception e) {
+      System.err.println("ERROR: Couldn't send GET request.");
+      e.printStackTrace();
+      System.out.println("Trying to load user's list locally instead.");
+      handleLoadUserList();
     }
   }
 
@@ -256,6 +308,30 @@ public class WatchlistController {
       saveLoadHandler.saveUserList(user.getMovies());
     } catch (IOException e) {
       e.printStackTrace();
+    }
+  }
+
+  /**
+   * Request user's file from rest server. If this fails, try to load local file.
+   */
+  public void handleSaveUserListHttp(String username) {
+    try {
+      ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+      String jsonString = objectWriter.writeValueAsString(user.getMovies());
+      HttpClient client = HttpClient.newHttpClient();
+      HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/user/" + username))
+          .PUT(BodyPublishers.ofString(jsonString)).build();
+      HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+      if (response.statusCode() == 200) {
+        System.out.print("Succesfully saved user's list to server.");
+      } else {
+        System.out.println("Failed to load user file.");
+      }
+    } catch (Exception e) {
+      System.err.println("ERROR: Couldn't send PUT request.");
+      e.printStackTrace();
+      System.out.println("Trying to save user's list locally instead.");
+      handleSaveUserList();
     }
   }
 
@@ -289,7 +365,7 @@ public class WatchlistController {
       }
     }
     updateWatchedMovies();
-    handleSaveUserList();
+    handleSaveUserListHttp(user.getName());
   }
 
   // ! Handle methods for browsing
@@ -316,7 +392,7 @@ public class WatchlistController {
       }
     }
     updateWatchedMovies();
-    handleSaveUserList();
+    handleSaveUserListHttp(user.getName());
   }
 
   // ! Handle methods for profile
