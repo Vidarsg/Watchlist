@@ -92,24 +92,21 @@ public class Watchlist {
    * @param string Movie genre/keyword as a string.
    */
   public void filterWatchlist(String string) {
-    List<Movie> filteredList = new ArrayList<Movie>();
     for (Movie movie : list) {
       if (movie.getGenre() != null) {
         for (String genre : movie.getGenre()) {
-          if (genre.toLowerCase().contains(string.toLowerCase())) {
-            filteredList.add(movie);
-          }
+          list.stream().filter(f -> genre.contains(string.toLowerCase()))
+          .collect(Collectors.toList());
         }
       }
       if (movie.getKeywords() != null) {
         for (String keyword : movie.getKeywords()) {
-          if (keyword.toLowerCase().contains(string.toLowerCase())) {
-            filteredList.add(movie);
-          }
+          list.stream().filter(f -> keyword.contains(string.toLowerCase()))
+          .collect(Collectors.toList());
         }
       }
     }
-    this.list = filteredList.stream().distinct().collect(Collectors.toList());
+    this.list = list.stream().distinct().collect(Collectors.toList());
   }
 
 }

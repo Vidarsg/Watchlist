@@ -72,7 +72,7 @@ public class WatchlistController {
   @FXML
   private ComboBox<String> browseMovieSort;
   @FXML
-  private TextField movieFilter;
+  private TextField browseMovieFilter;
 
   // Information section of the browser
   @FXML
@@ -109,6 +109,8 @@ public class WatchlistController {
   private Label profileUsername;
   @FXML
   private ComboBox<String> profileMovieSort;
+  @FXML
+  private TextField profileMovieFilter;
 
   @FXML
   private TextField unwatchMovieTitle;
@@ -149,6 +151,7 @@ public class WatchlistController {
     movieResourceString = "movies";
     //handleLoadResourceList(movieResource);
     handleLoadResourceList(movieResourceString);
+    list.sortWatchlistByName();
 
     ObservableList<String> sortValues = FXCollections
         .observableArrayList("Title", "Year", "Rating");
@@ -157,15 +160,21 @@ public class WatchlistController {
     profileMovieSort.getItems().setAll(sortValues);
     profileMovieSort.setValue(sortValues.get(0));
 
-    movieFilter.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    EventHandler<KeyEvent> handleAddFilter = new EventHandler<KeyEvent>() {
       @Override
       public void handle(KeyEvent key) {
-          if (key.getCode().equals(KeyCode.ENTER))  {
-              addFilter();
-              movieFilter.setText("");
-          }
+        System.out.println(key);
+        if (browseMovieFilter.isFocused()) {
+          addFiltertoWatchlist();
+          System.out.println("b");
+        } else if (profileMovieFilter.isFocused()) {
+          addFiltertoUserlist();
+          System.out.println("p");
+        }
       }
-    });
+    };
+    browseMovieFilter.setOnKeyPressed(handleAddFilter);
+    profileMovieFilter.setOnKeyPressed(handleAddFilter);
 
     ratingSlider.valueProperty().addListener(new ChangeListener<Object>() {
       @Override
@@ -251,69 +260,6 @@ public class WatchlistController {
     };
   }
 
-  /**
-   * Resets the watchlist-object back to the initial watchlist. (without filtering)
-   */
-  private void resetWatchlist() {
-    handleLoadResourceList(movieResourceString);
-  }
-
-  /**
-   * Adds a new filter to the watchlist browserpage.
-   */
-  public void addFilter() {
-    resetWatchlist();
-    list.filterWatchlist(movieFilter.getText());
-    updateMoviebrowser();
-    updateGui();
-  }
-
-  /**
-   * Method for swapping between sorting values in browserpage.
-   */
-  public void changeSortingInBrowser() {
-    if (browseMovieSort.getValue() == "Title") {
-      list.sortWatchlistByName();
-    }
-    if (browseMovieSort.getValue() == "Year") {
-      list.sortWatchlistByYear();
-    }
-    if (browseMovieSort.getValue() == "Rating") {
-      list.sortWatchlistByRating();
-    }
-    updateMoviebrowser();
-    updateGui();
-  }
-
-  /**
-   * Method for swapping between sorting values in profilepage.
-   */
-  /*public void changeSortingInProfile() {
-    if (profileMovieSort.getValue() == "Title") {
-      user.sortUserlistByName();
-    }
-    if (profileMovieSort.getValue() == "Year") {
-      user.sortUserlistByYear();
-    }
-    if (profileMovieSort.getValue() == "Rating") {
-      user.sortUserlistByRating();
-    }
-    updateMoviebrowser();
-    updateGui();
-  }
-  */
-
-  /**
-   * Creates a user object.
-   * Fetches username from Login.fxml and displays it in Watchlist.fxml.
-   */
-  public void setUsername(String name) {
-    user = new User(name);
-    browseUsername.setText(name);
-    profileUsername.setText(name);
-    handleLoadUserList();
-    updateWatchedMovies();
-  }
 
   // Methods for file handling
 
@@ -322,7 +268,7 @@ public class WatchlistController {
    *
    * @param filename The file to load the list from
    */
-  public void handleLoadResourceList(String filename) {
+  private void handleLoadResourceList(String filename) {
     try (InputStream inputStream =
         WatchlistController.class.getResourceAsStream(filename + ".json")) {
       list.setList(objectMapper.readValue(inputStream, new TypeReference<>() {}));
@@ -335,7 +281,7 @@ public class WatchlistController {
    * Loads the users local list into the application. If no list is saved locally for the user, the
    * method will create a new one.
    */
-  public void handleLoadUserList() {
+  private void handleLoadUserList() {
     if (saveLoadHandler.getSaveFilePath() == null) {
       saveLoadHandler.setSaveFile(user.getName());
     }
@@ -351,7 +297,7 @@ public class WatchlistController {
    * If no list is saved locally for
    * the user, the method will create a new one.
    */
-  public void handleSaveUserList() {
+  private void handleSaveUserList() {
     if (saveLoadHandler.getSaveFilePath() == null) {
       saveLoadHandler.setSaveFile(user.getName());
     }
@@ -395,6 +341,23 @@ public class WatchlistController {
     handleSaveUserList();
   }
 
+  /**
+   * Method for swapping between sorting values in browserpage.
+   */
+  public void changeSortingInBrowser() {
+    if (browseMovieSort.getValue() == "Title") {
+      list.sortWatchlistByName();
+    }
+    if (browseMovieSort.getValue() == "Year") {
+      list.sortWatchlistByYear();
+    }
+    if (browseMovieSort.getValue() == "Rating") {
+      list.sortWatchlistByRating();
+    }
+    updateMoviebrowser();
+    updateBrowserGui();
+  }
+  
   // ! Handle methods for browsing
 
 
@@ -422,10 +385,39 @@ public class WatchlistController {
     handleSaveUserList();
   }
 
+  /**
+   * Method for swapping between sorting values in profilepage.
+   */
+  public void changeSortingInProfile() {
+    if (profileMovieSort.getValue() == "Title") {
+      user.sortUserlistByName();
+    }
+    if (profileMovieSort.getValue() == "Year") {
+      user.sortUserlistByYear();
+    }
+    if (profileMovieSort.getValue() == "Rating") {
+      user.sortUserlistByRating();
+    }
+    updateWatchedMovies();
+    updateProfileGui();
+  }
+
   // ! Handle methods for profile
 
 
   // Help methods for GUI
+
+  /**
+   * Creates a user object.
+   * Fetches username from Login.fxml and displays it in Watchlist.fxml.
+   */
+  public void setUsername(String name) {
+    user = new User(name);
+    browseUsername.setText(name);
+    profileUsername.setText(name);
+    handleLoadUserList();
+    updateWatchedMovies();
+  }
 
   /**
    * Updates the whole Graphical User Interface (GUI) of the application.
@@ -672,6 +664,25 @@ public class WatchlistController {
       listView.getSelectionModel().selectedItemProperty().removeListener(browserChangeListener);
       listView.getSelectionModel().selectedItemProperty().addListener(browserChangeListener);
     }
+  }
+
+  /**
+   * Adds a new filter to the watchlist.
+   */
+  public void addFiltertoWatchlist() {
+    handleLoadResourceList(movieResourceString);
+    list.filterWatchlist(browseMovieFilter.getText());
+    updateMoviebrowser();
+    updateBrowserGui();
+  }
+
+  /**
+   * Adds a new filter to the userlist.
+   */
+  public void addFiltertoUserlist() {
+    user.filterUserlist(profileMovieFilter.getText());
+    updateWatchedMovies();
+    updateProfileGui();
   }
 
   // ! Help methods for GUI

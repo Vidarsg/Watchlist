@@ -44,14 +44,14 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <TextField fx:id="movieFilter" layoutX="200.0" layoutY="30.0" promptText="Genre/Keyword" />
+                        <TextField fx:id="browseMovieFilter" layoutX="200.0" layoutY="30.0" promptText="Genre/Keyword" />
                         <Text layoutX="145.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by:" wrappingWidth="53.33336639404297">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Text>
                         <ComboBox fx:id="browseMovieSort" layoutX="200.0" layoutY="60.0" onAction="#changeSortingInBrowser" prefWidth="150.0" />
-                        <Text layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse" wrappingWidth="300.0">
+                        <Text layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Browse" wrappingWidth="300.0">
                            <font>
                               <Font size="42.0" />
                            </font>
@@ -157,15 +157,21 @@
                   <RowConstraints maxHeight="242.4710693359375" minHeight="10.0" prefHeight="93.6270751953125" vgrow="SOMETIMES" />
                </rowConstraints>
             <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="121.0" prefWidth="350.0">
                      <children>
-                        <Text layoutX="145.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by:" wrappingWidth="53.33336639404297">
+                        <Text layoutX="160.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter:" wrappingWidth="38.000022888183594">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Text>
-                        <ComboBox fx:id="profileMovieSort" layoutX="200.0" layoutY="40.0" onAction="#changeSortingInProfile" prefWidth="150.0" />
-                        <Text layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" wrappingWidth="300.0">
+                        <TextField fx:id="profileMovieFilter" layoutX="200.0" layoutY="30.0" promptText="Genre/Keyword" />
+                        <Text layoutX="145.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by:" wrappingWidth="53.33336639404297">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <ComboBox fx:id="profileMovieSort" layoutX="200.0" layoutY="60.0" onAction="#changeSortingInProfile" prefWidth="150.0" />
+                        <Text layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile" wrappingWidth="300.0">
                            <font>
                               <Font size="42.0" />
                            </font>
