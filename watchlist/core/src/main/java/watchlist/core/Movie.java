@@ -5,15 +5,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-/** This class represents a movie with all its relevant parameters.
+/**
+ * This class represents a movie with all its relevant parameters.
  *
  * @author IT1901 gruppe 63
  */
 public class Movie {
   private String name;
   private int year;
-  private String desc;
+  private String description;
+  private List<String> keywords;
   private double rating;
+  private int ratingCount;
 
   private List<String> actors;
   private List<String> directors;
@@ -22,18 +25,33 @@ public class Movie {
   private String imageUrl;
   private String thumbUrl;
 
+  private int userRating;
+
   /**
-   * Creates a new Movie object with the given title and year.
-   *
-   * @param name the title of the movie
-   * @param year the release year of the movie
+   * Creates a new movie object with the given parameters.
+   * 
+   * @param name        Movie title
+   * @param year        Published year
+   * @param description Description of movie
+   * @param keywords    Keywords to describe the movies content
+   * @param rating      IMBDs registered rating
+   * @param ratingCount IMDBs registered ratingcount
+   * @param actors      Participating actors
+   * @param directors   Directors of the movie
+   * @param genre       Genre(s) of the movie
+   * @param imageUrl    URL to image
+   * @param thumbUrl    URL to thumb image
+   * @param userRating  Users rating of the movie
    */
   @JsonCreator
   public Movie(@JsonProperty("name") String name, @JsonProperty("year") int year,
-      @JsonProperty("desc") String desc,
-      @JsonProperty("rating") double rating, @JsonProperty("actors") List<String> actors,
+      @JsonProperty("description") String description,
+      @JsonProperty("keywords") List<String> keywords,
+      @JsonProperty("rating") double rating, @JsonProperty("ratingCount") int ratingCount,
+      @JsonProperty("actors") List<String> actors,
       @JsonProperty("directors") List<String> directors, @JsonProperty("genre") List<String> genre,
-      @JsonProperty("image_url") String imageUrl, @JsonProperty("thumb_url") String thumbUrl) {
+      @JsonProperty("imageUrl") String imageUrl, @JsonProperty("thumbUrl") String thumbUrl,
+      @JsonProperty("userRating") int userRating) {
     if (name.isEmpty()) {
       throw new IllegalArgumentException("The title cannot be empty");
     }
@@ -45,15 +63,21 @@ public class Movie {
     }
     this.year = year;
 
-    if (desc.isEmpty()) {
+    if (description == null || description.isEmpty()) {
       throw new IllegalArgumentException("The description cannot be empty");
     }
-    this.desc = desc;
+    this.description = description;
+    this.keywords = keywords;
 
     if (rating < 1 || rating > 10) {
       throw new IllegalArgumentException("Rating must be between 1 and 10");
     }
     this.rating = rating;
+    if (ratingCount < rating) {
+      throw new IllegalArgumentException("RatingCount must be at least the same value as rating ("
+          + rating + ")");
+    }
+    this.ratingCount = ratingCount;
 
     this.actors = actors;
     this.directors = directors;
@@ -61,6 +85,12 @@ public class Movie {
 
     this.imageUrl = imageUrl;
     this.thumbUrl = thumbUrl;
+
+    if (userRating < 1 || userRating > 10) {
+      this.userRating = 0;
+    } else {
+      this.userRating = userRating;
+    }
   }
 
   // Getters
@@ -72,12 +102,20 @@ public class Movie {
     return year;
   }
 
-  public String getDesc() {
-    return desc;
+  public String getDescription() {
+    return description;
+  }
+
+  public List<String> getKeywords() {
+    return keywords;
   }
 
   public double getRating() {
-    return rating;
+    return (double) Math.round(rating * 100) / 100;
+  }
+
+  public int getRatingCount() {
+    return ratingCount;
   }
 
   public List<String> getActors() {
@@ -96,11 +134,13 @@ public class Movie {
     return imageUrl;
   }
 
-  // public Image getImage() {return image;}
   public String getThumbUrl() {
     return thumbUrl;
   }
-  // public Image getThumb() {return thumb;}
+
+  public int getUserRating() {
+    return userRating;
+  }
   // ! Getters
 
   // Methods
@@ -133,6 +173,32 @@ public class Movie {
   public String toString() {
     return name + " (" + year + ")";
   }
+
+  /**
+   * Adds a rating to this movie and calculates the new rating.
+   * 
+   * @param rating The new rating from the user
+   */
+  public void rate(int rating) {
+    double count = (this.ratingCount / this.rating) + 1;
+    this.ratingCount += rating;
+    this.rating = ratingCount / count;
+
+    this.userRating = rating;
+  }
+
+  /**
+   * Updates an users rating of the movie without making a new rating.
+   * 
+   * @param oldValue The last rating from the user
+   * @param newValue The new rating from the user
+   */
+  public void updateRating(int oldValue, int newValue) {
+    double count = (this.ratingCount / this.rating);
+    this.ratingCount += (newValue - oldValue);
+    this.rating = ratingCount / count;
+
+    this.userRating = newValue;
+  }
   // ! Methods
 }
-

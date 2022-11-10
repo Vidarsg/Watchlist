@@ -60,7 +60,7 @@ public class WatchlistRestService {
    * @return a list of Movie objects from the user's savefile
    */
   public List<Movie> handleLoadUserList(String username) {
-    System.out.println("Trying to load user list");
+    System.out.println("Loading user list...");
     if (saveLoadHandler != null) {
       try {
         saveLoadHandler.setSaveFile(username);
@@ -79,7 +79,7 @@ public class WatchlistRestService {
    * @param jsonString the user's watchlist as a String in json format
    */
   public void handleSaveUserList(String username, String jsonString) {
-    System.out.println("Trying to save user list");
+    System.out.println("Saving user list...");
     if (saveLoadHandler != null) {
       try {
         saveLoadHandler.setSaveFile(username);
