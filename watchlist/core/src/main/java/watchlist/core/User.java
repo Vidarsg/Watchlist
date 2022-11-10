@@ -120,27 +120,4 @@ public class User {
     Collections.reverse(movies);
   }
 
-  /**
-   * Method for filtering userlist based on genres or keywords.
-   *
-   * @param string Movie genre/keyword as a string.
-   */
-  public void filterUserlist(String string) {
-    for (Movie movie : movies) {
-      if (movie.getGenre() != null) {
-        for (String genre : movie.getGenre()) {
-          movies.stream().filter(f -> genre.contains(string.toLowerCase()))
-          .collect(Collectors.toList());
-        }
-      }
-      if (movie.getKeywords() != null) {
-        for (String keyword : movie.getKeywords()) {
-          movies.stream().filter(f -> keyword.contains(string.toLowerCase()))
-          .collect(Collectors.toList());
-        }
-      }
-    }
-    this.movies = movies.stream().distinct().collect(Collectors.toList());
-  }
-  
 }

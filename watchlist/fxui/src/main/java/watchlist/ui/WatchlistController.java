@@ -21,7 +21,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -109,8 +108,6 @@ public class WatchlistController {
   private Label profileUsername;
   @FXML
   private ComboBox<String> profileMovieSort;
-  @FXML
-  private TextField profileMovieFilter;
 
   @FXML
   private TextField unwatchMovieTitle;
@@ -163,18 +160,12 @@ public class WatchlistController {
     EventHandler<KeyEvent> handleAddFilter = new EventHandler<KeyEvent>() {
       @Override
       public void handle(KeyEvent key) {
-        System.out.println(key);
         if (browseMovieFilter.isFocused()) {
           addFiltertoWatchlist();
-          System.out.println("b");
-        } else if (profileMovieFilter.isFocused()) {
-          addFiltertoUserlist();
-          System.out.println("p");
         }
       }
     };
     browseMovieFilter.setOnKeyPressed(handleAddFilter);
-    profileMovieFilter.setOnKeyPressed(handleAddFilter);
 
     ratingSlider.valueProperty().addListener(new ChangeListener<Object>() {
       @Override
@@ -448,6 +439,9 @@ public class WatchlistController {
     }
   }
 
+  /**
+   * Updates the Graphical User Interface (GUI) of the profile-part of the application.
+   */
   private void updateProfileGui() {
     if (activeProfileMovie != null) {
       showInfo(activeProfileMovie, infoBoxProfile);
@@ -673,16 +667,8 @@ public class WatchlistController {
     handleLoadResourceList(movieResourceString);
     list.filterWatchlist(browseMovieFilter.getText());
     updateMoviebrowser();
-    updateBrowserGui();
-  }
-
-  /**
-   * Adds a new filter to the userlist.
-   */
-  public void addFiltertoUserlist() {
-    user.filterUserlist(profileMovieFilter.getText());
     updateWatchedMovies();
-    updateProfileGui();
+    updateGui();
   }
 
   // ! Help methods for GUI
