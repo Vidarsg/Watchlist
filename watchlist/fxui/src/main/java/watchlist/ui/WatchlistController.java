@@ -305,11 +305,20 @@ public class WatchlistController {
         if (m != null) {
           if (m.toString().equals(title)) {
             feedbackBoxBrowsing.setText("Watched movie " + m.toString());
-            user.watchMovie(m);
+            watchMovie(m);
           }
         }
       }
     }
+  }
+
+  /**
+   * Adding a movie to the users list of watched movies.
+   * 
+   * @param movie The movie to watch
+   */
+  public void watchMovie(Movie movie) {
+    user.watchMovie(movie);
     updateWatchedMovies();
     handleSaveUserList();
   }

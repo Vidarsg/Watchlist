@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -61,8 +62,6 @@ public class AppTest extends ApplicationTest {
     movie2 = fileContent.get(1);
   }
 
-  // TODO: Add a test for testing the possibility to add a movie to Watchlist?
-
   @Test
   @DisplayName("Testing the app setup")
   public void testAppSetup() {
@@ -100,13 +99,12 @@ public class AppTest extends ApplicationTest {
   @Test
   @DisplayName("Testing user watching a movie")
   public void testUnwatchMovie() {
-    final ListView<Movie> listView = lookup("#watchedMovies").query();
-    // TODO: Add movies (movie1 and movie2) to watchedMovies without using the
-    // watchMovie methods...
+    Platform.runLater(() -> {
+      this.controller.watchMovie(movie1);
+      this.controller.watchMovie(movie2);
+    });
 
-    // Temporary solution
-    testWatchMovie();
-    // ! Temporary solution
+    final ListView<Movie> listView = lookup("#watchedMovies").query();
 
     clickOn("#profileTab");
 
@@ -122,7 +120,10 @@ public class AppTest extends ApplicationTest {
   @Test
   @DisplayName("Testing user rating a movie")
   public void testRateMovie() {
-    testWatchMovie();
+    Platform.runLater(() -> {
+      this.controller.watchMovie(movie1);
+      this.controller.watchMovie(movie2);
+    });
 
     clickOn("#profileTab");
 
@@ -130,11 +131,11 @@ public class AppTest extends ApplicationTest {
 
     clickOn(listView.lookup(".list-cell"));
     clickOn("#ratingSlider");
-    assertEquals(6, listView.getItems().get(0).getUserRating());
+    assertEquals(6, watchlist.getList().get(0).getUserRating());
 
     moveBy(-50, 0);
     drag().dropBy(150, 0);
-    assertEquals(10, listView.getItems().get(0).getUserRating());
+    assertEquals(10, watchlist.getList().get(0).getUserRating());
   }
 
   /**
