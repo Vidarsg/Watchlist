@@ -246,7 +246,7 @@ public class WatchlistController {
   public void handleLoadResourceListHttp() {
     try {
       HttpClient client = HttpClient.newHttpClient();
-      HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "movies"))
+      HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/movies"))
           .GET()
           .build();
       HttpResponse<String> response = client.send(request,
@@ -287,7 +287,6 @@ public class WatchlistController {
       HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
       user.setMovies(objectMapper.readValue(response.body(), new TypeReference<>() {}));
       System.out.print("Succesfully loaded user's list from server.");
-      System.out.println(response.body());
     } catch (Exception e) {
       System.err.println("ERROR: Couldn't send GET request.");
       e.printStackTrace();
@@ -325,7 +324,6 @@ public class WatchlistController {
       HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
       if (response.statusCode() == 200) {
         System.out.print("Succesfully saved user's list to server.");
-        System.out.println(response.body());
       } else {
         System.out.println("Failed to load user file.");
       }
