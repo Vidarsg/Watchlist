@@ -103,7 +103,6 @@
                     <launcher>watchlistfx</launcher>
                     <jlinkImageName>watchlistfx</jlinkImageName>
                     <jlinkZipName>watchlistfx</jlinkZipName>
-
                 </configuration>
             </plugin>
             <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
@@ -129,6 +128,9 @@
                     <winShortcut>true</winShortcut>
                     <winMenu>true</winMenu>
                     <winMenuGroup>WatchlistApp</winMenuGroup>
+                    <!--macos options-->
+                    <mac-package-name>WatchlistApp</mac-package-name>
+                    <mac-bundle-name>WatchlistApp</mac-bundle-name>
                 </configuration>
             </plugin>
             <!-- Checkstyle -->
