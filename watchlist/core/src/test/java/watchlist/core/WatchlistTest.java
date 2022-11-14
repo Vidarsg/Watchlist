@@ -12,10 +12,12 @@ import org.junit.jupiter.api.Test;
 public class WatchlistTest {
   private Movie movie1;
   private Movie movie2;
+  private Movie movie3;
   private Watchlist watchlist;
 
+
   /**
-   * Setup for the tests.
+   * Setup method for WatchlistTest.
    */
   @BeforeEach
   public void setup() {
@@ -41,13 +43,25 @@ public class WatchlistTest {
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
         0);
+    movie3 = new Movie("Spotlight", 2015,
+        "The true story of how the Boston Globe uncovered the massive scandal"
+        + "of child molestation and cover-up within the local Catholic Archdiocese,"
+        + "shaking the entire Catholic Church to its core.",
+        List.of("investigation", "child molestation", "sexual abuse",
+        "catholic church", "cover up"),
+        8.1, 467884, List.of("Mark Ruffalo", "Michael Keaton", "Rachel McAdams"),
+        List.of("Tom McCarthy"),
+        List.of("Biography", "Crime", "Drama"),
+        "https://m.media-amazon.com/images/M/MV5BMjIyOTM5OTIzNV5BMl5BanBnXkFtZTgwMDkzODE2NjE@._V1_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMTc2ODAxMzQzOV5BMl5BanBnXkFtZTgwNjA4NjkyNzE@._V1_.jpg",
+        0);
   }
 
   @Test
   @DisplayName("Testing the Wathclist constructor")
   public void testConstructor() {
-    watchlist = new Watchlist(List.of(movie1, movie2));
-    assertEquals(List.of(movie1, movie2), watchlist.getList());
+    watchlist = new Watchlist(List.of(movie1, movie2, movie3));
+    assertEquals(List.of(movie1, movie2, movie3), watchlist.getList());
   }
 
   @Test
@@ -73,4 +87,59 @@ public class WatchlistTest {
     assertEquals(watchlist.getList().size(), 1);
     assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie1)));
   }
+
+  @Test
+  @DisplayName("Testing sortWatchlistByRating")
+  public void testSortWatchlistByRating() {
+    watchlist = new Watchlist(new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+
+    watchlist.sortWatchlistByRating();
+    assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie2, movie1, movie3)));
+  }
+
+  @Test
+  @DisplayName("Testing sortWatchlistByYear")
+  public void testSortWatchlistByYear() {
+    watchlist = new Watchlist(new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+
+    watchlist.sortWatchlistByYear();
+    assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+  }
+
+  @Test
+  @DisplayName("Testing sortWatchlistByName")
+  public void testSortWatchlistByName() {
+    watchlist = new Watchlist(new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+
+    watchlist.sortWatchlistByName();
+    assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie3, movie1, movie2)));
+  }
+
+  @Test
+  @DisplayName("Testing setList")
+  public void testSetList() {
+    watchlist = new Watchlist(new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+    assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+
+    watchlist.setList(new ArrayList<>(Arrays.asList(movie1, movie2)));
+    assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie1, movie2)));
+  }
+
+  /* @Test
+  @DisplayName("Testing filterWatchlist (by genre)")
+  public void testFilterWatchlistByGenre() {
+    watchlist = new Watchlist(new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+
+    watchlist.filterWatchlist("Western");
+    assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie1)));
+  }
+
+  @Test
+  @DisplayName("Testing filterWatchlist (by keyword)")
+  public void testFilterWatchlistByKeyword() {
+    watchlist = new Watchlist(new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+
+    watchlist.filterWatchlist("abuse");
+    assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie2, movie3)));
+  } */
 }

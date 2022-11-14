@@ -11,8 +11,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
-         <jupiter.version>5.8.1</jupiter.version>
-         <jackson.version>2.13.3</jackson.version>
+        <jupiter.version>5.8.1</jupiter.version>
+        <jackson.version>2.13.3</jackson.version>
         <skipUiTests>true</skipUiTests>
         <headlessTests>false</headlessTests>
     </properties>

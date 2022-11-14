@@ -18,7 +18,7 @@ public class UserTest {
   private ArrayList<String> movieNames = new ArrayList<String>();
 
   /**
-   * Setup for the tests.
+   * Setup method for UserTest.
    */
   @BeforeEach
   public void setup() {

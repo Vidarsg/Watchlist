@@ -49,7 +49,7 @@ public class AppTest extends ApplicationTest {
 
   /**
    * Setup for the tests.
-   * 
+   *
    * @throws IOException If the test json file does not exist
    */
   @BeforeEach
@@ -140,7 +140,7 @@ public class AppTest extends ApplicationTest {
 
   /**
    * Checks whether a listView consists of a list of Movies.
-   * 
+   *
    * @param listView The listview to compare
    * @param movie    The list of movies to compare to
    */
@@ -156,7 +156,7 @@ public class AppTest extends ApplicationTest {
 
   /**
    * Checks whether a watchlist consists of a list of Movies.
-   * 
+   *
    * @param watchlist The watchlist to compare
    * @param movie     The list of movies to compare to
    */
@@ -182,3 +182,4 @@ public class AppTest extends ApplicationTest {
     }
   }
 }
+

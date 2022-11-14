@@ -127,3 +127,6 @@ Text, TextField {
     -fx-pref-width: 0px;
     -fx-pref-height: 0px;
 }
+.combo-box .label {
+    -fx-text-fill: rgb(0, 0, 0);
+}
