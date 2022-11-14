@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 public class User {
   private String name;
   private List<Movie> movies = new ArrayList<Movie>();
-  private List<Movie> filteredMovies = new ArrayList<Movie>();
 
   /**
    * Creates a new User object with the given name.
@@ -44,15 +43,6 @@ public class User {
    */
   public List<Movie> getMovies() {
     return movies;
-  }
-
-  /**
-   * Get user's filtered movie list.
-   *
-   * @return filtered movies, a List of Movie objects.
-   */
-  public List<Movie> getFilteredMovies() {
-    return filteredMovies;
   }
 
   /**

@@ -92,7 +92,7 @@ public class Watchlist {
    * @param string Movie genre/keyword as a string.
    */
   public List<Movie> filterWatchlist(String string) {
-    ArrayList<Movie> filteredList = new ArrayList<Movie>();
+    List<Movie> filteredList = new ArrayList<Movie>();
     for (Movie m : list) {
       boolean contains = false;
       for (String g : m.getGenre()) {

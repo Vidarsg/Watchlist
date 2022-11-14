@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +16,7 @@ public class UserTest {
   private List<Movie> movies = new ArrayList<Movie>();
   private Movie movie1;
   private Movie movie2;
+  private Movie movie3;
   private ArrayList<String> movieNames = new ArrayList<String>();
 
   /**
@@ -45,6 +47,18 @@ public class UserTest {
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
         0);
+    movie3 = new Movie("Spotlight", 2015,
+        "The true story of how the Boston Globe uncovered the massive scandal"
+            + "of child molestation and cover-up within the local Catholic Archdiocese,"
+            + "shaking the entire Catholic Church to its core.",
+        List.of("investigation", "child molestation", "sexual abuse",
+            "catholic church", "cover up"),
+        8.1, 467884, List.of("Mark Ruffalo", "Michael Keaton", "Rachel McAdams"),
+        List.of("Tom McCarthy"),
+        List.of("Biography", "Crime", "Drama"),
+        "https://m.media-amazon.com/images/M/MV5BMjIyOTM5OTIzNV5BMl5BanBnXkFtZTgwMDkzODE2NjE@._V1_.jpg",
+        "https://m.media-amazon.com/images/M/MV5BMTc2ODAxMzQzOV5BMl5BanBnXkFtZTgwNjA4NjkyNzE@._V1_.jpg",
+        0);
     movies.add(movie1);
     movies.add(movie2);
     movieNames.add(movie1.getName());
@@ -56,6 +70,17 @@ public class UserTest {
   public void testGetName() {
     // Testing that getName works
     assertEquals("TestUser", user.getName());
+  }
+
+  @Test
+  @DisplayName("Testing setName")
+  public void testSetName() {
+    // Testing that user's name is TestUser
+    assertEquals("TestUser", user.getName());
+
+    // Testing that user's name is changed to TestUser2
+    user.setName("TestUser2");
+    assertEquals("TestUser2", user.getName());
   }
 
   @Test
@@ -112,5 +137,41 @@ public class UserTest {
 
     // Testing that user's list of movies is empty after unwatcing both movies
     assertTrue(user.getMovies().isEmpty());
+  }
+
+  @Test
+  @DisplayName("Testing sortUserlistByName")
+  public void testSortUserlistByName() {
+    // Setting user's list of movies
+    user.setMovies(movies);
+    user.watchMovie(movie3);
+
+    // Testing that user's list of movies is sorted by name
+    user.sortUserlistByName();
+    assertEquals(user.getMovies(), new ArrayList<>(Arrays.asList(movie3, movie1, movie2)));
+  }
+
+  @Test
+  @DisplayName("Testing sortUserlistByRating")
+  public void testSortUserlistByRating() {
+    // Setting user's list of movies
+    user.setMovies(movies);
+    user.watchMovie(movie3);
+
+    // Testing that user's list of movies is sorted by rating
+    user.sortUserlistByRating();
+    assertEquals(user.getMovies(), new ArrayList<>(Arrays.asList(movie2, movie1, movie3)));
+  }
+
+  @Test
+  @DisplayName("Testing sortUserlistByYear")
+  public void testSortUserlistByYear() {
+    // Setting user's list of movies
+    user.setMovies(movies);
+    user.watchMovie(movie3);
+
+    // Testing that user's list of movies is sorted by year
+    user.sortUserlistByYear();
+    assertEquals(user.getMovies(), new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
   }
 }

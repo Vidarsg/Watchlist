@@ -13,10 +13,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.stream.Collectors;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -168,12 +164,12 @@ public class WatchlistController {
       public void changed(
           ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
 
-          if (activeProfileMovie != null) {
-            activeProfileMovie.updateRating(oldValue.intValue() + 1, newValue.intValue() + 1);
-            updateRating(newValue.intValue());
-          }
+        if (activeProfileMovie != null) {
+          activeProfileMovie.updateRating(oldValue.intValue() + 1, newValue.intValue() + 1);
+          updateRating(newValue.intValue());
         }
-      });
+      }
+    });
 
     initialList = new Watchlist();
     movieResourceString = "movies";
@@ -313,7 +309,8 @@ public class WatchlistController {
   }
 
   /**
-   * Request movie resource file from rest server. If this fails, try to load local movie
+   * Request movie resource file from rest server. If this fails, try to load
+   * local movie
    * resource file.
    */
   public void handleLoadResourceListHttp() {
@@ -324,7 +321,8 @@ public class WatchlistController {
           .build();
       HttpResponse<String> response = client.send(request,
           HttpResponse.BodyHandlers.ofString());
-      list.setList(objectMapper.readValue(response.body(), new TypeReference<>() {}));
+      list.setList(objectMapper.readValue(response.body(), new TypeReference<>() {
+      }));
       System.out.print("Succesfully loaded movie resource from server.");
     } catch (Exception e) {
       System.err.println("ERROR: Couldn't send GET request.");
@@ -335,7 +333,8 @@ public class WatchlistController {
   }
 
   /**
-   * Loads the users local list into the application. If no list is saved locally for the user, the
+   * Loads the users local list into the application. If no list is saved locally
+   * for the user, the
    * method will create a new one.
    */
   private void handleLoadUserList() {
@@ -358,7 +357,8 @@ public class WatchlistController {
       HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/user/" + username))
           .GET().build();
       HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-      user.setMovies(objectMapper.readValue(response.body(), new TypeReference<>() {}));
+      user.setMovies(objectMapper.readValue(response.body(), new TypeReference<>() {
+      }));
       System.out.print("Succesfully loaded user's list from server.");
     } catch (Exception e) {
       System.err.println("ERROR: Couldn't send GET request.");

@@ -15,7 +15,6 @@ public class WatchlistTest {
   private Movie movie3;
   private Watchlist watchlist;
 
-
   /**
    * Setup method for WatchlistTest.
    */
@@ -45,10 +44,10 @@ public class WatchlistTest {
         0);
     movie3 = new Movie("Spotlight", 2015,
         "The true story of how the Boston Globe uncovered the massive scandal"
-        + "of child molestation and cover-up within the local Catholic Archdiocese,"
-        + "shaking the entire Catholic Church to its core.",
+            + "of child molestation and cover-up within the local Catholic Archdiocese,"
+            + "shaking the entire Catholic Church to its core.",
         List.of("investigation", "child molestation", "sexual abuse",
-        "catholic church", "cover up"),
+            "catholic church", "cover up"),
         8.1, 467884, List.of("Mark Ruffalo", "Michael Keaton", "Rachel McAdams"),
         List.of("Tom McCarthy"),
         List.of("Biography", "Crime", "Drama"),
@@ -125,21 +124,23 @@ public class WatchlistTest {
     assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie1, movie2)));
   }
 
-  /* @Test
+  @Test
   @DisplayName("Testing filterWatchlist (by genre)")
   public void testFilterWatchlistByGenre() {
     watchlist = new Watchlist(new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+    List<Movie> filteredWatchlist = new ArrayList<Movie>();
 
-    watchlist.filterWatchlist("Western");
-    assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie1)));
+    filteredWatchlist = watchlist.filterWatchlist("Western");
+    assertEquals(filteredWatchlist, new ArrayList<>(Arrays.asList(movie1)));
   }
 
   @Test
   @DisplayName("Testing filterWatchlist (by keyword)")
   public void testFilterWatchlistByKeyword() {
     watchlist = new Watchlist(new ArrayList<>(Arrays.asList(movie1, movie2, movie3)));
+    List<Movie> filteredWatchlist = new ArrayList<Movie>();
 
-    watchlist.filterWatchlist("abuse");
-    assertEquals(watchlist.getList(), new ArrayList<>(Arrays.asList(movie2, movie3)));
-  } */
+    filteredWatchlist = watchlist.filterWatchlist("abuse");
+    assertEquals(filteredWatchlist, new ArrayList<>(Arrays.asList(movie2, movie3)));
+  }
 }
