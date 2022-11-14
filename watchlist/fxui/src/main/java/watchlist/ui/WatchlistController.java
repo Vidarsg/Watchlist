@@ -33,7 +33,8 @@ import watchlist.core.User;
 import watchlist.core.Watchlist;
 import watchlist.json.SaveLoadHandler;
 
-/** Controller for app window.
+/**
+ * Controller for app window.
  *
  * @author IT1901 gruppe 63
  */
@@ -140,7 +141,6 @@ public class WatchlistController {
   private Text infoActorsProfile;
   // ! PROFILE FIELDS
 
-
   /**
    * Runs watchlist.fxml and creates new user and watchlist object.
    */
@@ -149,26 +149,26 @@ public class WatchlistController {
     list = new Watchlist();
     initialList = new Watchlist();
     movieResourceString = "movies";
-    //handleLoadResourceList(movieResource);
+    // handleLoadResourceList(movieResource);
     handleLoadResourceList(movieResourceString);
+    initialList.sortWatchlistByRating();
     list.setList(initialList.getList());
 
     ObservableList<String> sortValues = FXCollections
         .observableArrayList("Title", "Year", "Rating");
     browseMovieSort.getItems().setAll(sortValues);
-    browseMovieSort.setValue(sortValues.get(0));
+    browseMovieSort.setValue(sortValues.get(2));
     profileMovieSort.getItems().setAll(sortValues);
-    profileMovieSort.setValue(sortValues.get(0));
+    profileMovieSort.setValue(sortValues.get(2));
 
-    EventHandler<KeyEvent> handleAddFilter = new EventHandler<KeyEvent>() {
+    browseMovieFilter.setOnKeyPressed(new EventHandler<KeyEvent>() {
       @Override
       public void handle(KeyEvent key) {
         if (browseMovieFilter.isFocused()) {
-          addFiltertoWatchlist();
+          addFiltertoWatchlist(browseMovieFilter.getText() + key.getText());
         }
       }
-    };
-    browseMovieFilter.setOnKeyPressed(handleAddFilter);
+    });
 
     ratingSlider.valueProperty().addListener(new ChangeListener<Object>() {
       @Override
@@ -214,10 +214,11 @@ public class WatchlistController {
    * ListView.getSelectionModel().selectedItemProperty().removeListener(ChangeListener);
    * </pre>
    *
-   * @param listView The ListView where the items are located
+   * @param listView  The ListView where the items are located
    * @param textField The corresponding TextField to keep track of selected item
-   * @param button The corresponding Button to watch/unwatch movies
-   * @return A ChangeListener to use in the methods addListener() and removeListener()
+   * @param button    The corresponding Button to watch/unwatch movies
+   * @return A ChangeListener to use in the methods addListener() and
+   *         removeListener()
    */
   private ChangeListener<String> generateListener(
       ListView<String> listView, TextField textField, Button button) {
@@ -254,7 +255,6 @@ public class WatchlistController {
     };
   }
 
-
   // Methods for file handling
 
   /**
@@ -263,9 +263,9 @@ public class WatchlistController {
    * @param filename The file to load the list from
    */
   private void handleLoadResourceList(String filename) {
-    try (InputStream inputStream =
-        WatchlistController.class.getResourceAsStream(filename + ".json")) {
-      initialList.setList(objectMapper.readValue(inputStream, new TypeReference<>() {}));
+    try (InputStream inputStream = WatchlistController.class.getResourceAsStream(filename + ".json")) {
+      initialList.setList(objectMapper.readValue(inputStream, new TypeReference<>() {
+      }));
       list.setList(initialList.getList());
     } catch (Exception e) {
       e.printStackTrace();
@@ -273,7 +273,8 @@ public class WatchlistController {
   }
 
   /**
-   * Loads the users local list into the application. If no list is saved locally for the user, the
+   * Loads the users local list into the application. If no list is saved locally
+   * for the user, the
    * method will create a new one.
    */
   private void handleLoadUserList() {
@@ -304,7 +305,6 @@ public class WatchlistController {
   }
 
   // ! Methods for file handling
-
 
   // Handle methods for browsing
 
@@ -342,29 +342,29 @@ public class WatchlistController {
   public void changeSortingInBrowser() {
     if (browseMovieSort.getValue() == "Title") {
       initialList.sortWatchlistByName();
-      list.setList(initialList.getList());
+      list.sortWatchlistByName();
     }
     if (browseMovieSort.getValue() == "Year") {
       initialList.sortWatchlistByYear();
-      list.setList(initialList.getList());
+      list.sortWatchlistByYear();
     }
     if (browseMovieSort.getValue() == "Rating") {
       initialList.sortWatchlistByRating();
-      list.setList(initialList.getList());
+      list.sortWatchlistByRating();
     }
     updateMoviebrowser();
     updateBrowserGui();
   }
-  
-  // ! Handle methods for browsing
 
+  // ! Handle methods for browsing
 
   // Handle methods for profile
 
   /*
    * <i>*FXML-method*</i>
    * <p>
-   * Marks a movie from the Watchlist browser as <b>not</b> watched by the user and removes it from
+   * Marks a movie from the Watchlist browser as <b>not</b> watched by the user
+   * and removes it from
    * the users personal list of watched movies.
    * </p>
    */
@@ -402,7 +402,6 @@ public class WatchlistController {
 
   // ! Handle methods for profile
 
-
   // Help methods for GUI
 
   /**
@@ -426,7 +425,8 @@ public class WatchlistController {
   }
 
   /**
-   * Updates the Graphical User Interface (GUI) of the browser-part of the application.
+   * Updates the Graphical User Interface (GUI) of the browser-part of the
+   * application.
    */
   private void updateBrowserGui() {
     if (activeBrowserMovie != null) {
@@ -439,15 +439,17 @@ public class WatchlistController {
    */
   private void updateMoviebrowser() {
     if (list.getList().size() > 0) {
+
       moviebrowser.setItems(FXCollections
           .observableArrayList(
-            list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
+              list.getList().stream().map(x -> x.toString()).collect(Collectors.toList())));
       setListeners(moviebrowser);
     }
   }
 
   /**
-   * Updates the Graphical User Interface (GUI) of the profile-part of the application.
+   * Updates the Graphical User Interface (GUI) of the profile-part of the
+   * application.
    */
   private void updateProfileGui() {
     if (activeProfileMovie != null) {
@@ -462,7 +464,7 @@ public class WatchlistController {
     if (user.getMovies().size() > 0) {
       watchedMovies.setItems(FXCollections
           .observableArrayList(
-            user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
+              user.getMovies().stream().map(x -> x.toString()).collect(Collectors.toList())));
       setListeners(watchedMovies);
       feedbackBoxProfile.setText("");
     } else {
@@ -478,7 +480,8 @@ public class WatchlistController {
    * </p>
    *
    * <p>
-   * The pane which the movie will be displayed has to have this configuration of children:
+   * The pane which the movie will be displayed has to have this configuration of
+   * children:
    * </p>
    * <ol>
    * <li>
@@ -562,8 +565,8 @@ public class WatchlistController {
    * </ol>
    *
    * @param movie The movie to display
-   * @param pane The Pane where the movie should be displayed.
-   *        Has to match the criterias for a display-pane.
+   * @param pane  The Pane where the movie should be displayed.
+   *              Has to match the criterias for a display-pane.
    */
   private void showInfo(Movie movie, Pane pane) {
     if (movie == null) {
@@ -591,7 +594,7 @@ public class WatchlistController {
       year.setText(String.valueOf(movie.getYear()));
       desc.setText(movie.getDescription());
       Text rating = (Text) f.get(4);
-      rating.setText(movie.getRating() + "/10 (" + movie.getRatingCount() +  ")");
+      rating.setText(movie.getRating() + "/10 (" + movie.getRatingCount() + ")");
 
       StringBuilder sb = new StringBuilder();
       if (movie.getDirectors().size() > 0) {
@@ -653,9 +656,11 @@ public class WatchlistController {
   }
 
   /**
-   * Used to add listeners to a listView based on which ListView it is being called upon.
+   * Used to add listeners to a listView based on which ListView it is being
+   * called upon.
    *
-   * @param listView The ListView where the listeners are to be set to each list item
+   * @param listView The ListView where the listeners are to be set to each list
+   *                 item
    */
   private void setListeners(ListView<String> listView) {
     if (listView.equals(watchedMovies)) {
@@ -670,19 +675,10 @@ public class WatchlistController {
   /**
    * Adds a new filter to the watchlist.
    */
-  public void addFiltertoWatchlist() {
-    handleLoadResourceList(movieResourceString);
-    list.filterWatchlist(browseMovieFilter.getText());
+  public void addFiltertoWatchlist(String filter) {
+    list.setList(initialList.filterWatchlist(filter));
     updateMoviebrowser();
-    updateWatchedMovies();
     updateGui();
-  }
-
-  /**
-   * Sets the shown list back to the initial list.
-   */
-  public void resetToInitialList() {
-    list.setList(initialList.getList());
   }
 
   // ! Help methods for GUI

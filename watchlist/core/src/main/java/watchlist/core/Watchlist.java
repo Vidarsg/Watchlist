@@ -3,9 +3,9 @@ package watchlist.core;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-/** Represents the list of movies that can be watched.
+/**
+ * Represents the list of movies that can be watched.
  *
  * @author IT1901 gruppe 63
  */
@@ -85,26 +85,33 @@ public class Watchlist {
     Collections.sort(list, (m1, m2) -> Double.compare(m1.getRating(), m2.getRating()));
     Collections.reverse(list);
   }
-  
+
   /**
    * Method for filtering watchlist based on genres or keywords.
    *
    * @param string Movie genre/keyword as a string.
    */
-  public void filterWatchlist(String string) {
-    for (Movie movie : list) {
-      if (movie.getGenre() != null) {
-        for (String genre : movie.getGenre()) {
-          list.stream().filter(f -> genre.contains(string.toLowerCase()))
-          .collect(Collectors.toList());
+  public List<Movie> filterWatchlist(String string) {
+    ArrayList<Movie> filteredList = new ArrayList<Movie>();
+    for (Movie m : list) {
+      boolean contains = false;
+      for (String g : m.getGenre()) {
+        if (!contains) {
+          if (g.toLowerCase().contains(string.toLowerCase())) {
+            filteredList.add(m);
+            contains = true;
+          }
         }
       }
-      if (movie.getKeywords() != null) {
-        for (String keyword : movie.getKeywords()) {
-          list.stream().filter(f -> keyword.contains(string.toLowerCase()))
-          .collect(Collectors.toList());
+      for (String k : m.getKeywords()) {
+        if (!contains) {
+          if (k.toLowerCase().contains(string.toLowerCase())) {
+            filteredList.add(m);
+            contains = true;
+          }
         }
       }
     }
+    return filteredList;
   }
 }
