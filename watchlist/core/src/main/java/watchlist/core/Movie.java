@@ -29,7 +29,7 @@ public class Movie {
 
   /**
    * Creates a new movie object with the given parameters.
-   * 
+   *
    * @param name        Movie title
    * @param year        Published year
    * @param description Description of movie
@@ -176,7 +176,7 @@ public class Movie {
 
   /**
    * Adds a rating to this movie and calculates the new rating.
-   * 
+   *
    * @param rating The new rating from the user
    */
   public void rate(int rating) {
@@ -189,7 +189,7 @@ public class Movie {
 
   /**
    * Updates an users rating of the movie without making a new rating.
-   * 
+   *
    * @param oldValue The last rating from the user
    * @param newValue The new rating from the user
    */
