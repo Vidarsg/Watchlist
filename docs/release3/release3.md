@@ -19,3 +19,7 @@ JPackage komprimerer filene fra JLink til en enkelt installeringsfil basert på 
 Det skal nevnes at vi ikke fikk bildene til å laste inn i applikasjonen. Da forelesningen kom relativt tett på innleveringsfristen, rakk vi ikke å fikse opp i dette problemet. Vi brukte noe tid til å diskutere hvordan dette potensielt kunne blitt fikset.
 
 Én tanke er at vi kunne lagret bildene lokalt i appen, men vi anså dette som mindre gunstig med tanke på programmets størrelse. En annen idé var å bruke caching til å hente inn bilder i bolker for å sikre at de filmene som vises for brukeren er lastet inn, for så å laste inn bildene fortløpende i bakgrunnen. Da denne delen av innleveringen virket mindre viktig valgte vi heller å bruke tiden på andre mer sentrale utviklingsoppgaver.
+
+## Sekvensdiagram
+
+![Sekvensdiagram](images/sekvensdiagram.png)
