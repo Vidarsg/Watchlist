@@ -16,6 +16,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -653,10 +654,13 @@ public class WatchlistController {
       if (movie.getGenre().size() > 0) {
         for (String g : movie.getGenre()) {
           Label l = new Label(g);
-          // TODO: Add onClick event to perform filtering of movies
-          // l.setOnMouseClicked(new EventHandler<Event>() {
-          // list.filterWatchlistByGenre(g);
-          // });
+          l.setOnMouseClicked(new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+              browseMovieFilter.setText(g);
+              addFiltertoWatchlist(g);
+            }
+          });
 
           genre.getChildren().add(l);
           Text t = new Text(" - ");
