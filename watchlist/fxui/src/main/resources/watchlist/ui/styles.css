@@ -68,15 +68,8 @@ Label {
     -fx-text-fill: #fff;
 }
 
-@font-face {
-    font-family: 'Haettenschweiler';
-    src: url('fonts/Haettenschweiler-Regular.ttf');
-}
-
 #logo {
     -fx-text-fill:#ff9900;
-    -fx-font-family: 'Haettenschweiler';
-    -fx-font-size: 96px;
 }
 
 

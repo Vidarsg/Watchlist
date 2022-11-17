@@ -121,7 +121,7 @@ public class Movie {
   /**
    * Returns a string with 1000 (k) or 1000000 (M) appended to the ratingCount
    * if it is above 1000 or 1000000.
-   * 
+   *
    * @return RatingCount as a String with " ratings" appended
    */
   public String ratingCountToString() {
