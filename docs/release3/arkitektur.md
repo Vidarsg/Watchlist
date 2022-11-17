@@ -22,6 +22,11 @@ I ui-modulen har vi endret på hvordan innlastingen av filmer skjer. Det er fort
 
 Vi valgte å bruke spring-boot rammeverket til å implementere REST-serveren, da vi syntes dette virket som et rammeverk som var enkelt og forstå og med gode læringsressurser tilgjengelig. Modulen består av tre klasser, og har støtte for 3 forskjellige Http requests. Vi har to GET-metoder, én for å laste inn filmdatabasen (kalles i WatchlistPersistence.loadMovieListHttp()), og én for å laste inn en brukers sette filmer (kalles i SaveLoadHandler.loadUserListHttp()). Det er også en PUT metode, som lagrer brukerens sette filmer (kalles fra SaveLoadHandler.saveUserListHttp()).
 
+De forskjellige typene REST-forespørsler som kan sendes er:
+
+GET /movies
+GET user/{username}
+PUT user/{username}
 
 ## Diagram
 
