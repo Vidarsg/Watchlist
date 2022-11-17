@@ -1,6 +1,6 @@
 @startuml klassediagram
 
-title Klassediagram
+title Klassediagram - Watchlist
 
 
 class Movie {
@@ -16,17 +16,22 @@ class Movie {
     -String imageUrl
     -String thumbUrl
     -int userRating
+    +String ratingCountToString()
     +boolean equals(Object o)
     +int hashCode()
     +String toString()
     +void rate(int rating)
-    +void updateRating(int oldValue, int newValue)
+    -void updateRating(int oldValue, int newValue)
 }
 
 class Watchlist {
     -List<Movie> list
     +void addMovie(Movie movie)
     +void removeMovie(Movie movie)
+    +void sortWatchlistByName()
+    +void sortWatchlistByYear()
+    +void sortWatchlistByRating()
+    +List<Movie> filterWatchlist(String string)
 }
 
 class User {
@@ -35,15 +40,28 @@ class User {
     +ArrayList<String> getMovieNames()
     +void watchMovie(Movie movie)
     +boolean unwatchMovie(String title)
+    +void sortUserlistByName()
+    +void sortUserlistByYear()
+    +void sortUserlistByRating()
 }
 
 class SaveLoadHandler {
     -Path saveFilePath
     -ObjectMapper objectMapper
     -ObjectWriter objectWriter
+    -String serverUrl
     +List<Movie> loadUserList()
+    +List<Movie> loadUserListHttp(String username)
     +void saveUserList(List<Movie> movieList)
+    +void saveUserListHttp(String username, List<Movie> movieList)
     +void setSaveFile(String filename)
+}
+
+class WatchlistPersistence {
+    -String serverUrl
+    -ObjectMapper objectMapper
+    +List<Movie> loadMovieList(String movieResource)
+    +List<Movie> loadMovieListHttp()
 }
 
 class WatchlistApp {
@@ -54,27 +72,24 @@ class WatchlistApp {
 class WatchlistController {
     -User user
     -Watchlist list
+    -Watchlist initialList
     -SaveLoadHandler saveLoadHandler
-    -ObjectMapper objectMapper
+    -WatchlistPersistence persistence
     -Movie activeBrowserMovie
     -Movie activeProfileMovie
     -ChangeListener<Movie> browserChangeListener
     -ChangeListener<Movie> profileChangeListener
-
-    'Her er det egentlig mange private fields fra FXMLen
-
     +void initialize()
     -ChangeListener<Movie> generateListener(ListView<Movie> listView, TextField textField, Button button)
     +void setUsername(String name)
-    +void handleLoadResourceList(String filename)
-    +void handleLoadResourceListHttp()
-    +void handleLoadUserList()
-    +void handleLoadUserListHttp(String username)
-    +void handleSaveUserList()
-    +void handleSaveUserListHttp(String username)
+    -void handleLoadResourceList(String resource)
+    -void handleLoadUserList()
+    -void handleSaveUserList()
     void handleWatchMovie()
     +void watchMovie(Movie movie)
+    +void changeSortingInBrowser()
     void handleUnwatchMovie()
+    +void changeSortingInProfile()
     -void updateGui()
     -void updateBrowserGui()
     -void updateMoviebrowser()
@@ -83,16 +98,20 @@ class WatchlistController {
     -void showInfo(Movie movie, Pane pane)
     -void updateRating(int value)
     -void setListeners(ListView<Movie> listView)
+    +void addFiltertoWatchlist(String filter)
 }
+note top
+    I denne klassen er det i tillegg en mengde attributter tilknyttet FXML.
+    Det ble tatt en vurdering på at det var best å droppe disse fra klassediagrammet.
+end note
 
 class LoginController {
     -Button exit
     -Button login
     -TextField name
     -Label invalidInput
+    -Label logo
     +void initialize()
-    +void run()
-    +void handle(KeyEvent key)
     +void onSubmit()
 }
 
