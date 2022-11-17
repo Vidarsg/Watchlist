@@ -118,6 +118,25 @@ public class Movie {
     return ratingCount;
   }
 
+  /**
+   * Returns a string with 1000 (k) or 1000000 (M) appended to the ratingCount
+   * if it is above 1000 or 1000000.
+   * 
+   * @return RatingCount as a String with " ratings" appended
+   */
+  public String ratingCountToString() {
+    if (ratingCount == 0) {
+      return "No ratings";
+    }
+    if (ratingCount > 1000000) {
+      return (ratingCount / 1000000) + "M ratings";
+    }
+    if (ratingCount >= 1000) {
+      return (ratingCount / 1000) + "k ratings";
+    }
+    return ratingCount + " ratings";
+  }
+
   public List<String> getActors() {
     return new ArrayList<String>(actors);
   }
@@ -180,11 +199,16 @@ public class Movie {
    * @param rating The new rating from the user
    */
   public void rate(int rating) {
-    double count = (this.ratingCount / this.rating) + 1;
-    this.ratingCount += rating;
-    this.rating = ratingCount / count;
+    if (this.userRating == 0) {
+      // rating = 9, ratingCount = 9, this.rating = 5.0
+      this.ratingCount++;
+      // 5.0 9 9 10
+      this.rating = (this.rating * (this.ratingCount - 1) + rating) / this.ratingCount;
 
-    this.userRating = rating;
+      this.userRating = rating;
+    } else {
+      updateRating(this.userRating, rating);
+    }
   }
 
   /**
@@ -193,10 +217,8 @@ public class Movie {
    * @param oldValue The last rating from the user
    * @param newValue The new rating from the user
    */
-  public void updateRating(int oldValue, int newValue) {
-    double count = (this.ratingCount / this.rating);
-    this.ratingCount += (newValue - oldValue);
-    this.rating = ratingCount / count;
+  private void updateRating(int oldValue, int newValue) {
+    this.rating = (this.rating * this.ratingCount + (newValue - oldValue)) / this.ratingCount;
 
     this.userRating = newValue;
   }

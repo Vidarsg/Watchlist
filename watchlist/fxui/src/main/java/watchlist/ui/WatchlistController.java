@@ -159,18 +159,6 @@ public class WatchlistController {
     list = new Watchlist();
     handleLoadResourceListHttp();
 
-    ratingSlider.valueProperty().addListener(new ChangeListener<Number>() {
-      @Override
-      public void changed(
-          ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-        if (activeProfileMovie != null) {
-          activeProfileMovie.updateRating(oldValue.intValue() + 1, newValue.intValue() + 1);
-          updateRating(newValue.intValue());
-        }
-      }
-    });
-
     initialList = new Watchlist();
     movieResourceString = "movies";
     // handleLoadResourceList(movieResource);
@@ -199,7 +187,7 @@ public class WatchlistController {
       public void changed(ObservableValue<? extends Number> observable,
           Number oldValue, Number newValue) {
         if (activeBrowserMovie != null) {
-          activeBrowserMovie.updateRating(oldValue.intValue() + 1, newValue.intValue());
+          activeBrowserMovie.rate(newValue.intValue() + 1);
           updateRating(newValue.intValue());
         } else {
           ratingSlider.setDisable(true);
@@ -620,7 +608,7 @@ public class WatchlistController {
       desc.setText(movie.getDescription());
       Text rating = (Text) f.get(4);
       rating.setText(movie.getRating() + "/10 ("
-          + Math.ceil(movie.getRatingCount() / movie.getRating()) + ")");
+          + movie.ratingCountToString() + ")");
 
       StringBuilder sb = new StringBuilder();
       if (movie.getDirectors().size() > 0) {
@@ -672,6 +660,7 @@ public class WatchlistController {
       if (pane.equals(infoBoxProfile)) {
         if (movie.getUserRating() > 0) {
           ratingSlider.setValue(movie.getUserRating() - 1);
+          updateRating(movie.getUserRating());
         } else {
           ratingSlider.setValue(0);
           updateRating(-1);
@@ -689,7 +678,7 @@ public class WatchlistController {
     ObservableList<Node> child = ratingStars.getChildren();
     for (int i = 0; i < child.size(); i++) {
       if (child.get(i).getClass().equals(SVGPath.class)) {
-        if (i <= value) {
+        if (i < value) {
           child.get(i).setStyle("-fx-fill: #ff0;");
         } else {
           child.get(i).setStyle("-fx-fill: #0000;");
