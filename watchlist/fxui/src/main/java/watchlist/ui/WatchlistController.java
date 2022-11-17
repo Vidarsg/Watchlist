@@ -284,7 +284,7 @@ public class WatchlistController {
       } catch (Exception localLoadException) {
         System.err.println("Couldn't load movie resource locally."
             + "\nLoading movie resource failed.");
-        localLoadException.printStackTrace();
+        //localLoadException.printStackTrace();
       }
       System.out.println("Couldn't load movie resource from server.");
     }
@@ -307,7 +307,7 @@ public class WatchlistController {
       } catch (Exception localLoadException) {
         System.err.println("Couldn't load user list locally"
             + "Loading user list failed.");
-        localLoadException.printStackTrace();
+        //localLoadException.printStackTrace();
       }
       System.out.println("Couldn't load user list from server");
     }
@@ -329,8 +329,11 @@ public class WatchlistController {
       try {
         saveLoadHandler.saveUserList(user.getMovies());
       } catch (IOException localLoadException) {
-        localLoadException.printStackTrace();
+        System.err.println("Couldn't save user list locally"
+            + "saving user list failed.");
+        //localLoadException.printStackTrace();
       }
+      System.out.println("Couldn't save user list to server");
     }
   }
 

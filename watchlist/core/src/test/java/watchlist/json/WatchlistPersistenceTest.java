@@ -1,19 +1,15 @@
 package watchlist.json;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import watchlist.core.Movie;
-
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.github.tomakehurst.wiremock.WireMockServer;
-
-import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +17,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import watchlist.core.Movie;
 
 public class WatchlistPersistenceTest {
 
