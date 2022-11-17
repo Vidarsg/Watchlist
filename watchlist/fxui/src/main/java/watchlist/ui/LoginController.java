@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -29,6 +30,8 @@ public class LoginController {
   private TextField name;
   @FXML
   private Label invalidInput;
+  @FXML
+  private Label logo;
 
   /**
    * Runs login.fxml and sets TextField in focus when the window is opened.
@@ -53,7 +56,9 @@ public class LoginController {
       }
 
     });
-
+    Font logoFont = Font.loadFont(WatchlistApp.class.getResourceAsStream(
+        "fonts/Haettenschweiler-Regular.ttf"), 96);
+    logo.setFont(logoFont);
     invalidInput.setVisible(false);
   }
 

@@ -1,17 +1,6 @@
 package watchlist.ui;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.BodyPublishers;
-import java.net.http.HttpResponse;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -38,6 +27,7 @@ import watchlist.core.Movie;
 import watchlist.core.User;
 import watchlist.core.Watchlist;
 import watchlist.json.SaveLoadHandler;
+import watchlist.json.WatchlistPersistence;
 
 /**
  * Controller for app window.
@@ -49,11 +39,9 @@ public class WatchlistController {
   private Watchlist list;
   private Watchlist initialList;
   private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
-  private ObjectMapper objectMapper = new ObjectMapper();
+  private WatchlistPersistence persistence = new WatchlistPersistence();
   private Movie activeBrowserMovie;
   private Movie activeProfileMovie;
-
-  private String movieResourceString;
 
   @FXML
   private String movieResource;
@@ -157,33 +145,19 @@ public class WatchlistController {
   public void initialize() {
     user = new User("TestUser");
     list = new Watchlist();
-    handleLoadResourceListHttp();
-
-    ratingSlider.valueProperty().addListener(new ChangeListener<Number>() {
-      @Override
-      public void changed(
-          ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-        if (activeProfileMovie != null) {
-          activeProfileMovie.updateRating(oldValue.intValue() + 1, newValue.intValue() + 1);
-          updateRating(newValue.intValue());
-        }
-      }
-    });
+    // handleLoadResourceListHttp();
 
     initialList = new Watchlist();
-    movieResourceString = "movies";
-    // handleLoadResourceList(movieResource);
-    handleLoadResourceList(movieResourceString);
+    handleLoadResourceList(movieResource);
     initialList.sortWatchlistByRating();
     list.setList(initialList.getList());
 
     ObservableList<String> sortValues = FXCollections
-        .observableArrayList("Title", "Year", "Rating");
+        .observableArrayList("Movie Rating", "Release Year", "Movie Title");
     browseMovieSort.getItems().setAll(sortValues);
-    browseMovieSort.setValue(sortValues.get(2));
+    browseMovieSort.getSelectionModel().selectFirst();
     profileMovieSort.getItems().setAll(sortValues);
-    profileMovieSort.setValue(sortValues.get(2));
+    profileMovieSort.getSelectionModel().selectFirst();
 
     browseMovieFilter.setOnKeyPressed(new EventHandler<KeyEvent>() {
       @Override
@@ -198,8 +172,8 @@ public class WatchlistController {
       @Override
       public void changed(ObservableValue<? extends Number> observable,
           Number oldValue, Number newValue) {
-        if (activeBrowserMovie != null) {
-          activeBrowserMovie.updateRating(oldValue.intValue() + 1, newValue.intValue());
+        if (activeProfileMovie != null) {
+          activeProfileMovie.rate(newValue.intValue() + 1);
           updateRating(newValue.intValue());
         } else {
           ratingSlider.setDisable(true);
@@ -264,7 +238,7 @@ public class WatchlistController {
               button.setDisable(false);
 
               if (listView.equals(watchedMovies)) {
-                activeProfileMovie = activeMovie;
+                activeProfileMovie = newValue;
               } else {
                 activeBrowserMovie = activeMovie;
               }
@@ -287,49 +261,32 @@ public class WatchlistController {
     user = new User(name);
     browseUsername.setText(name);
     profileUsername.setText(name);
-    handleLoadUserListHttp(name);
+    handleLoadUserList();
     updateWatchedMovies();
   }
 
   // Methods for file handling
 
   /**
-   * Loads a files content as the content of the Watchlist's list of movies.
+   * Loads the database of movies into the user interface.
+   * First, the method tries to load the resource from the server.
+   * If this fails, it tries to load the file locally.
    *
-   * @param filename The file to load the list from
+   * @param filename The file to load the list from.
    */
-  private void handleLoadResourceList(String filename) {
-    try (InputStream inputStream = WatchlistController.class
-        .getResourceAsStream(filename + ".json")) {
-      initialList.setList(objectMapper.readValue(inputStream, new TypeReference<>() {
-      }));
-      list.setList(initialList.getList());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * Request movie resource file from rest server. If this fails, try to load
-   * local movie
-   * resource file.
-   */
-  public void handleLoadResourceListHttp() {
+  private void handleLoadResourceList(String resource) {
     try {
-      HttpClient client = HttpClient.newHttpClient();
-      HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/movies"))
-          .GET()
-          .build();
-      HttpResponse<String> response = client.send(request,
-          HttpResponse.BodyHandlers.ofString());
-      list.setList(objectMapper.readValue(response.body(), new TypeReference<>() {
-      }));
-      System.out.print("Succesfully loaded movie resource from server.");
-    } catch (Exception e) {
-      System.err.println("ERROR: Couldn't send GET request.");
-      e.printStackTrace();
-      System.out.println("Trying to load local movie resource instead.");
-      handleLoadResourceList(movieResource);
+      initialList.setList(persistence.loadMovieListHttp());
+    } catch (Exception httpException) {
+      System.err.println("Couldn't load movie resource from server.");
+      try {
+        initialList.setList(persistence.loadMovieList(resource));
+      } catch (Exception localLoadException) {
+        System.err.println("Couldn't load movie resource locally."
+            + "\nLoading movie resource failed.");
+        localLoadException.printStackTrace();
+      }
+      System.out.println("Couldn't load movie resource from server.");
     }
   }
 
@@ -339,33 +296,20 @@ public class WatchlistController {
    * method will create a new one.
    */
   private void handleLoadUserList() {
-    if (saveLoadHandler.getSaveFilePath() == null) {
-      saveLoadHandler.setSaveFile(user.getName());
-    }
     try {
-      user.setMovies(saveLoadHandler.loadUserList());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * Request user's file from rest server. If this fails, try to load local file.
-   */
-  public void handleLoadUserListHttp(String username) {
-    try {
-      HttpClient client = HttpClient.newHttpClient();
-      HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/user/" + username))
-          .GET().build();
-      HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-      user.setMovies(objectMapper.readValue(response.body(), new TypeReference<>() {
-      }));
-      System.out.print("Succesfully loaded user's list from server.");
-    } catch (Exception e) {
-      System.err.println("ERROR: Couldn't send GET request.");
-      e.printStackTrace();
-      System.out.println("Trying to load user's list locally instead.");
-      handleLoadUserList();
+      user.setMovies(saveLoadHandler.loadUserListHttp(user.getName()));
+    } catch (Exception httpException) {
+      if (saveLoadHandler.getSaveFilePath() == null) {
+        saveLoadHandler.setSaveFile(user.getName());
+      }
+      try {
+        user.setMovies(saveLoadHandler.loadUserList());
+      } catch (Exception localLoadException) {
+        System.err.println("Couldn't load user list locally"
+            + "Loading user list failed.");
+        localLoadException.printStackTrace();
+      }
+      System.out.println("Couldn't load user list from server");
     }
   }
 
@@ -379,33 +323,14 @@ public class WatchlistController {
       saveLoadHandler.setSaveFile(user.getName());
     }
     try {
-      saveLoadHandler.saveUserList(user.getMovies());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * Request user's file from rest server. If this fails, try to load local file.
-   */
-  public void handleSaveUserListHttp(String username) {
-    try {
-      ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
-      String jsonString = objectWriter.writeValueAsString(user.getMovies());
-      HttpClient client = HttpClient.newHttpClient();
-      HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/user/" + username))
-          .PUT(BodyPublishers.ofString(jsonString)).build();
-      HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-      if (response.statusCode() == 200) {
-        System.out.print("Succesfully saved user's list to server.");
-      } else {
-        System.out.println("Failed to load user file.");
+      saveLoadHandler.saveUserListHttp(user.getName(), user.getMovies());
+    } catch (Exception httpException) {
+      httpException.printStackTrace();
+      try {
+        saveLoadHandler.saveUserList(user.getMovies());
+      } catch (IOException localLoadException) {
+        localLoadException.printStackTrace();
       }
-    } catch (Exception e) {
-      System.err.println("ERROR: Couldn't send PUT request.");
-      e.printStackTrace();
-      System.out.println("Trying to save user's list locally instead.");
-      handleSaveUserList();
     }
   }
 
@@ -445,22 +370,22 @@ public class WatchlistController {
   public void watchMovie(Movie movie) {
     user.watchMovie(movie);
     updateWatchedMovies();
-    handleSaveUserListHttp(user.getName());
+    handleSaveUserList();
   }
 
   /**
    * Method for swapping between sorting values in browserpage.
    */
   public void changeSortingInBrowser() {
-    if (browseMovieSort.getValue() == "Title") {
+    if (browseMovieSort.getValue() == "Movie Title") {
       initialList.sortWatchlistByName();
       list.sortWatchlistByName();
     }
-    if (browseMovieSort.getValue() == "Year") {
+    if (browseMovieSort.getValue() == "Release Year") {
       initialList.sortWatchlistByYear();
       list.sortWatchlistByYear();
     }
-    if (browseMovieSort.getValue() == "Rating") {
+    if (browseMovieSort.getValue() == "Movie Rating") {
       initialList.sortWatchlistByRating();
       list.sortWatchlistByRating();
     }
@@ -492,20 +417,20 @@ public class WatchlistController {
       }
     }
     updateWatchedMovies();
-    handleSaveUserListHttp(user.getName());
+    handleSaveUserList();
   }
 
   /**
    * Method for swapping between sorting values in profilepage.
    */
   public void changeSortingInProfile() {
-    if (profileMovieSort.getValue() == "Title") {
+    if (profileMovieSort.getValue() == "Movie Title") {
       user.sortUserlistByName();
     }
-    if (profileMovieSort.getValue() == "Year") {
+    if (profileMovieSort.getValue() == "Release Year") {
       user.sortUserlistByYear();
     }
-    if (profileMovieSort.getValue() == "Rating") {
+    if (profileMovieSort.getValue() == "Movie Rating") {
       user.sortUserlistByRating();
     }
     updateWatchedMovies();
@@ -603,11 +528,7 @@ public class WatchlistController {
 
       ObservableList<Node> children = pane.getChildren();
       ImageView img = (ImageView) children.get(1);
-      if (movie.getImageUrl() != null) {
-        img.setImage(new Image(movie.getImageUrl()));
-      } else {
-        img.setImage(null);
-      }
+      img.setImage(new Image(movie.getImageUrl()));
 
       FlowPane box = (FlowPane) children.get(0);
       ObservableList<Node> f = box.getChildren();
@@ -620,33 +541,26 @@ public class WatchlistController {
       desc.setText(movie.getDescription());
       Text rating = (Text) f.get(4);
       rating.setText(movie.getRating() + "/10 ("
-          + Math.ceil(movie.getRatingCount() / movie.getRating()) + ")");
-
-      StringBuilder sb = new StringBuilder();
-      if (movie.getDirectors().size() > 0) {
-        for (String d : movie.getDirectors()) {
-          sb.append(d + ", ");
-        }
-        sb.deleteCharAt(sb.length() - 2);
-      } else {
-        sb.append("Unknown");
-      }
+          + movie.ratingCountToString() + ")");
 
       // 5th child is a label
+
+      StringBuilder sb = new StringBuilder();
+      for (String d : movie.getDirectors()) {
+        sb.append(d + ", ");
+      }
+      sb.deleteCharAt(sb.length() - 2);
       Text director = (Text) f.get(6);
-      // 7th child is a label
       director.setText(sb.toString());
-      Text actors = (Text) f.get(8);
+
+      // 7th child is a label
 
       sb = new StringBuilder();
-      if (movie.getActors().size() > 0) {
-        for (String a : movie.getActors()) {
-          sb.append(a + ", ");
-        }
-        sb.deleteCharAt(sb.length() - 2);
-      } else {
-        sb.append("None");
+      for (String a : movie.getActors()) {
+        sb.append(a + ", ");
       }
+      sb.deleteCharAt(sb.length() - 2);
+      Text actors = (Text) f.get(8);
       actors.setText(sb.toString());
 
       FlowPane genre = (FlowPane) f.get(2);
@@ -668,12 +582,11 @@ public class WatchlistController {
         }
         genre.getChildren().remove(genre.getChildren().size() - 1);
       }
-
       if (pane.equals(infoBoxProfile)) {
         if (movie.getUserRating() > 0) {
           ratingSlider.setValue(movie.getUserRating() - 1);
+          updateRating(movie.getUserRating() - 1);
         } else {
-          ratingSlider.setValue(0);
           updateRating(-1);
         }
       }

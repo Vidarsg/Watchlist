@@ -21,11 +21,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 import watchlist.core.Movie;
 import watchlist.core.Watchlist;
@@ -97,7 +101,7 @@ public class AppTest extends ApplicationTest {
   }
 
   @Test
-  @DisplayName("Testing user watching a movie")
+  @DisplayName("Testing user unwatching a movie")
   public void testUnwatchMovie() {
     Platform.runLater(() -> {
       this.controller.watchMovie(movie1);
@@ -131,11 +135,95 @@ public class AppTest extends ApplicationTest {
 
     clickOn(listView.lookup(".list-cell"));
     clickOn("#ratingSlider");
-    assertEquals(6, watchlist.getList().get(0).getUserRating());
+    assertEquals(6, listView.getItems().get(0).getUserRating());
 
     moveBy(-50, 0);
     drag().dropBy(150, 0);
-    assertEquals(10, watchlist.getList().get(0).getUserRating());
+    assertEquals(10, listView.getItems().get(0).getUserRating());
+  }
+
+  @Test
+  @DisplayName("Testing user filtering movies")
+  public void testFilterMovies() {
+
+    final ListView<Movie> listView = lookup("#moviebrowser").query();
+
+    clickOn("#browserTab");
+
+    TextField tf = lookup("#browseMovieFilter").query();
+    FxRobot r = new FxRobot();
+
+    clickOn(tf).write("musi");
+
+    r.type(KeyCode.C, 1);
+    checkListView(listView, movie1);
+
+    tf.clear();
+
+    clickOn(tf).write("americ");
+    r.type(KeyCode.A, 1);
+    checkListView(listView, movie2);
+  }
+
+  @Test
+  @DisplayName("Testing filter by genre-label")
+  public void testFilterByGenreLabel() {
+    final ListView<Movie> listView = lookup("#moviebrowser").query();
+
+    clickOn("#browserTab");
+
+    clickOn(listView.lookup(".list-cell"));
+
+    FlowPane genreFlowPane = lookup("#infoGenre").query();
+    Node genreLabel = genreFlowPane.getChildrenUnmodifiable().get(0);
+    clickOn(genreLabel);
+
+    checkListView(listView, movie1);
+  }
+
+  @Test
+  @DisplayName("Testing sorting of movies in browser page")
+  public void testSortMoviesInBrowser() {
+    final ListView<Movie> listView = lookup("#moviebrowser").query();
+
+    clickOn("#browserTab");
+
+    clickOn("#browseMovieSort");
+    clickOn("Movie Title");
+    checkListView(listView, movie2, movie1);
+
+    clickOn("#browseMovieSort");
+    clickOn("Release Year");
+    checkListView(listView, movie2, movie1);
+
+    clickOn("#browseMovieSort");
+    clickOn("Movie Rating");
+    checkListView(listView, movie1, movie2);
+  }
+
+  @Test
+  @DisplayName("Testing sorting of movies in profile page")
+  public void testSortMoviesInProfile() {
+    Platform.runLater(() -> {
+      this.controller.watchMovie(movie1);
+      this.controller.watchMovie(movie2);
+    });
+
+    final ListView<Movie> listView = lookup("#watchedMovies").query();
+
+    clickOn("#profileTab");
+
+    clickOn("#profileMovieSort");
+    clickOn("Movie Title");
+    checkListView(listView, movie2, movie1);
+
+    clickOn("#profileMovieSort");
+    clickOn("Release Year");
+    checkListView(listView, movie2, movie1);
+
+    clickOn("#profileMovieSort");
+    clickOn("Movie Rating");
+    checkListView(listView, movie1, movie2);
   }
 
   /**
@@ -182,4 +270,3 @@ public class AppTest extends ApplicationTest {
     }
   }
 }
-

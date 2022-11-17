@@ -46,14 +46,12 @@ public class LoginControllerTest extends ApplicationTest {
     clickOn("#login");
   }
 
-  // Unfinished test-method that wouldn't work properly
-
-  /*
-   * @Test
-   *
-   * @DisplayName("Testing inputfield for invalid username") public void testInvalidUsername() {
-   * assertThrows(IllegalArgumentException.class, () -> { TextField tf = lookup("#name").query();
-   * clickOn(tf).write("123"); clickOn("#login"); }); }
-   */
+  @Test
+  @DisplayName("Testing inputfield for invalid username")
+  public void testInvalidUsername() {
+    TextField tf = lookup("#name").query();
+    clickOn(tf).write("TestUser123");
+    clickOn("#login");
+  }
 
 }
