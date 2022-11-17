@@ -200,9 +200,7 @@ public class Movie {
    */
   public void rate(int rating) {
     if (this.userRating == 0) {
-      // rating = 9, ratingCount = 9, this.rating = 5.0
       this.ratingCount++;
-      // 5.0 9 9 10
       this.rating = (this.rating * (this.ratingCount - 1) + rating) / this.ratingCount;
 
       this.userRating = rating;

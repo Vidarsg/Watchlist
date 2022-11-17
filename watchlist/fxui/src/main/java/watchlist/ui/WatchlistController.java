@@ -53,8 +53,6 @@ public class WatchlistController {
   private Movie activeBrowserMovie;
   private Movie activeProfileMovie;
 
-  private String movieResourceString;
-
   @FXML
   private String movieResource;
   @FXML
@@ -160,9 +158,7 @@ public class WatchlistController {
     handleLoadResourceListHttp();
 
     initialList = new Watchlist();
-    movieResourceString = "movies";
-    // handleLoadResourceList(movieResource);
-    handleLoadResourceList(movieResourceString);
+    handleLoadResourceList(movieResource);
     initialList.sortWatchlistByRating();
     list.setList(initialList.getList());
 
@@ -186,8 +182,8 @@ public class WatchlistController {
       @Override
       public void changed(ObservableValue<? extends Number> observable,
           Number oldValue, Number newValue) {
-        if (activeBrowserMovie != null) {
-          activeBrowserMovie.rate(newValue.intValue() + 1);
+        if (activeProfileMovie != null) {
+          activeProfileMovie.rate(newValue.intValue() + 1);
           updateRating(newValue.intValue());
         } else {
           ratingSlider.setDisable(true);
@@ -678,7 +674,7 @@ public class WatchlistController {
     ObservableList<Node> child = ratingStars.getChildren();
     for (int i = 0; i < child.size(); i++) {
       if (child.get(i).getClass().equals(SVGPath.class)) {
-        if (i < value) {
+        if (i <= value) {
           child.get(i).setStyle("-fx-fill: #ff0;");
         } else {
           child.get(i).setStyle("-fx-fill: #0000;");
