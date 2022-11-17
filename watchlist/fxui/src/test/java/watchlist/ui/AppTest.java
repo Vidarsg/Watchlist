@@ -189,15 +189,15 @@ public class AppTest extends ApplicationTest {
     clickOn("#browserTab");
 
     clickOn("#browseMovieSort");
-    clickOn("Title");
+    clickOn("Movie Title");
     checkListView(listView, movie2, movie1);
 
     clickOn("#browseMovieSort");
-    clickOn("Year");
+    clickOn("Release Year");
     checkListView(listView, movie2, movie1);
 
     clickOn("#browseMovieSort");
-    clickOn("Rating");
+    clickOn("Movie Rating");
     checkListView(listView, movie1, movie2);
   }
 
@@ -209,20 +209,20 @@ public class AppTest extends ApplicationTest {
       this.controller.watchMovie(movie2);
     });
 
-    final ListView<Movie> listView = lookup("#moviebrowser").query();
+    final ListView<Movie> listView = lookup("#watchedMovies").query();
 
     clickOn("#profileTab");
 
     clickOn("#profileMovieSort");
-    clickOn("Title");
+    clickOn("Movie Title");
     checkListView(listView, movie2, movie1);
 
     clickOn("#profileMovieSort");
-    clickOn("Year");
+    clickOn("Release Year");
     checkListView(listView, movie2, movie1);
 
     clickOn("#profileMovieSort");
-    clickOn("Rating");
+    clickOn("Movie Rating");
     checkListView(listView, movie1, movie2);
   }
 

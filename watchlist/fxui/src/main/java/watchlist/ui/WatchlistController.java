@@ -153,7 +153,7 @@ public class WatchlistController {
     list.setList(initialList.getList());
 
     ObservableList<String> sortValues = FXCollections
-        .observableArrayList("Rating", "Year", "Title");
+        .observableArrayList("Movie Rating", "Release Year", "Movie Title");
     browseMovieSort.getItems().setAll(sortValues);
     browseMovieSort.getSelectionModel().selectFirst();
     profileMovieSort.getItems().setAll(sortValues);
@@ -290,7 +290,6 @@ public class WatchlistController {
     }
   }
 
-
   /**
    * Loads the users local list into the application. If no list is saved locally
    * for the user, the
@@ -378,15 +377,15 @@ public class WatchlistController {
    * Method for swapping between sorting values in browserpage.
    */
   public void changeSortingInBrowser() {
-    if (browseMovieSort.getValue() == "Title") {
+    if (browseMovieSort.getValue() == "Movie Title") {
       initialList.sortWatchlistByName();
       list.sortWatchlistByName();
     }
-    if (browseMovieSort.getValue() == "Year") {
+    if (browseMovieSort.getValue() == "Release Year") {
       initialList.sortWatchlistByYear();
       list.sortWatchlistByYear();
     }
-    if (browseMovieSort.getValue() == "Rating") {
+    if (browseMovieSort.getValue() == "Movie Rating") {
       initialList.sortWatchlistByRating();
       list.sortWatchlistByRating();
     }
@@ -425,13 +424,13 @@ public class WatchlistController {
    * Method for swapping between sorting values in profilepage.
    */
   public void changeSortingInProfile() {
-    if (profileMovieSort.getValue() == "Title") {
+    if (profileMovieSort.getValue() == "Movie Title") {
       user.sortUserlistByName();
     }
-    if (profileMovieSort.getValue() == "Year") {
+    if (profileMovieSort.getValue() == "Release Year") {
       user.sortUserlistByYear();
     }
-    if (profileMovieSort.getValue() == "Rating") {
+    if (profileMovieSort.getValue() == "Movie Rating") {
       user.sortUserlistByRating();
     }
     updateWatchedMovies();
