@@ -19,7 +19,6 @@ import watchlist.core.Movie;
  * This class handles loading of the movie resource.
  */
 public class WatchlistPersistence {
-  private String movieResource = "movies";
   private String serverUrl = "http://localhost:8080/";
 
   private ObjectMapper objectMapper = new ObjectMapper();
@@ -32,12 +31,15 @@ public class WatchlistPersistence {
    * @throws IllegalStateException
    * @throws FileNotFoundException if file not found.
    */
-  public List<Movie> loadMovieList() throws IOException,
+  public List<Movie> loadMovieList(String movieResource) throws IOException,
       IllegalStateException, FileNotFoundException {
     try (InputStream inputStream = WatchlistPersistence.class
         .getResourceAsStream(movieResource + ".json")) {
       return Arrays.asList(objectMapper.readValue(inputStream, Movie[].class));
     } catch (Exception e) {
+      System.out.println("FAILED LOADMOVIELIST");
+      System.out.println(WatchlistPersistence.class);
+      System.out.println(movieResource);
       throw e;
     }
   }
