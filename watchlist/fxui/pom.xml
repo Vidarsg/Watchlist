@@ -95,6 +95,42 @@
                 <!-- Usage: mvn javafx:run -->
                 <configuration>
                     <mainClass>watchlist.ui/watchlist.ui.WatchlistApp</mainClass>
+                    <!-- rest of options are for jlink -->
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <stripDebug>true</stripDebug>
+                    <noManPages>true</noManPages>
+                    <launcher>watchlistfx</launcher>
+                    <jlinkImageName>watchlistfx</jlinkImageName>
+                    <jlinkZipName>watchlistfx</jlinkZipName>
+                </configuration>
+            </plugin>
+            <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <name>WatchlistFX</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>IT1901 - Group 63</vendor>
+                    <destination>target/dist</destination>
+                    <module>watchlist.ui/watchlist.ui.WatchlistApp</module>
+                    <runtimeImage>target/watchlistfx</runtimeImage>
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                    <!-- linux options -->
+                    <linuxShortcut>true</linuxShortcut>
+                    <linuxMenuGroup>WatchlistApp</linuxMenuGroup>
+                    <!-- windows options -->
+                    <winDirChooser>true</winDirChooser>
+                    <winShortcut>true</winShortcut>
+                    <winMenu>true</winMenu>
+                    <winMenuGroup>WatchlistApp</winMenuGroup>
+                    <!--macos options-->
+                    <mac-package-name>WatchlistApp</mac-package-name>
+                    <mac-bundle-name>WatchlistApp</mac-bundle-name>
                 </configuration>
             </plugin>
             <!-- Checkstyle -->
