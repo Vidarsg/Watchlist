@@ -1,0 +1,120 @@
+@startuml klassediagram
+
+title Klassediagram
+
+
+class Movie {
+    -String name
+    -int year
+    -String description
+    -List<String> keywords
+    -double rating
+    -int ratingCount
+    -List<String> actors
+    -List<String> directors
+    -List<String> genre
+    -String imageUrl
+    -String thumbUrl
+    -int userRating
+    +boolean equals(Object o)
+    +int hashCode()
+    +String toString()
+    +void rate(int rating)
+    +void updateRating(int oldValue, int newValue)
+}
+
+class Watchlist {
+    -List<Movie> list
+    +void addMovie(Movie movie)
+    +void removeMovie(Movie movie)
+}
+
+class User {
+    -String name
+    -List<Movie> movies
+    +ArrayList<String> getMovieNames()
+    +void watchMovie(Movie movie)
+    +boolean unwatchMovie(String title)
+}
+
+class SaveLoadHandler {
+    -Path saveFilePath
+    -ObjectMapper objectMapper
+    -ObjectWriter objectWriter
+    +List<Movie> loadUserList()
+    +void saveUserList(List<Movie> movieList)
+    +void setSaveFile(String filename)
+}
+
+class WatchlistApp {
+    +void start(final Stage primaryStage)
+    +{static} void main(String[] args)
+}
+
+class WatchlistController {
+    -User user
+    -Watchlist list
+    -SaveLoadHandler saveLoadHandler
+    -ObjectMapper objectMapper
+    -Movie activeBrowserMovie
+    -Movie activeProfileMovie
+    -ChangeListener<Movie> browserChangeListener
+    -ChangeListener<Movie> profileChangeListener
+
+    'Her er det egentlig mange private fields fra FXMLen
+
+    +void initialize()
+    -ChangeListener<Movie> generateListener(ListView<Movie> listView, TextField textField, Button button)
+    +void setUsername(String name)
+    +void handleLoadResourceList(String filename)
+    +void handleLoadResourceListHttp()
+    +void handleLoadUserList()
+    +void handleLoadUserListHttp(String username)
+    +void handleSaveUserList()
+    +void handleSaveUserListHttp(String username)
+    void handleWatchMovie()
+    +void watchMovie(Movie movie)
+    void handleUnwatchMovie()
+    -void updateGui()
+    -void updateBrowserGui()
+    -void updateMoviebrowser()
+    -void updateProfileGui()
+    -void updateWatchedMovies()
+    -void showInfo(Movie movie, Pane pane)
+    -void updateRating(int value)
+    -void setListeners(ListView<Movie> listView)
+}
+
+class LoginController {
+    -Button exit
+    -Button login
+    -TextField name
+    -Label invalidInput
+    +void initialize()
+    +void run()
+    +void handle(KeyEvent key)
+    +void onSubmit()
+}
+
+class WatchlistRestApplication {
+    +{static} void main(String[] args)
+}
+
+class WatchlistRestController {
+    -WatchlistRestService watchlistRestService
+    +List<Movie> getMovies()
+    +List<Movie> getUserList(String username)
+    +Boolean putUserList(String username, String jsonString)
+}
+
+class WatchlistRestService {
+    -Watchlist watchlist
+    -ObjectMapper objectMapper
+    -SaveLoadHandler saveLoadHandler
+    -String movieResource
+    +void handleLoadResourceList(String filename)
+    +List<Movie> handleLoadUserList(String username)
+    +void handleSaveUserList(String username, String jsonString)
+}
+
+@enduml

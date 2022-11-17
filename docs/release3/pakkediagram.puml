@@ -1,0 +1,42 @@
+@startuml pakkediagram
+
+component core {
+  package watchlist.core
+  package watchlist.json
+}
+
+component jackson {
+}
+
+component fxui {
+  package watchlist.ui
+}
+
+component javafx {
+  package javafx.graphics
+  package javafx.fxml
+}
+
+component rest-api {
+  package watchlist.springboot.restserver
+}
+
+component springframework
+
+watchlist.core ..> jackson
+watchlist.json ..> jackson
+
+watchlist.json ..> watchlist.core
+
+watchlist.ui ..> watchlist.core
+watchlist.ui ..> watchlist.json
+watchlist.ui ..> javafx.fxml
+watchlist.ui ..> javafx.graphics
+watchlist.ui ..> jackson
+
+watchlist.springboot.restserver ..> watchlist.json
+watchlist.springboot.restserver ..> watchlist.core
+watchlist.springboot.restserver ..> springframework
+
+
+@enduml
