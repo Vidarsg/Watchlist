@@ -31,10 +31,10 @@
    <tabs>
       <Tab fx:id="browserTab" text="Browse">
          <content>
-            <!--<fx:define>
+            <fx:define>
                <String fx:id="movieResource" fx:value="movies" />
                <String fx:id="serverUrl" fx:value="http://localhost:8080/" />
-            </fx:define>-->
+            </fx:define>
             <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="900.0">
                <columnConstraints>
                   <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" />

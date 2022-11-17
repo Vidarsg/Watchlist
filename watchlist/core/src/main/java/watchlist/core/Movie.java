@@ -93,14 +93,6 @@ public class Movie {
     }
   }
 
-  /*
-  public Movie(String name, int year, String desc, double rating, int ratingCount,
-      List<String> actors,List<String> directors,List<String> genre,
-      String imageUrl, String thumbUrl) {
-    new Movie(name, year, desc, List.of(), rating, ratingCount,
-    actors, directors, genre, imageUrl, thumbUrl);
-  }*/
-
   // Getters
   public String getName() {
     return name;

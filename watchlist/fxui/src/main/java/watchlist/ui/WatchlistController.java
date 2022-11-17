@@ -193,12 +193,13 @@ public class WatchlistController {
       }
     });
 
-    ratingSlider.valueProperty().addListener(new ChangeListener<Object>() {
+    ratingSlider.valueProperty().addListener(new ChangeListener<Number>() {
       @Override
-      public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+      public void changed(ObservableValue<? extends Number> observable,
+          Number oldValue, Number newValue) {
         if (activeBrowserMovie != null) {
-          activeBrowserMovie.updateRating((int) oldValue, (int) newValue);
-          updateRating((int) newValue);
+          activeBrowserMovie.updateRating(oldValue.intValue() + 1, newValue.intValue());
+          updateRating(newValue.intValue());
         } else {
           ratingSlider.setDisable(true);
         }
