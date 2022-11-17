@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
 import watchlist.core.Movie;
 
@@ -44,7 +43,6 @@ public class WatchlistPersistenceTest {
     configuration = WireMockConfiguration.wireMockConfig().port(8080);
     wireMockServer = new WireMockServer(configuration.portNumber());
     wireMockServer.start();
-    System.out.println(get(urlEqualTo("/movies").toString()));
     try (InputStream inputStream = WatchlistPersistenceTest.class
         .getResourceAsStream("test-movies.json")) {
       testMovies = Arrays.asList(objectMapper.readValue(inputStream, Movie[].class));

@@ -29,7 +29,7 @@ public class SaveLoadHandler {
   private ObjectMapper objectMapper = new ObjectMapper();
   private ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
 
-  private String serverUrl = "http://localhost:8080/";
+  private String serverUrl = "http://localhost:8080";
 
   /**
    * Loads a file with the saveFilePath and creates a List of Movie objects from

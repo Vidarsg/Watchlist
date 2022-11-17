@@ -4,16 +4,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.put;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import watchlist.core.Movie;
 import watchlist.core.User;
 import watchlist.core.Watchlist;
 
@@ -23,6 +35,13 @@ public class SaveLoadHandlerTest {
   private Watchlist watchlist;
   private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
   private ObjectMapper objectMapper = new ObjectMapper();
+
+  private ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
+
+  private WireMockConfiguration configuration;
+  private WireMockServer wireMockServer;
+
+  private String movieResource = "test-movies";
 
   /**
    * Setup for the tests.
@@ -34,11 +53,15 @@ public class SaveLoadHandlerTest {
     try {
       watchlist.setList(objectMapper.readValue(
           SaveLoadHandlerTest.class.getResourceAsStream("test-movies.json"),
-          new TypeReference<>() {
-          }));
+          new TypeReference<>() {}));
     } catch (IOException e) {
       e.printStackTrace();
     }
+
+    configuration = WireMockConfiguration.wireMockConfig().port(8080);
+    wireMockServer = new WireMockServer(configuration.portNumber());
+    wireMockServer.start();
+    System.out.println(get(urlEqualTo("/movies").toString()));
   }
 
   @Test
@@ -58,6 +81,26 @@ public class SaveLoadHandlerTest {
     } catch (IOException e) {
       fail(e.getMessage());
     }
+  }
+
+  @Test
+  @DisplayName("Save user list HTTP test.")
+  public void testSaveUserListHttp() {
+    // Testing that it works to save user list with HTTP request
+    saveLoadHandler.setSaveFile(user.getName());
+    System.out.println(saveLoadHandler.getSaveFilePath());
+    try {
+      wireMockServer.stubFor(
+          put("/user/" + user.getName())
+          .willReturn(aResponse()
+            .withStatus(200)
+          )
+      );
+      saveLoadHandler.saveUserListHttp(user.getName(), watchlist.getList());
+    } catch (Exception e) {
+      fail(e.getMessage());
+    }
+
   }
 
   @Test
@@ -94,6 +137,35 @@ public class SaveLoadHandlerTest {
     }
   }
 
+  @Test
+  @DisplayName("Load user list HTTP test.")
+  public void testLoadUserListHttp() {
+    // Saving watchlist to users savefile
+    saveLoadHandler.setSaveFile(user.getName());
+    try {
+      saveLoadHandler.saveUserList(watchlist.getList());
+    } catch (IOException e) {
+      fail(e.getMessage());
+    }
+
+    // Testing that it works to load user list with HTTP request
+    try {
+      wireMockServer.stubFor(
+          get("/user/" + user.getName())
+          .willReturn(aResponse()
+            .withHeader("Content-Type", "application/json")
+            .withBody(
+              objectWriter.writeValueAsString(watchlist.getList())
+            )
+          )
+      );
+      List<Movie> list = saveLoadHandler.loadUserListHttp(user.getName());
+      assertEquals(3, list.size());
+    } catch (Exception e) {
+      fail(e.getMessage());
+    }
+  }
+
   /**
    * Deletes the savefile after each test.
    */
@@ -104,5 +176,6 @@ public class SaveLoadHandlerTest {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    wireMockServer.stop();
   }
 }
