@@ -24,4 +24,18 @@
   "actors": ["Edward Asner","Jordan Nagai","John Ratzenberger"],
   "directors": ["Pete Docter","Bob Peterson"],
   "userRating": 0
-} ]
+},  {
+  "name" : "Trainspotting",
+  "year" : 1996,
+  "description" : "Renton, deeply immersed in the Edinburgh drug scene, tries to clean up and get out, despite the allure of the drugs and influence of friends.",
+  "keywords" : [ "filthy toilet", "scotland", "drugs", "drug culture", "scottish" ],
+  "rating" : 8.1,
+  "ratingCount" : 684366,
+  "actors" : [ "Ewan McGregor", "Ewen Bremner", "Jonny Lee Miller" ],
+  "directors" : [ "Danny Boyle" ],
+  "genre" : [ "Drama" ],
+  "imageUrl" : "https://m.media-amazon.com/images/M/MV5BMzA5Zjc3ZTMtMmU5YS00YTMwLWI4MWUtYTU0YTVmNjVmODZhXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg",
+  "thumbUrl" : "https://m.media-amazon.com/images/M/MV5BOGRmMWQxNTItNGQ5NC00OTY4LTgzZWUtNDEyMmY4OTFhM2EyXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_.jpg",
+  "userRating" : 0
+}
+]

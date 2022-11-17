@@ -13,6 +13,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import watchlist.core.User;
 import watchlist.core.Watchlist;
 
@@ -23,6 +24,9 @@ public class SaveLoadHandlerTest {
   private SaveLoadHandler saveLoadHandler = new SaveLoadHandler();
   private ObjectMapper objectMapper = new ObjectMapper();
 
+  /**
+   * Setup for the tests.
+   */
   @BeforeEach
   public void setup() {
     user = new User("TestUser");
@@ -30,7 +34,8 @@ public class SaveLoadHandlerTest {
     try {
       watchlist.setList(objectMapper.readValue(
           SaveLoadHandlerTest.class.getResourceAsStream("test-movies.json"),
-          new TypeReference<>() {}));
+          new TypeReference<>() {
+          }));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -44,7 +49,8 @@ public class SaveLoadHandlerTest {
       saveLoadHandler.saveUserList(user.getMovies());
     }, "An exception should be thrown when the saveFilePath is null");
 
-    // Setting user List equal watchlist, saving to file and testing that no exceptions are thrown
+    // Setting user List equal watchlist, saving to file and testing that no
+    // exceptions are thrown
     saveLoadHandler.setSaveFile(user.getName());
     user.setMovies(watchlist.getList());
     try {
@@ -88,6 +94,9 @@ public class SaveLoadHandlerTest {
     }
   }
 
+  /**
+   * Deletes the savefile after each test.
+   */
   @AfterEach
   public void tearDown() {
     try {
