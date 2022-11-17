@@ -1,7 +1,6 @@
 package watchlist.ui;
 
 import java.io.IOException;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -43,7 +42,6 @@ public class WatchlistController {
   private WatchlistPersistence persistence = new WatchlistPersistence();
   private Movie activeBrowserMovie;
   private Movie activeProfileMovie;
-
 
   @FXML
   private String movieResource;
@@ -147,21 +145,10 @@ public class WatchlistController {
   public void initialize() {
     user = new User("TestUser");
     list = new Watchlist();
+    // handleLoadResourceListHttp();
+
     initialList = new Watchlist();
     handleLoadResourceList();
-
-    ratingSlider.valueProperty().addListener(new ChangeListener<Number>() {
-      @Override
-      public void changed(
-          ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
-        if (activeProfileMovie != null) {
-          activeProfileMovie.updateRating(oldValue.intValue() + 1, newValue.intValue() + 1);
-          updateRating(newValue.intValue());
-        }
-      }
-    });
-
     initialList.sortWatchlistByRating();
     list.setList(initialList.getList());
 
@@ -185,8 +172,8 @@ public class WatchlistController {
       @Override
       public void changed(ObservableValue<? extends Number> observable,
           Number oldValue, Number newValue) {
-        if (activeBrowserMovie != null) {
-          activeBrowserMovie.updateRating(oldValue.intValue() + 1, newValue.intValue());
+        if (activeProfileMovie != null) {
+          activeProfileMovie.rate(newValue.intValue() + 1);
           updateRating(newValue.intValue());
         } else {
           ratingSlider.setDisable(true);
@@ -349,13 +336,11 @@ public class WatchlistController {
     try {
       saveLoadHandler.saveUserListHttp(user.getName(), user.getMovies());
     } catch (Exception httpException) {
-      System.out.println("Failed at http");
-      //httpException.printStackTrace();
+      httpException.printStackTrace();
       try {
         saveLoadHandler.saveUserList(user.getMovies());
       } catch (IOException localLoadException) {
-        System.out.println("Failed loading locally");
-        //localLoadException.printStackTrace();
+        localLoadException.printStackTrace();
       }
     }
   }
@@ -442,9 +427,7 @@ public class WatchlistController {
         feedbackBoxProfile.setText("You have not watched this movie...");
       }
     }
-    System.out.println("updating watched movies");
     updateWatchedMovies();
-    System.out.println("saving user list...");
     handleSaveUserList();
   }
 
@@ -556,11 +539,7 @@ public class WatchlistController {
 
       ObservableList<Node> children = pane.getChildren();
       ImageView img = (ImageView) children.get(1);
-      if (movie.getImageUrl() != null) {
-        img.setImage(new Image(movie.getImageUrl()));
-      } else {
-        img.setImage(null);
-      }
+      img.setImage(new Image(movie.getImageUrl()));
 
       FlowPane box = (FlowPane) children.get(0);
       ObservableList<Node> f = box.getChildren();
@@ -573,33 +552,26 @@ public class WatchlistController {
       desc.setText(movie.getDescription());
       Text rating = (Text) f.get(4);
       rating.setText(movie.getRating() + "/10 ("
-          + Math.ceil(movie.getRatingCount() / movie.getRating()) + ")");
-
-      StringBuilder sb = new StringBuilder();
-      if (movie.getDirectors().size() > 0) {
-        for (String d : movie.getDirectors()) {
-          sb.append(d + ", ");
-        }
-        sb.deleteCharAt(sb.length() - 2);
-      } else {
-        sb.append("Unknown");
-      }
+          + movie.ratingCountToString() + ")");
 
       // 5th child is a label
-      Text director = (Text) f.get(6);
-      // 7th child is a label
-      director.setText(sb.toString());
-      Text actors = (Text) f.get(8);
 
-      sb = new StringBuilder();
-      if (movie.getActors().size() > 0) {
-        for (String a : movie.getActors()) {
-          sb.append(a + ", ");
-        }
-        sb.deleteCharAt(sb.length() - 2);
-      } else {
-        sb.append("None");
+      StringBuilder sb = new StringBuilder();
+      for (String d : movie.getDirectors()) {
+        sb.append(d + ", ");
       }
+      sb.deleteCharAt(sb.length() - 2);
+      Text director = (Text) f.get(6);
+      director.setText(sb.toString());
+
+      // 7th child is a label
+
+      Text actors = (Text) f.get(8);
+      sb = new StringBuilder();
+      for (String a : movie.getActors()) {
+        sb.append(a + ", ");
+      }
+      sb.deleteCharAt(sb.length() - 2);
       actors.setText(sb.toString());
 
       FlowPane genre = (FlowPane) f.get(2);
@@ -625,6 +597,7 @@ public class WatchlistController {
       if (pane.equals(infoBoxProfile)) {
         if (movie.getUserRating() > 0) {
           ratingSlider.setValue(movie.getUserRating() - 1);
+          updateRating(movie.getUserRating());
         } else {
           ratingSlider.setValue(0);
           updateRating(-1);

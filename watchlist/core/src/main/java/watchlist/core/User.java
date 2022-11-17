@@ -86,7 +86,6 @@ public class User {
     for (Movie m : movies) {
       if (m != null) {
         if (m.toString().equals(title)) {
-          System.out.println("REMOVING MOVIE");
           movies.remove(m);
           return true;
         }
