@@ -1,0 +1,29 @@
+@startuml
+actor client
+boundary loginController
+boundary watchlistController
+entity core
+entity json
+entity restserver
+database movies.json
+database "{username}.json"
+
+client-->loginController : login("{username}")
+loginController --> watchlistController : ("{username}")
+watchlistController --> json : loadResourceList()
+json --> restserver : (loadMovieList) GET /movies
+restserver --> movies.json : handleLoadResourceList()
+movies.json --> restserver
+restserver --> json : movies.json
+json --> watchlistController : List<Movie> list
+watchlistController -> client : Display movie database
+client --> watchlistController : Click on profile
+watchlistController --> json : loadUserList()
+json --> restserver : GET /user/{username}.json
+restserver --> "{username}.json" : handleLoadUserList()
+"{username}.json" --> restserver
+restserver --> json : "{username}.json"
+json --> watchlistController : List<Movie> userList
+watchlistController --> client : Display user list
+
+@enduml
