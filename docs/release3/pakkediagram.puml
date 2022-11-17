@@ -32,6 +32,7 @@ watchlist.ui ..> watchlist.core
 watchlist.ui ..> watchlist.json
 watchlist.ui ..> javafx.fxml
 watchlist.ui ..> javafx.graphics
+watchlist.ui ..> jackson
 
 watchlist.springboot.restserver ..> watchlist.json
 watchlist.springboot.restserver ..> watchlist.core
