@@ -247,7 +247,7 @@ public class WatchlistController {
               button.setDisable(false);
 
               if (listView.equals(watchedMovies)) {
-                activeProfileMovie = activeMovie;
+                activeProfileMovie = newValue;
               } else {
                 activeBrowserMovie = activeMovie;
               }
@@ -613,12 +613,12 @@ public class WatchlistController {
 
       // 7th child is a label
 
-      Text actors = (Text) f.get(8);
       sb = new StringBuilder();
       for (String a : movie.getActors()) {
         sb.append(a + ", ");
       }
       sb.deleteCharAt(sb.length() - 2);
+      Text actors = (Text) f.get(8);
       actors.setText(sb.toString());
 
       FlowPane genre = (FlowPane) f.get(2);
@@ -640,13 +640,11 @@ public class WatchlistController {
         }
         genre.getChildren().remove(genre.getChildren().size() - 1);
       }
-
       if (pane.equals(infoBoxProfile)) {
         if (movie.getUserRating() > 0) {
           ratingSlider.setValue(movie.getUserRating() - 1);
-          updateRating(movie.getUserRating());
+          updateRating(movie.getUserRating() - 1);
         } else {
-          ratingSlider.setValue(0);
           updateRating(-1);
         }
       }
