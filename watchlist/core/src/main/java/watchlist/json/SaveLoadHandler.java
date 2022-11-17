@@ -6,9 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.ConnectException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
@@ -56,22 +54,16 @@ public class SaveLoadHandler {
    *
    * @param username The user who's list should be loaded.
    * @return List of movies stored in user's file.
-   * @throws ConnectException
-   * @throws IllegalStateException
-   * @throws FileNotFoundException
-   * @throws IOException
-   * @throws URISyntaxException
-   * @throws InterruptedException
+   * @throws Exception if file is not found or the file is invalid
    */
-  public List<Movie> loadUserListHttp(String username) throws ConnectException,
-      IllegalStateException, FileNotFoundException, IOException,
-      URISyntaxException, InterruptedException {
+  public List<Movie> loadUserListHttp(String username) throws Exception {
     try {
       HttpClient client = HttpClient.newHttpClient();
       HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/user/" + username))
               .GET().build();
       HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-      return new ArrayList<Movie> (Arrays.asList(objectMapper.readValue(response.body(), Movie[].class)));
+      return new ArrayList<Movie>(Arrays.asList(
+        objectMapper.readValue(response.body(), Movie[].class)));
     } catch (Exception e) {
       throw e;
     }
@@ -96,17 +88,9 @@ public class SaveLoadHandler {
    *
    * @param username Name of the user
    * @param movieList List of movies to be written to user's list.
-   * @throws ConnectException
-   * @throws IllegalStateException
-   * @throws FileNotFoundException
-   * @throws IOException
-   * @throws URISyntaxException
-   * @throws InterruptedException
+   * @throws Exception if file is not found or the file is invalid
    */
-  public void saveUserListHttp(String username, List<Movie> movieList) throws ConnectException,
-      IllegalStateException, FileNotFoundException, IOException,
-      URISyntaxException, InterruptedException {
-
+  public void saveUserListHttp(String username, List<Movie> movieList) throws Exception {
     try {
       ObjectWriter objectWriter = objectMapper.writer(new DefaultPrettyPrinter());
       String jsonString = objectWriter.writeValueAsString(movieList);

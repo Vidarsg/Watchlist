@@ -4,15 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.ConnectException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Arrays;
 import java.util.List;
-
 import watchlist.core.Movie;
 
 /**
@@ -27,9 +24,9 @@ public class WatchlistPersistence {
    * Method for loading movie resource.
    *
    * @return List of movies in database.
-   * @throws IOException
-   * @throws IllegalStateException
-   * @throws FileNotFoundException if file not found.
+   * @throws IOException           if the file is invalid
+   * @throws IllegalStateException if the saveFilePath is null
+   * @throws FileNotFoundException if the file does not exist
    */
   public List<Movie> loadMovieList(String movieResource) throws IOException,
       IllegalStateException, FileNotFoundException {
@@ -48,16 +45,9 @@ public class WatchlistPersistence {
    * Attempts to load movie list from REST server.
    *
    * @return List of movies retrieved from the server.
-   * @throws ConnectException
-   * @throws IllegalStateException
-   * @throws FileNotFoundException
-   * @throws IOException
-   * @throws URISyntaxException
-   * @throws InterruptedException
+   * @throws Exception if file is not found or the file is invalid
    */
-  public List<Movie> loadMovieListHttp() throws ConnectException,
-      IllegalStateException, FileNotFoundException, IOException,
-      URISyntaxException, InterruptedException {
+  public List<Movie> loadMovieListHttp() throws Exception {
     try {
       HttpClient client = HttpClient.newHttpClient();
       HttpRequest request = HttpRequest.newBuilder(new URI(serverUrl + "/movies"))

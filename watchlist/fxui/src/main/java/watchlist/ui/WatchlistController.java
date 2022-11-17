@@ -312,16 +312,6 @@ public class WatchlistController {
       }
       System.out.println("Couldn't load user list from server");
     }
-    /**
-    if (saveLoadHandler.getSaveFilePath() == null) {
-      saveLoadHandler.setSaveFile(user.getName());
-    }
-    try {
-      user.setMovies(saveLoadHandler.loadUserList());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    */
   }
 
   /**

@@ -24,7 +24,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.robot.Robot;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -126,7 +125,7 @@ public class AppTest extends ApplicationTest {
   @DisplayName("Testing user rating a movie")
   public void testRateMovie() {
     Platform.runLater(() -> {
-      this.controller.watchMovie(cmovie1);
+      this.controller.watchMovie(movie1);
       this.controller.watchMovie(movie2);
     });
 
