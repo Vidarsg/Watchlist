@@ -136,11 +136,11 @@ public class AppTest extends ApplicationTest {
 
     clickOn(listView.lookup(".list-cell"));
     clickOn("#ratingSlider");
-    assertEquals(6, watchlist.getList().get(0).getUserRating());
+    assertEquals(6, listView.getItems().get(0).getUserRating());
 
     moveBy(-50, 0);
     drag().dropBy(150, 0);
-    assertEquals(10, watchlist.getList().get(0).getUserRating());
+    assertEquals(10, listView.getItems().get(0).getUserRating());
   }
 
   @Test

@@ -148,7 +148,7 @@ public class WatchlistController {
     // handleLoadResourceListHttp();
 
     initialList = new Watchlist();
-    handleLoadResourceList();
+    handleLoadResourceList(movieResource);
     initialList.sortWatchlistByRating();
     list.setList(initialList.getList());
 
@@ -274,19 +274,19 @@ public class WatchlistController {
    *
    * @param filename The file to load the list from.
    */
-  private void handleLoadResourceList() {
+  private void handleLoadResourceList(String resource) {
     try {
       initialList.setList(persistence.loadMovieListHttp());
     } catch (Exception httpException) {
       System.err.println("Couldn't load movie resource from server.");
       try {
-        initialList.setList(persistence.loadMovieList());
+        initialList.setList(persistence.loadMovieList(resource));
       } catch (Exception localLoadException) {
         System.err.println("Couldn't load movie resource locally."
             + "\nLoading movie resource failed.");
         localLoadException.printStackTrace();
       }
-      httpException.printStackTrace();
+      System.out.println("Couldn't load movie resource from server.");
     }
   }
 
@@ -310,7 +310,7 @@ public class WatchlistController {
             + "Loading user list failed.");
         localLoadException.printStackTrace();
       }
-      httpException.printStackTrace();
+      System.out.println("Couldn't load user list from server");
     }
     /**
     if (saveLoadHandler.getSaveFilePath() == null) {
