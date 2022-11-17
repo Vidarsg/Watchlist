@@ -3,6 +3,8 @@ module watchlist.core {
 
     exports watchlist.core;
     exports watchlist.json;
-    
+
+    requires java.net.http;
+
     opens watchlist.core to com.fasterxml.jackson.databind;
 }
