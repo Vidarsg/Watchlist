@@ -22,7 +22,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.robot.Robot;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -150,12 +152,17 @@ public class AppTest extends ApplicationTest {
     clickOn("#browserTab");
 
     TextField tf = lookup("#browseMovieFilter").query();
-    clickOn(tf).write("music");
+    FxRobot r = new FxRobot();
+
+    clickOn(tf).write("musi");
+
+    r.type(KeyCode.C, 1);
     checkListView(listView, movie1);
 
     tf.clear();
 
-    clickOn(tf).write("america");
+    clickOn(tf).write("americ");
+    r.type(KeyCode.A, 1);
     checkListView(listView, movie2);
   }
 
