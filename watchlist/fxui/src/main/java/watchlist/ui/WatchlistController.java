@@ -162,11 +162,11 @@ public class WatchlistController {
     list.setList(initialList.getList());
 
     ObservableList<String> sortValues = FXCollections
-        .observableArrayList("Title", "Year", "Rating");
+        .observableArrayList("Rating", "Year", "Title");
     browseMovieSort.getItems().setAll(sortValues);
-    browseMovieSort.setValue(sortValues.get(2));
+    browseMovieSort.getSelectionModel().selectFirst();
     profileMovieSort.getItems().setAll(sortValues);
-    profileMovieSort.setValue(sortValues.get(2));
+    profileMovieSort.getSelectionModel().selectFirst();
 
     browseMovieFilter.setOnKeyPressed(new EventHandler<KeyEvent>() {
       @Override

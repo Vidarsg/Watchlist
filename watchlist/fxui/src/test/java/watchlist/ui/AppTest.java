@@ -28,6 +28,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 import watchlist.core.Movie;
 import watchlist.core.Watchlist;
@@ -151,7 +152,9 @@ public class AppTest extends ApplicationTest {
     TextField tf = lookup("#browseMovieFilter").query();
     clickOn(tf).write("music");
     checkListView(listView, movie1);
+
     tf.clear();
+
     clickOn(tf).write("america");
     checkListView(listView, movie2);
   }
@@ -179,19 +182,16 @@ public class AppTest extends ApplicationTest {
 
     clickOn("#browserTab");
 
-    ObservableList<Node> options = lookup("#browseMovieSort")
-        .queryComboBox().getChildrenUnmodifiable();
-
     clickOn("#browseMovieSort");
-    clickOn(options.get(0));
+    clickOn("Title");
     checkListView(listView, movie2, movie1);
 
     clickOn("#browseMovieSort");
-    clickOn(options.get(1));
+    clickOn("Year");
     checkListView(listView, movie2, movie1);
 
     clickOn("#browseMovieSort");
-    clickOn(options.get(2));
+    clickOn("Rating");
     checkListView(listView, movie1, movie2);
   }
 
@@ -203,23 +203,20 @@ public class AppTest extends ApplicationTest {
       this.controller.watchMovie(movie2);
     });
 
-    clickOn("#profileTab");
-
     final ListView<Movie> listView = lookup("#moviebrowser").query();
 
-    ObservableList<Node> options = lookup("#profileMovieSort")
-        .queryComboBox().getChildrenUnmodifiable();
+    clickOn("#profileTab");
 
     clickOn("#profileMovieSort");
-    clickOn(options.get(0));
+    clickOn("Title");
     checkListView(listView, movie2, movie1);
 
     clickOn("#profileMovieSort");
-    clickOn(options.get(1));
+    clickOn("Year");
     checkListView(listView, movie2, movie1);
 
     clickOn("#profileMovieSort");
-    clickOn(options.get(2));
+    clickOn("Rating");
     checkListView(listView, movie1, movie2);
   }
 
