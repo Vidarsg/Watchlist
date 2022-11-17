@@ -154,7 +154,7 @@ public class WatchlistController {
   public void initialize() {
     user = new User("TestUser");
     list = new Watchlist();
-    handleLoadResourceListHttp();
+    // handleLoadResourceListHttp();
 
     initialList = new Watchlist();
     handleLoadResourceList(movieResource);
@@ -586,11 +586,7 @@ public class WatchlistController {
 
       ObservableList<Node> children = pane.getChildren();
       ImageView img = (ImageView) children.get(1);
-      if (movie.getImageUrl() != null) {
-        img.setImage(new Image(movie.getImageUrl()));
-      } else {
-        img.setImage(null);
-      }
+      img.setImage(new Image(movie.getImageUrl()));
 
       FlowPane box = (FlowPane) children.get(0);
       ObservableList<Node> f = box.getChildren();
@@ -605,31 +601,24 @@ public class WatchlistController {
       rating.setText(movie.getRating() + "/10 ("
           + movie.ratingCountToString() + ")");
 
-      StringBuilder sb = new StringBuilder();
-      if (movie.getDirectors().size() > 0) {
-        for (String d : movie.getDirectors()) {
-          sb.append(d + ", ");
-        }
-        sb.deleteCharAt(sb.length() - 2);
-      } else {
-        sb.append("Unknown");
-      }
-
       // 5th child is a label
-      Text director = (Text) f.get(6);
-      // 7th child is a label
-      director.setText(sb.toString());
-      Text actors = (Text) f.get(8);
 
-      sb = new StringBuilder();
-      if (movie.getActors().size() > 0) {
-        for (String a : movie.getActors()) {
-          sb.append(a + ", ");
-        }
-        sb.deleteCharAt(sb.length() - 2);
-      } else {
-        sb.append("None");
+      StringBuilder sb = new StringBuilder();
+      for (String d : movie.getDirectors()) {
+        sb.append(d + ", ");
       }
+      sb.deleteCharAt(sb.length() - 2);
+      Text director = (Text) f.get(6);
+      director.setText(sb.toString());
+
+      // 7th child is a label
+
+      Text actors = (Text) f.get(8);
+      sb = new StringBuilder();
+      for (String a : movie.getActors()) {
+        sb.append(a + ", ");
+      }
+      sb.deleteCharAt(sb.length() - 2);
       actors.setText(sb.toString());
 
       FlowPane genre = (FlowPane) f.get(2);

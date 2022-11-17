@@ -21,6 +21,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -97,7 +99,7 @@ public class AppTest extends ApplicationTest {
   }
 
   @Test
-  @DisplayName("Testing user watching a movie")
+  @DisplayName("Testing user unwatching a movie")
   public void testUnwatchMovie() {
     Platform.runLater(() -> {
       this.controller.watchMovie(movie1);
@@ -136,6 +138,89 @@ public class AppTest extends ApplicationTest {
     moveBy(-50, 0);
     drag().dropBy(150, 0);
     assertEquals(10, watchlist.getList().get(0).getUserRating());
+  }
+
+  @Test
+  @DisplayName("Testing user filtering movies")
+  public void testFilterMovies() {
+
+    final ListView<Movie> listView = lookup("#moviebrowser").query();
+
+    clickOn("#browserTab");
+
+    TextField tf = lookup("#browseMovieFilter").query();
+    clickOn(tf).write("music");
+    checkListView(listView, movie1);
+    tf.clear();
+    clickOn(tf).write("america");
+    checkListView(listView, movie2);
+  }
+
+  @Test
+  @DisplayName("Testing filter by genre-label")
+  public void testFilterByGenreLabel() {
+    final ListView<Movie> listView = lookup("#moviebrowser").query();
+
+    clickOn("#browserTab");
+
+    clickOn(listView.lookup(".list-cell"));
+
+    FlowPane genreFlowPane = lookup("#infoGenre").query();
+    Node genreLabel = genreFlowPane.getChildrenUnmodifiable().get(0);
+    clickOn(genreLabel);
+
+    checkListView(listView, movie1);
+  }
+
+  @Test
+  @DisplayName("Testing sorting of movies in browser page")
+  public void testSortMoviesInBrowser() {
+    final ListView<Movie> listView = lookup("#moviebrowser").query();
+
+    clickOn("#browserTab");
+
+    ObservableList<Node> options = lookup("#browseMovieSort")
+        .queryComboBox().getChildrenUnmodifiable();
+
+    clickOn("#browseMovieSort");
+    clickOn(options.get(0));
+    checkListView(listView, movie2, movie1);
+
+    clickOn("#browseMovieSort");
+    clickOn(options.get(1));
+    checkListView(listView, movie2, movie1);
+
+    clickOn("#browseMovieSort");
+    clickOn(options.get(2));
+    checkListView(listView, movie1, movie2);
+  }
+
+  @Test
+  @DisplayName("Testing sorting of movies in profile page")
+  public void testSortMoviesInProfile() {
+    Platform.runLater(() -> {
+      this.controller.watchMovie(movie1);
+      this.controller.watchMovie(movie2);
+    });
+
+    clickOn("#profileTab");
+
+    final ListView<Movie> listView = lookup("#moviebrowser").query();
+
+    ObservableList<Node> options = lookup("#profileMovieSort")
+        .queryComboBox().getChildrenUnmodifiable();
+
+    clickOn("#profileMovieSort");
+    clickOn(options.get(0));
+    checkListView(listView, movie2, movie1);
+
+    clickOn("#profileMovieSort");
+    clickOn(options.get(1));
+    checkListView(listView, movie2, movie1);
+
+    clickOn("#profileMovieSort");
+    clickOn(options.get(2));
+    checkListView(listView, movie1, movie2);
   }
 
   /**

@@ -79,11 +79,24 @@ public class Movie {
     }
     this.ratingCount = ratingCount;
 
-    this.actors = actors;
-    this.directors = directors;
+    if (actors == null || actors.isEmpty()) {
+      this.actors = List.of("None");
+    } else {
+      this.actors = actors;
+    }
+    if (directors == null || directors.isEmpty()) {
+      this.directors = List.of("Unknown");
+    } else {
+      this.directors = directors;
+    }
+
     this.genre = genre;
 
-    this.imageUrl = imageUrl;
+    if (imageUrl == null || imageUrl.isEmpty()) {
+      this.imageUrl = "https://rezerwacja.opera.szczecin.pl/msi/Themes/msidemo2/images/placeholder-kino.png";
+    } else {
+      this.imageUrl = imageUrl;
+    }
     this.thumbUrl = thumbUrl;
 
     if (userRating < 1 || userRating > 10) {

@@ -93,14 +93,17 @@ public class MovieTest {
             + "student’s potential.",
         List.of("emotional abuse", "drummer", "music school", "teacher student relationship",
             "new york city"),
-        10, 100, List.of("Miles Teller",
-            "J.K. Simmons",
-            "Melissa Benoist"),
-        List.of("Damien Chazelle"),
+        10, 100, List.of(),
+        List.of(),
         List.of("Drama", "Music"),
-        "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+        null,
         "https://m.media-amazon.com/images/M/MV5BOTA5NDZlZGUtMjAxOS00YTRkLTkwYmMtYWQ0NWEwZDZiNjEzXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX182_CR0,0,182,268_AL__QL50.jpg",
         -1);
+    assertEquals("https://rezerwacja.opera.szczecin.pl/msi/Themes/msidemo2/images/placeholder-kino.png",
+        movie1.getImageUrl());
+    assertEquals(List.of("None"), movie1.getActors());
+    assertEquals(List.of("Unknown"), movie1.getDirectors());
+
     assertEquals(0, movie1.getUserRating(), "The userRating should be 0 if it is lower than 1");
     movie1 = new Movie("Whiplash", 2014,
         "A promising young drummer enrolls at a cut-throat music conservatory where his dreams "
