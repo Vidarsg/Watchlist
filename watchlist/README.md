@@ -20,4 +20,4 @@ Som bruker av Watchlist vil jeg kunne gi rangering til filmer jeg har sett for �
 Som bruker av Watchlist vil jeg se filmer sortert etter sjanger, slik at det blir lettere å finne filmer jeg liker.
 
 ### **Brukerhistorie 5** - Se rangering andre har gitt
-Som bruker av Watchlist vil jeg se hvilken rangering en film har fått av andre brukere, slik at jeg får tips om filmer som er verdt å se.
+Som bruker av Watchlist vil jeg se hvilken rangering en film har fått av andre brukere, slik at jeg får tips om filmer som er verdt å se. (Vi valgte å ikke gjennomføre denne brukerhistorien under denne iterasjonen, men det hadde vært en aktuell utvidelse av appen i fremtiden). 
